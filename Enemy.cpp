@@ -42,3 +42,6 @@ int Enemy::attackHero() {
 
     return attackPower;
 }
+
+Enemy::~Enemy() {
+}
