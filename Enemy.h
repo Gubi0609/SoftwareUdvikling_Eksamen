@@ -1,3 +1,6 @@
+#ifndef ENEMY_H
+#define ENEMY_H
+
 #include <string>
 
 using namespace std;
@@ -10,6 +13,7 @@ class Enemy {
         int getHealth();
         int getAttackPower();
         int getXP();
+        int attackHero();
         ~Enemy();
 
     private:
@@ -18,6 +22,6 @@ class Enemy {
         int attackPower;
         int xp;
 
-        int attackHero();
-
 };
+
+#endif // ENEMY_H
