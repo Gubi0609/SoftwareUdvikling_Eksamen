@@ -14,6 +14,7 @@ class Enemy {
         int getAttackPower();
         int getXP();
         int attackHero();
+        void takeDamage(int damage);
         ~Enemy();
 
     private:

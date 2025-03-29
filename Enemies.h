@@ -1,3 +1,6 @@
+#ifndef ENEMIES_H
+#define ENEMIES_H
+
 #include "Enemy.h"
 #include <iostream>
 #include <string>
@@ -84,3 +87,5 @@ public:
     Dragon() : Enemy("Dragon", 100, 10, 3000) {}
     ~Dragon();
 };
+
+#endif // ENEMIES_H
