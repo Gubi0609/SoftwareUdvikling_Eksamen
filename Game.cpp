@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <fstream>
+#include <filesystem>
 
 using namespace std;
 
@@ -17,23 +19,24 @@ void Game::topMenu() {
     
     int choice;
 
-        cout << "Welcome to the Game!" << endl;
-        cout << "1. Create New Hero" << endl;
-        cout << "2. Load Existing Hero" << endl;
-        cout << "3. Exit" << endl;
-        cout << "Choose an option: ";
-        string input;
-        cin >> input;
+    cout << "Welcome to the Game!" << endl;
+    cout << "1. Create New Hero" << endl;
+    cout << "2. Load Existing Hero" << endl;
+    cout << "3. Exit" << endl;
+    cout << "Choose an option: ";
+    string input;
+    cin >> input;
 
-        if (all_of(input.begin(), input.end(), ::isdigit)) {
-            choice = stoi(input);
-        } else {
-            cout << "Invalid choice. Please try again." << endl;
-            topMenu();
-            return;
-        }
+    if (all_of(input.begin(), input.end(), ::isdigit)) {
+        choice = stoi(input);
+    } else {
+        cout << "Invalid choice. Please try again." << endl;
+        topMenu();
+        return;
+    }
 
     string heroName;
+    string path = "./heros/";
 
     switch (choice) {
         case 1:
@@ -46,6 +49,8 @@ void Game::topMenu() {
             cout << "Preexisting heros: " << endl;
 
             // List existing heroes here
+            for (const auto & entry : filesystem::directory_iterator(path))
+                cout << entry.path().stem() << std::endl;
 
             cout << "Enter hero name to load: ";
             cin >> heroName;
@@ -210,11 +215,61 @@ void Game::battle(Hero& hero, Enemy& enemy) {
 
 }
 
-void Game::loadHero(string name) {
+void Game::loadHero(string filename) {
     // Load hero from file or database
-    // For now, just create a new hero with the same name
-    hero = Hero(name);
-    cout << "Loaded hero: " << hero.getName() << endl;
+
+    ifstream file("./heros/"+filename+".txt");
+
+    if (file.is_open()) {
+        string name;
+        int level, health, attackPower, xp;
+
+        string line;
+
+        while(getline(file, line)) {
+            if (line.find("Name:") != string::npos) {
+                name = line.substr(line.find(":") + 1);
+            } else if (line.find("Health:") != string::npos) {
+                health = stoi(line.substr(line.find(":") + 1));
+            }else if (line.find("attackPower:") != string::npos) {
+                attackPower = stoi(line.substr(line.find(":") + 1));
+            } else if (line.find("XP:") != string::npos) {
+                xp = stoi(line.substr(line.find(":") + 1));
+            } else if (line.find("Level:") != string::npos) {
+                level = stoi(line.substr(line.find(":") + 1));
+            }
+        }
+
+        cout << "Current Hero stats: " << endl;
+        cout << "Name: " << name << endl;
+        cout << "Health: " << health << endl;
+        cout << "Attack Power: " << attackPower << endl;
+        cout << "XP: " << xp << endl;
+        cout << "Level: " << level << endl;
+        cout << "--------------------------------" << endl;
+        cout << "Do you want to continue with the current hero? (y/n): ";
+        string confirmLoad;
+        cin >> confirmLoad;
+        if (confirmLoad == "y" || confirmLoad == "Y") {
+            cout << "Continuing with the current hero..." << endl;
+        } else {
+            cout << "Returning to main menu..." << endl;
+            topMenu();
+        }
+
+        hero = Hero(name);
+        hero.setLevel(level);
+        hero.setHealth(health);
+        hero.setAttackPower(attackPower);
+        hero.setXP(xp);
+
+
+        file.close();
+    } else {
+        cout << "Error loading hero from file." << endl;
+        topMenu();
+    }
+
 }
 
 Enemy* Game::createEnemy(string enemyType) {
