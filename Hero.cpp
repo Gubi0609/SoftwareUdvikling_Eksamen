@@ -51,6 +51,9 @@ int Hero::attackEnemy() {
 void Hero::gainXP(int xp) {
     this->xp += xp;
     cout << name << " gains " << xp << " XP!" << endl;
+    if (this->xp >= this->level * 1000) {
+        levelUp();
+    }
 }
 
 void Hero::levelUp() {
@@ -65,9 +68,7 @@ void Hero::levelUp() {
 void Hero::takeDamage(int damage) {
     health -= damage;
     cout << name << " takes " << damage << " damage!" << endl;
-    cout << name << "'s remaining health: " << health << endl;
+    // cout << name << "'s remaining health: " << health << endl;
 }
 
-Hero::~Hero() {
-    cout << name << " has been defeated!" << endl;
-}
+Hero::~Hero() {}
