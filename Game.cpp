@@ -50,7 +50,7 @@ void Game::topMenu() {
 
             // List existing heroes here
             for (const auto & entry : filesystem::directory_iterator(path))
-                cout << entry.path().stem() << std::endl;
+                cout << entry.path().stem() << endl;
 
             cout << "Enter hero name to load: ";
             cin >> heroName;
