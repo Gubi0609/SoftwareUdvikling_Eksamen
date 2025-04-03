@@ -1,5 +1,5 @@
-Name: Gandalf
-Health: 150
-attackPower: 80
-XP: 15000
-Level: 21
+Name:Gandalf
+Health:150
+attackPower:80
+XP:15000
+Level:21

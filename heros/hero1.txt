@@ -1,5 +1,5 @@
-Name: August Tranberg
-Health: 30
-attackPower: 15
-XP: 100
-Level: 10
+Name:August Tranberg
+Health:30
+attackPower:15
+XP:100
+Level:10
