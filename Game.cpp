@@ -191,14 +191,14 @@ void Game::battle(Hero& hero, Enemy& enemy) {
 
         enemy.takeDamage(hero.attackEnemy());
         if (enemy.getHealth() <= 0) {
-            cout << enemy.getName() << " has been defeated! (battle)" << endl;
+            cout << enemy.getName() << " has been defeated!" << endl;
             hero.gainXP(enemy.getXP());
             break;
         }
         cout << "Enemy attacks!" << endl;
         hero.takeDamage(enemy.attackHero());
         if (hero.getHealth() <= 0) {
-            cout << hero.getName() << " has been defeated! (battle)" << endl;
+            cout << hero.getName() << " has been defeated!" << endl;
             gameOver = true;
             break;
         }

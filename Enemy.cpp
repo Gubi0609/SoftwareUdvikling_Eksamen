@@ -49,6 +49,4 @@ void Enemy::takeDamage(int damage) {
     // cout << name << "'s remaining health: " << health << endl;
 }
 
-Enemy::~Enemy() {
-    cout << name << " has been defeated! (Enemy Class)" << endl;
-}
+Enemy::~Enemy() {}
