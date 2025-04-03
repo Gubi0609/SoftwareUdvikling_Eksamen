@@ -14,6 +14,10 @@ class Hero {
         int getAttackPower();
         int getXP();
         int getLevel();
+        void setHealth(int health);
+        void setAttackPower(int attackPower);
+        void setXP(int xp);
+        void setLevel(int level);
         int attackEnemy();
         void gainXP(int xp);
         void levelUp();

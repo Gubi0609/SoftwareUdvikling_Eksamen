@@ -40,6 +40,22 @@ int Hero::getLevel() {
     return level;
 }
 
+void Hero::setHealth(int health) {
+    this->health = health;
+}
+
+void Hero::setAttackPower(int attackPower) {
+    this->attackPower = attackPower;
+}
+
+void Hero::setXP(int xp) {
+    this->xp = xp;
+}
+
+void Hero::setLevel(int level) {
+    this->level = level;
+}
+
 int Hero::attackEnemy() {
     cout << name << " attacks the enemy!" << endl;
     cout << "Dealing " << attackPower << " damage!" << endl;
