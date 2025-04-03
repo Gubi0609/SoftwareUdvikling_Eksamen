@@ -1,6 +1,7 @@
 #include "Enemies.h"
 #include "Enemy.h"
 #include "Hero.h"
+#include "Game.h"
 
 #include <iostream>
 
@@ -8,7 +9,7 @@ using namespace std;
 
 int main() {
 
-    cout << "Initializing enemies..." << endl;
+    /*cout << "Initializing enemies..." << endl;
     Wolf wolf;
     SmallTroll smallTroll;
     cout << "Enemies initialized!" << endl;
@@ -28,7 +29,10 @@ int main() {
     wolf.attackHero();
     smallTroll.attackHero();
 
-    hero.takeDamage(smallTroll.getAttackPower()+wolf.getAttackPower());
+    hero.takeDamage(smallTroll.getAttackPower()+wolf.getAttackPower());*/
+
+    Game game;
+    game.topMenu();
 
     return 0;
 

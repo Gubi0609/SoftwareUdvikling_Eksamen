@@ -46,9 +46,7 @@ int Enemy::attackHero() {
 void Enemy::takeDamage(int damage) {
     health -= damage;
     cout << name << " takes " << damage << " damage!" << endl;
-    cout << name << "'s remaining health: " << health << endl;
+    // cout << name << "'s remaining health: " << health << endl;
 }
 
-Enemy::~Enemy() {
-    cout << name << " has been defeated!" << endl;
-}
+Enemy::~Enemy() {}
