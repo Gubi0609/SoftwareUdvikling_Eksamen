@@ -1,0 +1,3 @@
+/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles/dungeonGame.dir
+/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles/edit_cache.dir
+/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles/rebuild_cache.dir

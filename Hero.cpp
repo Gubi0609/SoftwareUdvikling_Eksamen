@@ -61,12 +61,12 @@ int Hero::attackEnemy() {
     cout << "Dealing " << attackPower << " damage!" << endl;
 
     return attackPower;
-
 }
 
 void Hero::gainXP(int xp) {
     this->xp += xp;
     cout << name << " gains " << xp << " XP!" << endl;
+
     if (this->xp >= this->level * 1000) {
         levelUp();
     }
@@ -76,7 +76,8 @@ void Hero::levelUp() {
     level++;
     health += 2;
     attackPower += 1;
-    xp = 0;
+    xp = 0; // Remember to reset xp after leveling up
+
     cout << name << " levels up to level " << level << "!" << endl;
     cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
 }
@@ -84,7 +85,6 @@ void Hero::levelUp() {
 void Hero::takeDamage(int damage) {
     health -= damage;
     cout << name << " takes " << damage << " damage!" << endl;
-    // cout << name << "'s remaining health: " << health << endl;
 }
 
 Hero::~Hero() {}

@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/dungeonGame.dir/main.cpp.o CMakeFiles/dungeonGame.dir/Enemy.cpp.o CMakeFiles/dungeonGame.dir/Game.cpp.o CMakeFiles/dungeonGame.dir/Hero.cpp.o -o dungeonGame 
