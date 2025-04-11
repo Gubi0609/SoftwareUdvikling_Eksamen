@@ -1,4 +1,4 @@
-Name:August Tranberg
+Name:August
 Health:30
 attackPower:15
 XP:100

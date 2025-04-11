@@ -1,4 +1,4 @@
-Name:Bilbo Baggins
+Name:Bilbo
 Health:100
 attackPower:50
 XP:5000

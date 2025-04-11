@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/dungeonGame.dir/main.cpp.o -c \"/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp\"",
+  "file": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp",
+  "output": "CMakeFiles/dungeonGame.dir/main.cpp.o"
+},
+{
+  "directory": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/dungeonGame.dir/Enemy.cpp.o -c \"/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Enemy.cpp\"",
+  "file": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Enemy.cpp",
+  "output": "CMakeFiles/dungeonGame.dir/Enemy.cpp.o"
+},
+{
+  "directory": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/dungeonGame.dir/Game.cpp.o -c \"/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Game.cpp\"",
+  "file": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Game.cpp",
+  "output": "CMakeFiles/dungeonGame.dir/Game.cpp.o"
+},
+{
+  "directory": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/dungeonGame.dir/Hero.cpp.o -c \"/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Hero.cpp\"",
+  "file": "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Hero.cpp",
+  "output": "CMakeFiles/dungeonGame.dir/Hero.cpp.o"
+}
+]
