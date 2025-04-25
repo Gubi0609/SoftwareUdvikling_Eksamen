@@ -98,7 +98,7 @@ void Game::loadLevel(int level){
         cout << "Available enemies:\n";
         displayEnemyList();
 
-        cout << "Choose an enemy to battle or 'q' to quit: ";
+        cout << "Choose an enemy to battle, 'r' to run, or 'q' to quit: ";
         string enemyChoice;
         cin >> enemyChoice;
 
@@ -131,6 +131,13 @@ void Game::loadLevel(int level){
                 cout << "Continuing game..." << endl;
                 continue;
             }
+            
+        } else if (enemyChoice == "r" || enemyChoice == "R") {
+
+            cout << "Running from current enemies..." << endl;
+            enemyList.clear();
+            loadLevel(level);
+
         } else {
             cout << "Invalid choice. Please try again." << endl;
             continue;
@@ -147,26 +154,26 @@ void Game::getEnemyList(int level) {
 
     vector<string> possibleEnemies;
 
-    if (level <= 4) {
+    if (level <= 1) {
         possibleEnemies = {"Wolf", "Small Troll", "Troll"};
-    } else if (level <= 7) {
+    } else if (level <= 3) {
         possibleEnemies = {"Weak Goblin", "Goblin", "Goblin Guard"};
-    } else if (level == 8) {
+    } else if (level == 4) {
         possibleEnemies = {"Goblin King"}; // Boss fight
-    } else if (level <= 10) {
+    } else if (level <= 5) {
         possibleEnemies = {"Weak Goblin", "Goblin", "Goblin Guard"};
-    } else if (level == 11) {
+    } else if (level == 6) {
         possibleEnemies = {"Gollum"}; // Boss fight
-    } else if (level <= 15) {
+    } else if (level <= 7) {
         possibleEnemies = {"Wolf", "Small Troll", "Troll", "Weak Goblin", "Goblin"};
-    } else if (level <= 18) {
+    } else if (level <= 9) {
         possibleEnemies = {"Spider", "Giant Spider", "Wolf"};
-    } else if (level <= 20) {
+    } else if (level <= 10) {
         possibleEnemies = {"Wolf", "Small Troll", "Troll"};
-    } else if (level == 21) {
+    } else if (level == 11) {
         possibleEnemies = {"Dragon"}; //Boss fight
     } else {
-        possibleEnemies = {"Wolf", "Small Troll", "Troll", "Weak Goblin", "Goblin", "Goblin Guard", "Spider", "Giant Spider"}; // All none boss enemies
+        possibleEnemies = {"Wolf", "Small Troll", "Troll", "Weak Goblin", "Goblin", "Goblin Guard", "Spider", "Giant Spider"}; // All non-boss enemies
     }
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.

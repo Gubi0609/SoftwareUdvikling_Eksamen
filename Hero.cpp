@@ -7,15 +7,16 @@ using namespace std;
 Hero::Hero() {
     name = "Default Hero";
     level = 1;
-    health = 100;
-    attackPower = 10;
+    health = 10;
+    attackPower = 2;
     xp = 0;
 }
 
 Hero::Hero(string name) {
     this->name = name;
     level = 1;
-    health = 10;
+    maxHealth = 10;
+    health = maxHealth;
     attackPower = 2;
     xp = 0;
 }
@@ -74,7 +75,8 @@ void Hero::gainXP(int xp) {
 
 void Hero::levelUp() {
     level++;
-    health += 2;
+    maxHealth += 2;
+    health = maxHealth;
     attackPower += 1;
     xp = 0; // Remember to reset xp after leveling up
 

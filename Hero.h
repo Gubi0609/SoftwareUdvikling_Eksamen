@@ -27,6 +27,7 @@ class Hero {
     private:
         string name;
         int level;
+        int maxHealth;
         int health;
         int attackPower;
         int xp;

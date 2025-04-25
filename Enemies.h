@@ -54,12 +54,12 @@ public:
 
 class GoblinKing : public Enemy {
 public:
-    GoblinKing() : Enemy("Goblin King", 15, 5, 500) {}
+    GoblinKing() : Enemy("Goblin King", 15, 5, 4000) {}
 };
 
 class Gollum : public Enemy {
 public:
-    Gollum() : Enemy("Gollum", 20, 5, 1000) {}
+    Gollum() : Enemy("Gollum", 20, 5, 6000) {}
 };
 
 class Spider : public Enemy {
@@ -74,7 +74,7 @@ public:
 
 class Dragon : public Enemy {
 public:
-    Dragon() : Enemy("Dragon", 100, 10, 3000) {}
+    Dragon() : Enemy("Dragon", 100, 10, 11000) {}
 };
 
 #endif // ENEMIES_H
