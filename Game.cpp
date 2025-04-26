@@ -217,7 +217,8 @@ void Game::loadCurrentDungeon() {
     modifyDungeonList(currentDungeonIndex);
     cout << "--------------------------------" << endl;
     cout << "You have defeated all enemies in this dungeon." << endl;
-    cout << "You have earned " << currentDungeonGold << " gold!" << endl;
+    cout << "You earned " << currentDungeonGold << " gold!" << endl;
+    hero.earnGold(currentDungeonGold);
 
 }
 

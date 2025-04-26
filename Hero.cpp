@@ -41,6 +41,10 @@ int Hero::getLevel() {
     return level;
 }
 
+int Hero::getGold() {
+    return gold;
+}
+
 void Hero::setHealth(int health) {
     this->health = health;
 }
@@ -87,6 +91,10 @@ void Hero::levelUp() {
 void Hero::takeDamage(int damage) {
     health -= damage;
     cout << name << " takes " << damage << " damage!" << endl;
+}
+
+void Hero::earnGold(int gold) {
+    this->gold += gold;
 }
 
 Hero::~Hero() {}
