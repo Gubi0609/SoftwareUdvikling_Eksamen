@@ -17,9 +17,13 @@ class Dungeon {
         Dungeon(string name, string description = "");
         virtual vector<Enemy*> generateEnemyList(int level);
         void modifyEnemyList(int position);
+        
         vector<Enemy*> getEnemyList();
         string getName();
         int getGold();
+        
+        void showDescription();
+
         ~Dungeon();
 
     protected:

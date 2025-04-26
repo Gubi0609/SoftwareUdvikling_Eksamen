@@ -27,6 +27,8 @@ class Hero {
         void takeDamage(int damage);
         void earnGold(int gold);
 
+        void displayDetails();
+
         ~Hero();
 
     private:

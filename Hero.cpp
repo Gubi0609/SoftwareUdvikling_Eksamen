@@ -97,4 +97,11 @@ void Hero::earnGold(int gold) {
     this->gold += gold;
 }
 
+void Hero::displayDetails() {
+    cout << "Hero: " << name << ", Level: " << level << ", XP: " << xp << endl;
+    cout << ", Health: " << health << ", Attack Power: " << attackPower << endl;
+    cout << "Gold: " << gold << endl;
+    cout << "--------------------------------" << endl;
+}
+
 Hero::~Hero() {}

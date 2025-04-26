@@ -113,10 +113,13 @@ void Game::loadLevel(int level){
 
             currentDungeon = dungeonList[choiceIndex];
             currentDungeonIndex = choiceIndex;
-            // modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
 
-            cout << "\n";
-            cout << "You have chosen to enter a " << currentDungeon->getName() << endl;
+            if (dungeonOptions()) {
+                cout << "\n";
+                cout << "You have chosen to enter a " << currentDungeon->getName() << endl;
+            } else {
+                continue;
+            }
 
         } else if (dungeonChoice == "q" || dungeonChoice == "Q") {
 
@@ -178,11 +181,16 @@ void Game::loadCurrentDungeon() {
                 }
     
                 currentEnemy = enemyList[choiceIndex];
-                modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
-    
-                cout << "\n";
-                cout << "You have chosen to battle a " << currentEnemy->getName() << endl;
-    
+                
+                if (enemyOptions()) {
+                    modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
+        
+                    cout << "\n";
+                    cout << "You have chosen to battle a " << currentEnemy->getName() << endl;
+                } else {
+                    continue;
+                }
+
             } else if (enemyChoice == "q" || enemyChoice == "Q") {
     
                 cout << "This will end the game. Any unsaved progress will be lost." << endl;
@@ -220,6 +228,46 @@ void Game::loadCurrentDungeon() {
     cout << "You earned " << currentDungeonGold << " gold!" << endl;
     hero.earnGold(currentDungeonGold);
 
+}
+
+bool Game::dungeonOptions() {
+    // Displays options for the current dungeon.
+    
+    while(true) {
+        cout << "Choose what to do ('i' for info, 'e' to enter, 'b' to go back): ";
+        string option;
+        cin >> option;
+        if (option == "i" || option == "I") {
+            currentDungeon->showDescription();
+        } else if (option == "e" || option == "E") {
+            return true; // Enter the dungeon
+        } else if (option == "b" || option == "B") {
+            cout << "Going back to dungeon list..." << endl;
+            return false; // Go back to dungeon list
+        } else {
+            cout << "Invalid option. Please try again." << endl;
+        }
+    }
+}
+
+bool Game::enemyOptions() {
+    // Displays options for the current enemy.
+
+    while(true) {
+        cout << "Choose what to do ('i' for info, 'a' to attack, 'b' to go back): ";
+        string option;
+        cin >> option;
+        if (option == "i" || option == "I") {
+            currentEnemy->displayDetails();
+        } else if (option == "a" || option == "A") {
+            return true; // Attack the enemy
+        } else if (option == "b" || option == "B") {
+            cout << "Going back to enemy list..." << endl;
+            return false; // Go back to enemy list
+        } else {
+            cout << "Invalid option. Please try again." << endl;
+        }
+    }
 }
 
 void Game::getDungeonList(int level) {

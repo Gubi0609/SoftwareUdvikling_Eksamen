@@ -35,6 +35,9 @@ class Game {
         void loadHero(string name);
         void loadLevel(int level);
         void loadCurrentDungeon();
+
+        bool dungeonOptions();
+        bool enemyOptions();
         
         void battle(Hero& hero, Enemy& enemy);
         

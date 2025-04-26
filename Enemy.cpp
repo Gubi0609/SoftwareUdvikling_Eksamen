@@ -52,6 +52,7 @@ void Enemy::takeDamage(int damage) {
 void Enemy::displayDetails() {
     cout << "Enemy: " << name << ", Healt: " << health << ", Attack: " << attackPower << endl;
     cout << description << endl;
+    cout << "--------------------------------" << endl;
 }
 
 Enemy::~Enemy() {}

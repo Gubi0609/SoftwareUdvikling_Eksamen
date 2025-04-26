@@ -96,4 +96,10 @@ string Dungeon::getName() {
     return name;
 }
 
+void Dungeon::showDescription() {
+    cout << "Dungeon: " << name << endl;
+    cout << description << endl;
+    cout << "--------------------------------" << endl;
+}
+
 Dungeon::~Dungeon() {}
