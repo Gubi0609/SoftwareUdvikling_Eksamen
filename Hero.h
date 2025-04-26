@@ -14,14 +14,19 @@ class Hero {
         int getAttackPower();
         int getXP();
         int getLevel();
+        int getGold();
+        
         void setHealth(int health);
         void setAttackPower(int attackPower);
         void setXP(int xp);
         void setLevel(int level);
+        
         int attackEnemy();
         void gainXP(int xp);
         void levelUp();
         void takeDamage(int damage);
+        void earnGold(int gold);
+
         ~Hero();
 
     private:
@@ -31,6 +36,7 @@ class Hero {
         int health;
         int attackPower;
         int xp;
+        int gold;
 
 };
 
