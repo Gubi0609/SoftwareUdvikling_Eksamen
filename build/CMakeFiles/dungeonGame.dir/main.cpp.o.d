@@ -156,7 +156,11 @@ CMakeFiles/dungeonGame.dir/main.cpp.o: \
  /usr/include/c++/13/bits/istream.tcc \
  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Hero.h \
  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Game.h \
+ /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Dungeon.h \
  /usr/include/c++/13/vector /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
- /usr/include/c++/13/bits/vector.tcc
+ /usr/include/c++/13/bits/vector.tcc \
+ /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/CaveDungeon.h \
+ /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/ForestDungeon.h \
+ /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/PlainsDungeon.h

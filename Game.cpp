@@ -21,9 +21,9 @@ void Game::topMenu() {
     int choice;
 
     cout << "Welcome to the Game!" << endl;
-    cout << "1. Create New Hero" << endl;
-    cout << "2. Load Existing Hero" << endl;
-    cout << "3. Exit" << endl;
+    cout << "(1) Create New Hero" << endl;
+    cout << "(2) Load Existing Hero" << endl;
+    cout << "(3) Exit" << endl;
     cout << "Choose an option: ";
     string input;
     cin >> input;
@@ -85,39 +85,40 @@ void Game::startGame() {
 }
 
 void Game::loadLevel(int level){
-    // Loads a list of 4 random enemies based on the heros level.
+    // Loads a list of 4 random dungeons.
 
-    bool validEnemy = false;
+    bool validDungeon = false;
 
-    if (enemyList.size() <= 0) { // If all enemies are defeated, generate a new list.
-        getEnemyList(level);
+    if (dungeonList.size() <= 0) { // If all dungeons are defeated, generate a new list.
+        getDungeonList(level);
     }
 
-    while (!validEnemy) {
+    while (!validDungeon) {
 
-        cout << "Available enemies:\n";
-        displayEnemyList();
+        cout << "Available dungeons:" << endl;
+        displayDungeonList();
 
-        cout << "Choose an enemy to battle, 'r' to run, or 'q' to quit: ";
-        string enemyChoice;
-        cin >> enemyChoice;
+        cout << "Choose a dungeon or 'q' to quit: ";
+        string dungeonChoice;
+        cin >> dungeonChoice;
 
-        if (all_of(enemyChoice.begin(), enemyChoice.end(), ::isdigit)) { // If input is a digit, convert to int.
+        if (all_of(dungeonChoice.begin(), dungeonChoice.end(), ::isdigit)) { // If input is a digit, convert to int.
             
-            int choiceIndex = stoi(enemyChoice);
+            int choiceIndex = stoi(dungeonChoice);
             
-            if (choiceIndex < 0 || choiceIndex >= enemyList.size()) { // If digit is out of range, choice is invalid.
+            if (choiceIndex < 0 || choiceIndex >= dungeonChoice.size()) { // If digit is out of range, choice is invalid.
                 cout << "Invalid choice. Please try again." << endl;
                 continue; // Skips rest of the code in the loop, and loops again.
             }
 
-            currentEnemy = createEnemy(enemyList[choiceIndex]);
-            modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
+            currentDungeon = dungeonList[choiceIndex];
+            currentDungeonIndex = choiceIndex;
+            // modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
 
             cout << "\n";
-            cout << "You have chosen to battle a " << currentEnemy->getName() << endl;
+            cout << "You have chosen to enter a " << currentDungeon->getName() << endl;
 
-        } else if (enemyChoice == "q" || enemyChoice == "Q") {
+        } else if (dungeonChoice == "q" || dungeonChoice == "Q") {
 
             cout << "This will end the game. Any unsaved progress will be lost." << endl;
             cout << "Are you sure you want to quit? (y/n): ";
@@ -131,79 +132,144 @@ void Game::loadLevel(int level){
                 cout << "Continuing game..." << endl;
                 continue;
             }
-            
-        } else if (enemyChoice == "r" || enemyChoice == "R") {
-
-            cout << "Running from current enemies..." << endl;
-            enemyList.clear();
-            loadLevel(level);
 
         } else {
             cout << "Invalid choice. Please try again." << endl;
             continue;
         }
 
-        validEnemy = true;
+        validDungeon = true;
+
     }
 
-    battle(hero, *currentEnemy); // Starts a battle sequence with chossen enemy.
+    loadCurrentDungeon(); // Loads the current dungeon.
+
+}
+
+void Game::loadCurrentDungeon() {
+    // Loads the current dungeon.
+
+    getEnemyList(currentLevel);
+    currentDungeonGold = currentDungeon->getGold();
+
+    cout << "Gold to be earned: " << currentDungeonGold<< endl;
+    cout << "--------------------------------" << endl;
+
+    while (enemyList.size() > 0) {
+
+        bool validEnemy = false;
+
+        while (!validEnemy) {
+
+            cout << "Enemies in this dungeon:" << endl;
+            displayEnemyList();
+    
+            cout << "Choose an enemy to battle, 'r' to run, or 'q' to quit: ";
+            string enemyChoice;
+            cin >> enemyChoice;
+    
+            if (all_of(enemyChoice.begin(), enemyChoice.end(), ::isdigit)) { // If input is a digit, convert to int.
+                
+                int choiceIndex = stoi(enemyChoice);
+                
+                if (choiceIndex < 0 || choiceIndex >= enemyList.size()) { // If digit is out of range, choice is invalid.
+                    cout << "Invalid choice. Please try again." << endl;
+                    continue; // Skips rest of the code in the loop, and loops again.
+                }
+    
+                currentEnemy = enemyList[choiceIndex];
+                modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
+    
+                cout << "\n";
+                cout << "You have chosen to battle a " << currentEnemy->getName() << endl;
+    
+            } else if (enemyChoice == "q" || enemyChoice == "Q") {
+    
+                cout << "This will end the game. Any unsaved progress will be lost." << endl;
+                cout << "Are you sure you want to quit? (y/n): ";
+                string confirmQuit;
+                cin >> confirmQuit;
+    
+                if (confirmQuit == "y" || confirmQuit == "Y") {
+                    cout << "Exiting game..." << endl;
+                    exit(0);
+                } else {
+                    cout << "Continuing game..." << endl;
+                    continue;
+                }
+                
+            } else if (enemyChoice == "r" || enemyChoice == "R") {
+    
+                cout << "Running from current dungeon..." << endl;
+                return;
+    
+            } else {
+                cout << "Invalid choice. Please try again." << endl;
+                continue;
+            }
+    
+            validEnemy = true;
+        }
+    
+        battle(hero, *currentEnemy);
+    }
+
+    modifyDungeonList(currentDungeonIndex);
+    cout << "--------------------------------" << endl;
+    cout << "You have defeated all enemies in this dungeon." << endl;
+    cout << "You have earned " << currentDungeonGold << " gold!" << endl;
+
+}
+
+void Game::getDungeonList(int level) {
+    // Generates a list of dungeons based on the current level.
+
+    dungeonList.clear(); // Clears the list of dungeons.
+
+    vector<Dungeon*> possibleDungeons = {new ForestDungeon(), new PlainsDungeon(), new CaveDungeon()}; // List of possible dungeons.
+
+    random_device rd; // Seed for random number generator
+    mt19937 g(rd());  // Mersenne Twister random number generator
+    uniform_int_distribution<> dist(0, possibleDungeons.size() - 1);
+
+    enemyList.clear();
+
+    for (int i = 0; i < 4; ++i) {
+        int randomIndex = dist(g);
+        dungeonList.push_back(possibleDungeons[randomIndex]);
+    }
+
+}
+
+void Game::displayDungeonList() {
+    // Displays the list of dungeons.
+
+    for (int i = 0; i < dungeonList.size(); i++) {
+        cout << "(" << i << ") " << dungeonList[i]->getName() << endl;
+    }
+
+}
+
+void Game::modifyDungeonList(int position) {
+    // Modifies the list of dungeons.
+    dungeonList.erase(dungeonList.begin() + position);
 }
 
 void Game::getEnemyList(int level) {
-    // Generates a random enemy list of size 4 based on heros level.
-
-    vector<string> possibleEnemies;
-
-    if (level <= 1) {
-        possibleEnemies = {"Wolf", "Small Troll", "Troll"};
-    } else if (level <= 3) {
-        possibleEnemies = {"Weak Goblin", "Goblin", "Goblin Guard"};
-    } else if (level == 4) {
-        possibleEnemies = {"Goblin King"}; // Boss fight
-    } else if (level <= 5) {
-        possibleEnemies = {"Weak Goblin", "Goblin", "Goblin Guard"};
-    } else if (level == 6) {
-        possibleEnemies = {"Gollum"}; // Boss fight
-    } else if (level <= 7) {
-        possibleEnemies = {"Wolf", "Small Troll", "Troll", "Weak Goblin", "Goblin"};
-    } else if (level <= 9) {
-        possibleEnemies = {"Spider", "Giant Spider", "Wolf"};
-    } else if (level <= 10) {
-        possibleEnemies = {"Wolf", "Small Troll", "Troll"};
-    } else if (level == 11) {
-        possibleEnemies = {"Dragon"}; //Boss fight
-    } else {
-        possibleEnemies = {"Wolf", "Small Troll", "Troll", "Weak Goblin", "Goblin", "Goblin Guard", "Spider", "Giant Spider"}; // All non-boss enemies
-    }
-
-    if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
-
-        random_device rd; // Seed for random number generator
-        mt19937 g(rd());  // Mersenne Twister random number generator
-        uniform_int_distribution<> dist(0, possibleEnemies.size() - 1);
-
-        enemyList.clear();
-
-        for (int i = 0; i < 4; ++i) {
-            int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
-        }
-
-    } else {
-        enemyList = possibleEnemies; // Boss fight
-    }
+    enemyList = currentDungeon->generateEnemyList(level); // Generates a list of enemies based on the current level.
 }
 
 void Game::displayEnemyList() {
 
     for (int i = 0; i < enemyList.size(); i++) {
-        cout << enemyList[i] << "(" << i << ")\n";
+        cout << "(" << i << ") " << enemyList[i]->getName() << endl;
     }
 
 }
 
 void Game::modifyEnemyList(int position) {
-    enemyList.erase(enemyList.begin() + position);
+    currentDungeon->modifyEnemyList(position);
+    enemyList = currentDungeon->getEnemyList();
 }
 
 void Game::battle(Hero& hero, Enemy& enemy) {
@@ -309,31 +375,11 @@ void Game::loadHero(string filename) {
 
 }
 
-Enemy* Game::createEnemy(string enemyType) {
-    // Create enemy from given type
+// Game::~Game() {
+//     // Destructor
+//     delete currentEnemy;
+//     delete &hero;
 
-    if (enemyType == "Wolf") {
-        return new Wolf();
-    } else if (enemyType == "Small Troll") {
-        return new SmallTroll();
-    } else if (enemyType == "Troll") {
-        return new Troll();
-    } else if (enemyType == "Weak Goblin") {
-        return new WeakGoblin();
-    } else if (enemyType == "Goblin") {
-        return new Goblin();
-    } else if (enemyType == "Goblin Guard") {
-        return new GoblinGuard();
-    } else if (enemyType == "Goblin King") {
-        return new GoblinKing();
-    } else if (enemyType == "Gollum") {
-        return new Gollum();
-    } else if (enemyType == "Spider") {
-        return new Spider();
-    } else if (enemyType == "Giant Spider") {
-        return new GiantSpider();
-    } else if (enemyType == "Dragon") {
-        return new Dragon();
-    }
-    return nullptr;
-}
+//     cout << "Game over. Thank you for playing!" << endl;
+//     cout << "--------------------------------" << endl;
+// }

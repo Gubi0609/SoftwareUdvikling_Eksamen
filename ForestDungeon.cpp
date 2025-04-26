@@ -9,11 +9,11 @@
 using namespace std;
 
 ForestDungeon::ForestDungeon() {
-    name = "Default Forest Dungeon";
+    name = "Forest Dungeon";
     gold = 0;
+    description = "A dark and twisted forest, filled with ancient trees and lurking dangers.";
+    currentLevel = 1;
 }
-
-ForestDungeon::ForestDungeon(string name) : Dungeon(name) {}
 
 vector<Enemy*> ForestDungeon::generateEnemyList(int level) {
 

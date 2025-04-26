@@ -13,7 +13,6 @@ class PlainsDungeon : public Dungeon {
 
     public:
         PlainsDungeon();
-        PlainsDungeon(string name);
         vector<Enemy*> generateEnemyList(int level) override;
 
     protected:

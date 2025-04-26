@@ -13,8 +13,9 @@ Dungeon::Dungeon() {
     gold = 0;
 }
 
-Dungeon::Dungeon(string name) {
+Dungeon::Dungeon(string name, string description) {
     this->name = name;
+    this->description = description;
 }
 
 vector<Enemy*> Dungeon::generateEnemyList(int level) {
@@ -63,6 +64,18 @@ vector<Enemy*> Dungeon::generateEnemyList(int level) {
     return enemyList;
 }
 
+void Dungeon::modifyEnemyList(int position) {
+    if (position >= 0 && position < enemyList.size()) {
+        enemyList.erase(enemyList.begin() + position);
+    } else {
+        cout << "Invalid position!" << endl;
+    }
+}
+
+vector<Enemy*> Dungeon::getEnemyList() {
+    return enemyList;
+}
+
 int Dungeon::getGold() {
 
     gold = 0;
@@ -76,9 +89,11 @@ int Dungeon::getGold() {
         gold = 0; // Ensure gold is not negative
     }
 
-    cout << "You have earned " << gold << " gold!" << endl;
-
     return gold;
+}
+
+string Dungeon::getName() {
+    return name;
 }
 
 Dungeon::~Dungeon() {}

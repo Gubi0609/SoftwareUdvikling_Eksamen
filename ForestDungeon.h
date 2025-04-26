@@ -13,7 +13,6 @@ class ForestDungeon : public Dungeon {
 
     public:
         ForestDungeon();
-        ForestDungeon(string name);
         vector<Enemy*> generateEnemyList(int level) override;
 
     protected:

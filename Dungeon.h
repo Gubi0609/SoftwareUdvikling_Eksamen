@@ -14,14 +14,18 @@ class Dungeon {
 
     public:
         Dungeon();
-        Dungeon(string name);
+        Dungeon(string name, string description = "");
         virtual vector<Enemy*> generateEnemyList(int level);
+        void modifyEnemyList(int position);
+        vector<Enemy*> getEnemyList();
+        string getName();
         int getGold();
         ~Dungeon();
 
     protected:
         string name;
         int gold;
+        string description;
         int currentLevel;
         vector<Enemy*> enemyList;
 

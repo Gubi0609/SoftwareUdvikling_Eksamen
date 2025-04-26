@@ -9,11 +9,11 @@
 using namespace std;
 
 PlainsDungeon::PlainsDungeon() {
-    name = "Default Plains Dungeon";
+    name = "Plains Dungeon";
     gold = 0;
+    description = "A vast and open expanse, where the wind howls and danger lurks in the tall grass.";
+    currentLevel = 1;
 }
-
-PlainsDungeon::PlainsDungeon(string name) : Dungeon(name) {}
 
 vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
 

@@ -12,7 +12,7 @@ Enemy::Enemy() {
     xp = 0;
 }
 
-Enemy::Enemy(string name, int health, int attackPower, int xp, string description = "") {
+Enemy::Enemy(string name, int health, int attackPower, int xp, string description) {
     this->name = name;
     this->health = health;
     this->attackPower = attackPower;

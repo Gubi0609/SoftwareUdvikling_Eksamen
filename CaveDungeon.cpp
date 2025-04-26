@@ -9,11 +9,11 @@
 using namespace std;
 
 CaveDungeon::CaveDungeon() {
-    name = "Default Cave Dungeon";
+    name = "Cave Dungeon";
     gold = 0;
+    description = "A dark and damp cave, filled with the sounds of dripping water and distant growls.";
+    currentLevel = 1;
 }
-
-CaveDungeon::CaveDungeon(string name) : Dungeon(name) {}
 
 vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
     

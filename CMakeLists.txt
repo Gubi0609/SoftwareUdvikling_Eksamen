@@ -14,4 +14,8 @@ add_executable(dungeonGame
     Enemies.h
     Game.cpp Game.h
     Hero.cpp Hero.h
+    Dungeon.cpp Dungeon.h
+    ForestDungeon.cpp ForestDungeon.h
+    PlainsDungeon.cpp PlainsDungeon.h
+    CaveDungeon.cpp CaveDungeon.h
 )
