@@ -18,4 +18,5 @@ add_executable(dungeonGame
     ForestDungeon.cpp ForestDungeon.h
     PlainsDungeon.cpp PlainsDungeon.h
     CaveDungeon.cpp CaveDungeon.h
+    DragonDungeon.cpp DragonDungeon.h
 )

@@ -8,6 +8,7 @@
 #include "CaveDungeon.h"
 #include "ForestDungeon.h"
 #include "PlainsDungeon.h"
+#include "DragonDungeon.h"
 
 #include <iostream>
 #include <string>

@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/dungeonGame.dir/CaveDungeon.cpp.o"
   "CMakeFiles/dungeonGame.dir/CaveDungeon.cpp.o.d"
+  "CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.o"
+  "CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/Dungeon.cpp.o"
   "CMakeFiles/dungeonGame.dir/Dungeon.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/Enemy.cpp.o"

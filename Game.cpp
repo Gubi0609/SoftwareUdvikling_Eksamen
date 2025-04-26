@@ -15,6 +15,7 @@ Game::Game() {
     gameOver = false;
 }
 
+/// --- FUNCTIONS FOR HANDLING GAME ---
 void Game::topMenu() {
     // Loads the top menu and lets the player choose new or preexisting hero.
     
@@ -79,11 +80,25 @@ void Game::startGame() {
     while (!gameOver) {
         currentLevel = hero.getLevel();
         cout << "Current Level: " << currentLevel << endl;
-        loadLevel(currentLevel);
+        if (currentLevel != 11) {
+            loadLevel(currentLevel);
+        } else {
+            currentDungeon = new DragonDungeon();
+            dungeonList.push_back(currentDungeon);
+            currentDungeonIndex = 0;
+            currentDungeonGold = currentDungeon->getGold();
+            currentDungeon->showDescription();
+            loadCurrentDungeon();
+            if (dungeonList.size() != 0) {
+                dungeonList.clear();
+            }
+        }
     }
 
 }
 
+
+/// --- FUNCTIONS FOR HANDLING DUNGEONS AND ENEMIES --- 
 void Game::loadLevel(int level){
     // Loads a list of 4 random dungeons.
 
@@ -98,7 +113,7 @@ void Game::loadLevel(int level){
         cout << "Available dungeons:" << endl;
         displayDungeonList();
 
-        cout << "Choose a dungeon or 'q' to quit: ";
+        cout << "Choose a dungeon, 'd' to display Hero's stats or 'q' to quit: ";
         string dungeonChoice;
         cin >> dungeonChoice;
 
@@ -121,6 +136,9 @@ void Game::loadLevel(int level){
                 continue;
             }
 
+        } else if (dungeonChoice == "d" || dungeonChoice == "D") { // Displays hero stats.
+            hero.displayDetails();
+            continue;
         } else if (dungeonChoice == "q" || dungeonChoice == "Q") {
 
             cout << "This will end the game. Any unsaved progress will be lost." << endl;
@@ -136,7 +154,13 @@ void Game::loadLevel(int level){
                 continue;
             }
 
-        } else {
+        } else if (dungeonChoice == "drgn") { // Cheat code for Dragon Dungeon
+            hero.setLevel(11);
+            hero.setHealth(100);
+            hero.setAttackPower(10);
+            return;
+        } 
+        else {
             cout << "Invalid choice. Please try again." << endl;
             continue;
         }
@@ -230,6 +254,44 @@ void Game::loadCurrentDungeon() {
 
 }
 
+void Game::battle(Hero& hero, Enemy& enemy) {
+    // Starts a battle sequence between Hero and chossen enemy.
+
+    cin.ignore(); // Discard any leftover newline character in the input buffer
+
+    while (!gameOver){
+
+        cout << "Hero: " << hero.getName() << " (Health: " << hero.getHealth() << ")" << endl;
+        cout << "Enemy: " << enemy.getName() << " (Health: " << enemy.getHealth() << ")" << endl;
+        cout << "Press Enter to attack..." << endl;
+        cin.ignore();
+
+        enemy.takeDamage(hero.attackEnemy());
+
+        if (enemy.getHealth() <= 0) {
+            cout << enemy.getName() << " has been defeated!" << endl;
+            hero.gainXP(enemy.getXP());
+            break;
+        }
+
+        cout << "Enemy attacks!" << endl;
+        hero.takeDamage(enemy.attackHero());
+
+        if (hero.getHealth() <= 0) {
+            cout << hero.getName() << " has been defeated!" << endl;
+            gameOver = true;
+            break;
+        }
+    }
+
+    cout << "Hero Health: " << hero.getHealth() << endl;
+    cout << "Hero XP: " << hero.getXP() << endl;
+    cout << "--------------------------------" << endl;
+
+}
+
+
+/// --- FUNCTIONS FOR HANDLING DUNGEONLIST ---
 bool Game::dungeonOptions() {
     // Displays options for the current dungeon.
     
@@ -244,26 +306,6 @@ bool Game::dungeonOptions() {
         } else if (option == "b" || option == "B") {
             cout << "Going back to dungeon list..." << endl;
             return false; // Go back to dungeon list
-        } else {
-            cout << "Invalid option. Please try again." << endl;
-        }
-    }
-}
-
-bool Game::enemyOptions() {
-    // Displays options for the current enemy.
-
-    while(true) {
-        cout << "Choose what to do ('i' for info, 'a' to attack, 'b' to go back): ";
-        string option;
-        cin >> option;
-        if (option == "i" || option == "I") {
-            currentEnemy->displayDetails();
-        } else if (option == "a" || option == "A") {
-            return true; // Attack the enemy
-        } else if (option == "b" || option == "B") {
-            cout << "Going back to enemy list..." << endl;
-            return false; // Go back to enemy list
         } else {
             cout << "Invalid option. Please try again." << endl;
         }
@@ -304,6 +346,27 @@ void Game::modifyDungeonList(int position) {
     dungeonList.erase(dungeonList.begin() + position);
 }
 
+// --- FUNCTIONS FOR HANDLING ENEMYLIST ---
+bool Game::enemyOptions() {
+    // Displays options for the current enemy.
+
+    while(true) {
+        cout << "Choose what to do ('i' for info, 'a' to attack, 'b' to go back): ";
+        string option;
+        cin >> option;
+        if (option == "i" || option == "I") {
+            currentEnemy->displayDetails();
+        } else if (option == "a" || option == "A") {
+            return true; // Attack the enemy
+        } else if (option == "b" || option == "B") {
+            cout << "Going back to enemy list..." << endl;
+            return false; // Go back to enemy list
+        } else {
+            cout << "Invalid option. Please try again." << endl;
+        }
+    }
+}
+
 void Game::getEnemyList(int level) {
     enemyList = currentDungeon->generateEnemyList(level); // Generates a list of enemies based on the current level.
 }
@@ -321,42 +384,7 @@ void Game::modifyEnemyList(int position) {
     enemyList = currentDungeon->getEnemyList();
 }
 
-void Game::battle(Hero& hero, Enemy& enemy) {
-    // Starts a battle sequence between Hero and chossen enemy.
-
-    cin.ignore(); // Discard any leftover newline character in the input buffer
-
-    while (!gameOver){
-
-        cout << "Hero: " << hero.getName() << " (Health: " << hero.getHealth() << ")" << endl;
-        cout << "Enemy: " << enemy.getName() << " (Health: " << enemy.getHealth() << ")" << endl;
-        cout << "Press Enter to attack..." << endl;
-        cin.ignore();
-
-        enemy.takeDamage(hero.attackEnemy());
-
-        if (enemy.getHealth() <= 0) {
-            cout << enemy.getName() << " has been defeated!" << endl;
-            hero.gainXP(enemy.getXP());
-            break;
-        }
-
-        cout << "Enemy attacks!" << endl;
-        hero.takeDamage(enemy.attackHero());
-
-        if (hero.getHealth() <= 0) {
-            cout << hero.getName() << " has been defeated!" << endl;
-            gameOver = true;
-            break;
-        }
-    }
-
-    cout << "Hero Health: " << hero.getHealth() << endl;
-    cout << "Hero XP: " << hero.getXP() << endl;
-    cout << "--------------------------------" << endl;
-
-}
-
+/// --- FUNCTIONS FOR HANDLING HERO ---
 void Game::loadHero(string filename) {
     // Load hero from file or database
 
@@ -423,12 +451,3 @@ void Game::loadHero(string filename) {
     }
 
 }
-
-// Game::~Game() {
-//     // Destructor
-//     delete currentEnemy;
-//     delete &hero;
-
-//     cout << "Game over. Thank you for playing!" << endl;
-//     cout << "--------------------------------" << endl;
-// }

@@ -153,6 +153,30 @@ CaveDungeon.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/CaveDungeon.cpp.s
 .PHONY : CaveDungeon.cpp.s
 
+DragonDungeon.o: DragonDungeon.cpp.o
+.PHONY : DragonDungeon.o
+
+# target to build an object file
+DragonDungeon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.o
+.PHONY : DragonDungeon.cpp.o
+
+DragonDungeon.i: DragonDungeon.cpp.i
+.PHONY : DragonDungeon.i
+
+# target to preprocess a source file
+DragonDungeon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.i
+.PHONY : DragonDungeon.cpp.i
+
+DragonDungeon.s: DragonDungeon.cpp.s
+.PHONY : DragonDungeon.s
+
+# target to generate assembly for a file
+DragonDungeon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.s
+.PHONY : DragonDungeon.cpp.s
+
 Dungeon.o: Dungeon.cpp.o
 .PHONY : Dungeon.o
 
@@ -333,6 +357,9 @@ help:
 	@echo "... CaveDungeon.o"
 	@echo "... CaveDungeon.i"
 	@echo "... CaveDungeon.s"
+	@echo "... DragonDungeon.o"
+	@echo "... DragonDungeon.i"
+	@echo "... DragonDungeon.s"
 	@echo "... Dungeon.o"
 	@echo "... Dungeon.i"
 	@echo "... Dungeon.s"
