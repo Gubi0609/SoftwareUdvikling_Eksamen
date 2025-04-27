@@ -1,14 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Hero.h"
-#include "Enemies.h"
-#include "Enemy.h"
-#include "Dungeon.h"
-#include "CaveDungeon.h"
-#include "ForestDungeon.h"
-#include "PlainsDungeon.h"
-#include "DragonDungeon.h"
+#include "../HeroClass/Hero.h"
+#include "../EnemyClasses/Enemies.h"
+#include "../EnemyClasses/Enemy.h"
+#include "../DungeonClasses/Dungeon.h"
+#include "../DungeonClasses/CaveDungeon.h"
+#include "../DungeonClasses/ForestDungeon.h"
+#include "../DungeonClasses/PlainsDungeon.h"
+#include "../DungeonClasses/DragonDungeon.h"
 
 #include <iostream>
 #include <string>

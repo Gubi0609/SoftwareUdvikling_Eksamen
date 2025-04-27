@@ -38,7 +38,7 @@ void Game::topMenu() {
     }
 
     string heroName;
-    string path = "./heros/";
+    string path = "../heros/";
 
     switch (choice) {
         case 1:
@@ -287,6 +287,7 @@ void Game::battle(Hero& hero, Enemy& enemy) {
     cout << "Hero Health: " << hero.getHealth() << endl;
     cout << "Hero XP: " << hero.getXP() << endl;
     cout << "--------------------------------" << endl;
+    currentEnemy = nullptr; // Reset current enemy after battle
 
 }
 
@@ -388,7 +389,7 @@ void Game::modifyEnemyList(int position) {
 void Game::loadHero(string filename) {
     // Load hero from file or database
 
-    ifstream file("./heros/"+filename+".txt"); // Opens hero-file based on filename
+    ifstream file("../heros/"+filename+".txt"); // Opens hero-file based on filename
 
     if (file.is_open()) {
 

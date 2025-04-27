@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <memory>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ Dungeon::Dungeon(string name, string description) {
     this->description = description;
 }
 
-vector<Enemy*> Dungeon::generateEnemyList(int level) {
+vector<unique_ptr<Enemy>> Dungeon::generateEnemyList(int level) {
     
     vector<Enemy*> possibleEnemies;
 

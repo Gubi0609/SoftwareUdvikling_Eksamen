@@ -1,12 +1,13 @@
 #ifndef DUNGEON_H
 #define DUNGEON_H
 
-#include "Enemy.h"
-#include "Enemies.h"
+#include "../EnemyClasses/Enemy.h"
+#include "../EnemyClasses/Enemies.h"
 
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -15,10 +16,10 @@ class Dungeon {
     public:
         Dungeon();
         Dungeon(string name, string description = "");
-        virtual vector<Enemy*> generateEnemyList(int level);
+        virtual vector<unique_ptr<Enemy>> generateEnemyList(int level);
         void modifyEnemyList(int position);
         
-        vector<Enemy*> getEnemyList();
+        vector<unique_ptr<Enemy>> getEnemyList();
         string getName();
         int getGold();
         
@@ -31,7 +32,7 @@ class Dungeon {
         int gold;
         string description;
         int currentLevel;
-        vector<Enemy*> enemyList;
+        vector<unique_ptr<Enemy>> enemyList;
 
 };
 

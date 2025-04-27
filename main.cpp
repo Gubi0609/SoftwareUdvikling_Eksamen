@@ -1,10 +1,7 @@
-#ifndef MAIN_CPP
-#define MAIN_CPP
-
-#include "Enemies.h"
-#include "Enemy.h"
-#include "Hero.h"
-#include "Game.h"
+#include "./EnemyClasses/Enemies.h"
+#include "./EnemyClasses/Enemy.h"
+#include "./HeroClass/Hero.h"
+#include "./GameClass/Game.h"
 
 #include <iostream>
 
@@ -17,5 +14,3 @@ int main() {
 
     return 0;
 }
-
-#endif // MAIN_CPP
