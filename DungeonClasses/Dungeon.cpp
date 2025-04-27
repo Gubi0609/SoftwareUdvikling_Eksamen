@@ -63,6 +63,7 @@ vector<unique_ptr<Enemy>> Dungeon::generateEnemyList(int level) {
     }
 
     return enemyList;
+    
 }
 
 void Dungeon::modifyEnemyList(int position) {
