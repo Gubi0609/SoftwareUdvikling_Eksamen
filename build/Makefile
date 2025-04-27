@@ -129,6 +129,78 @@ dungeonGame/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/build
 .PHONY : dungeonGame/fast
 
+CaveDungeon.o: CaveDungeon.cpp.o
+.PHONY : CaveDungeon.o
+
+# target to build an object file
+CaveDungeon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/CaveDungeon.cpp.o
+.PHONY : CaveDungeon.cpp.o
+
+CaveDungeon.i: CaveDungeon.cpp.i
+.PHONY : CaveDungeon.i
+
+# target to preprocess a source file
+CaveDungeon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/CaveDungeon.cpp.i
+.PHONY : CaveDungeon.cpp.i
+
+CaveDungeon.s: CaveDungeon.cpp.s
+.PHONY : CaveDungeon.s
+
+# target to generate assembly for a file
+CaveDungeon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/CaveDungeon.cpp.s
+.PHONY : CaveDungeon.cpp.s
+
+DragonDungeon.o: DragonDungeon.cpp.o
+.PHONY : DragonDungeon.o
+
+# target to build an object file
+DragonDungeon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.o
+.PHONY : DragonDungeon.cpp.o
+
+DragonDungeon.i: DragonDungeon.cpp.i
+.PHONY : DragonDungeon.i
+
+# target to preprocess a source file
+DragonDungeon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.i
+.PHONY : DragonDungeon.cpp.i
+
+DragonDungeon.s: DragonDungeon.cpp.s
+.PHONY : DragonDungeon.s
+
+# target to generate assembly for a file
+DragonDungeon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DragonDungeon.cpp.s
+.PHONY : DragonDungeon.cpp.s
+
+Dungeon.o: Dungeon.cpp.o
+.PHONY : Dungeon.o
+
+# target to build an object file
+Dungeon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Dungeon.cpp.o
+.PHONY : Dungeon.cpp.o
+
+Dungeon.i: Dungeon.cpp.i
+.PHONY : Dungeon.i
+
+# target to preprocess a source file
+Dungeon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Dungeon.cpp.i
+.PHONY : Dungeon.cpp.i
+
+Dungeon.s: Dungeon.cpp.s
+.PHONY : Dungeon.s
+
+# target to generate assembly for a file
+Dungeon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Dungeon.cpp.s
+.PHONY : Dungeon.cpp.s
+
 Enemy.o: Enemy.cpp.o
 .PHONY : Enemy.o
 
@@ -152,6 +224,30 @@ Enemy.s: Enemy.cpp.s
 Enemy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Enemy.cpp.s
 .PHONY : Enemy.cpp.s
+
+ForestDungeon.o: ForestDungeon.cpp.o
+.PHONY : ForestDungeon.o
+
+# target to build an object file
+ForestDungeon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/ForestDungeon.cpp.o
+.PHONY : ForestDungeon.cpp.o
+
+ForestDungeon.i: ForestDungeon.cpp.i
+.PHONY : ForestDungeon.i
+
+# target to preprocess a source file
+ForestDungeon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/ForestDungeon.cpp.i
+.PHONY : ForestDungeon.cpp.i
+
+ForestDungeon.s: ForestDungeon.cpp.s
+.PHONY : ForestDungeon.s
+
+# target to generate assembly for a file
+ForestDungeon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/ForestDungeon.cpp.s
+.PHONY : ForestDungeon.cpp.s
 
 Game.o: Game.cpp.o
 .PHONY : Game.o
@@ -201,6 +297,30 @@ Hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Hero.cpp.s
 .PHONY : Hero.cpp.s
 
+PlainsDungeon.o: PlainsDungeon.cpp.o
+.PHONY : PlainsDungeon.o
+
+# target to build an object file
+PlainsDungeon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/PlainsDungeon.cpp.o
+.PHONY : PlainsDungeon.cpp.o
+
+PlainsDungeon.i: PlainsDungeon.cpp.i
+.PHONY : PlainsDungeon.i
+
+# target to preprocess a source file
+PlainsDungeon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/PlainsDungeon.cpp.i
+.PHONY : PlainsDungeon.cpp.i
+
+PlainsDungeon.s: PlainsDungeon.cpp.s
+.PHONY : PlainsDungeon.s
+
+# target to generate assembly for a file
+PlainsDungeon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/PlainsDungeon.cpp.s
+.PHONY : PlainsDungeon.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -234,15 +354,30 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... dungeonGame"
+	@echo "... CaveDungeon.o"
+	@echo "... CaveDungeon.i"
+	@echo "... CaveDungeon.s"
+	@echo "... DragonDungeon.o"
+	@echo "... DragonDungeon.i"
+	@echo "... DragonDungeon.s"
+	@echo "... Dungeon.o"
+	@echo "... Dungeon.i"
+	@echo "... Dungeon.s"
 	@echo "... Enemy.o"
 	@echo "... Enemy.i"
 	@echo "... Enemy.s"
+	@echo "... ForestDungeon.o"
+	@echo "... ForestDungeon.i"
+	@echo "... ForestDungeon.s"
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"
 	@echo "... Hero.o"
 	@echo "... Hero.i"
 	@echo "... Hero.s"
+	@echo "... PlainsDungeon.o"
+	@echo "... PlainsDungeon.i"
+	@echo "... PlainsDungeon.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

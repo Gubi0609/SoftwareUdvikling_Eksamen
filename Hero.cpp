@@ -7,17 +7,20 @@ using namespace std;
 Hero::Hero() {
     name = "Default Hero";
     level = 1;
-    health = 100;
-    attackPower = 10;
+    health = 10;
+    attackPower = 2;
     xp = 0;
+    gold = 0;
 }
 
 Hero::Hero(string name) {
     this->name = name;
     level = 1;
-    health = 10;
+    maxHealth = 10;
+    health = maxHealth;
     attackPower = 2;
     xp = 0;
+    gold = 0;
 }
 
 string Hero::getName() {
@@ -38,6 +41,10 @@ int Hero::getXP() {
 
 int Hero::getLevel() {
     return level;
+}
+
+int Hero::getGold() {
+    return gold;
 }
 
 void Hero::setHealth(int health) {
@@ -74,7 +81,8 @@ void Hero::gainXP(int xp) {
 
 void Hero::levelUp() {
     level++;
-    health += 2;
+    maxHealth += 9;
+    health = maxHealth;
     attackPower += 1;
     xp = 0; // Remember to reset xp after leveling up
 
@@ -85,6 +93,17 @@ void Hero::levelUp() {
 void Hero::takeDamage(int damage) {
     health -= damage;
     cout << name << " takes " << damage << " damage!" << endl;
+}
+
+void Hero::earnGold(int gold) {
+    this->gold += gold;
+}
+
+void Hero::displayDetails() {
+    cout << "Hero: " << name << ", Level: " << level << ", XP: " << xp << endl;
+    cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
+    cout << "Gold: " << gold << endl;
+    cout << "--------------------------------" << endl;
 }
 
 Hero::~Hero() {}

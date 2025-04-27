@@ -1,3 +1,6 @@
+#ifndef MAIN_CPP
+#define MAIN_CPP
+
 #include "Enemies.h"
 #include "Enemy.h"
 #include "Hero.h"
@@ -14,3 +17,5 @@ int main() {
 
     return 0;
 }
+
+#endif // MAIN_CPP

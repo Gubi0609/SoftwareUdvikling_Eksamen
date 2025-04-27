@@ -12,11 +12,12 @@ Enemy::Enemy() {
     xp = 0;
 }
 
-Enemy::Enemy(string name, int health, int attackPower, int xp) {
+Enemy::Enemy(string name, int health, int attackPower, int xp, string description) {
     this->name = name;
     this->health = health;
     this->attackPower = attackPower;
     this->xp = xp;
+    this->description = description;
 }
 
 string Enemy::getName() {
@@ -46,6 +47,12 @@ int Enemy::attackHero() {
 void Enemy::takeDamage(int damage) {
     health -= damage;
     cout << name << " takes " << damage << " damage!" << endl;
+}
+
+void Enemy::displayDetails() {
+    cout << "Enemy: " << name << ", Healt: " << health << ", Attack: " << attackPower << endl;
+    cout << description << endl;
+    cout << "--------------------------------" << endl;
 }
 
 Enemy::~Enemy() {}

@@ -8,13 +8,14 @@ using namespace std;
 class Enemy { 
     public:
         Enemy();
-        Enemy(string name, int health, int attackPower, int xp);
+        Enemy(string name, int health, int attackPower, int xp, string description = "");
         string getName();
         int getHealth();
         int getAttackPower();
         int getXP();
         int attackHero();
         void takeDamage(int damage);
+        void displayDetails();
         ~Enemy();
 
     private:
@@ -22,6 +23,7 @@ class Enemy {
         int health;
         int attackPower;
         int xp;
+        string description;
 
 };
 
