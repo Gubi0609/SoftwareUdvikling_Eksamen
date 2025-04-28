@@ -45,11 +45,11 @@ class Game {
         void getDungeonList(int level);
         void displayDungeonList();
         void modifyDungeonList(int position);
+        Dungeon* createDungeon(string dungeonType);
 
         void getEnemyList(int level);
         void displayEnemyList();
         void modifyEnemyList(int position);
-        //Enemy* createEnemy(string enemyType);
         
         //void endGame(Hero& hero);
 

@@ -318,7 +318,7 @@ void Game::getDungeonList(int level) {
 
     dungeonList.clear(); // Clears the list of dungeons.
 
-    vector<Dungeon*> possibleDungeons = {new ForestDungeon(), new PlainsDungeon(), new CaveDungeon()}; // List of possible dungeons.
+    vector<string> possibleDungeons = {"Forest", "Cave", "Plains"}; // List of possible dungeons.
 
     random_device rd; // Seed for random number generator
     mt19937 g(rd());  // Mersenne Twister random number generator
@@ -328,7 +328,7 @@ void Game::getDungeonList(int level) {
 
     for (int i = 0; i < 4; ++i) {
         int randomIndex = dist(g);
-        dungeonList.push_back(possibleDungeons[randomIndex]);
+        dungeonList.push_back(createDungeon(possibleDungeons[randomIndex]));
     }
 
 }
@@ -346,6 +346,23 @@ void Game::modifyDungeonList(int position) {
     // Modifies the list of dungeons.
     dungeonList[position]->~Dungeon(); // Deletes the dungeon from memory.
     dungeonList.erase(dungeonList.begin() + position);
+}
+
+Dungeon* Game::createDungeon(string dungeonType) {
+    // Creates a dungeon based on the given type.
+
+    if (dungeonType == "Cave") {
+        return new CaveDungeon();
+    } else if (dungeonType == "Forest") {
+        return new ForestDungeon();
+    } else if (dungeonType == "Plains") {
+        return new PlainsDungeon();
+    } else if (dungeonType == "Dragon") {
+        return new DragonDungeon();
+    } else {
+        cout << "Invalid dungeon type!" << endl;
+        return nullptr;
+    }
 }
 
 // --- FUNCTIONS FOR HANDLING ENEMYLIST ---
