@@ -19,7 +19,7 @@ Dungeon::Dungeon(string name, string description) {
     this->description = description;
 }
 
-vector<unique_ptr<Enemy>> Dungeon::generateEnemyList(int level) {
+vector<Enemy*> Dungeon::generateEnemyList(int level) {
     
     vector<Enemy*> possibleEnemies;
 
