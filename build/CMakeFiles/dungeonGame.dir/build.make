@@ -69,80 +69,24 @@ include CMakeFiles/dungeonGame.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/dungeonGame.dir/flags.make
 
-CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
-CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp
-CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp"
+CMakeFiles/dungeonGame.dir/main.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
+CMakeFiles/dungeonGame.dir/main.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp
+CMakeFiles/dungeonGame.dir/main.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/dungeonGame.dir/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/main.cpp.o -MF CMakeFiles/dungeonGame.dir/main.cpp.o.d -o CMakeFiles/dungeonGame.dir/main.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp"
 
-CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.i
+CMakeFiles/dungeonGame.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp" > CMakeFiles/dungeonGame.dir/main.cpp.i
 
-CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.s
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
-CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp
-CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp"
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.i
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.s
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
-CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp
-CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp"
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.i
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.s
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
-CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp
-CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp"
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.i
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.s
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
-CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp
-CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp"
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.i
-
-CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s
+CMakeFiles/dungeonGame.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp" -o CMakeFiles/dungeonGame.dir/main.cpp.s
 
 CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
 CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/EnemyClasses/Enemy.cpp
 CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o -MF CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o.d -o CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/EnemyClasses/Enemy.cpp"
 
 CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.i: cmake_force
@@ -156,7 +100,7 @@ CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.s: cmake_force
 CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
 CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/GameClass/Game.cpp
 CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o -MF CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o.d -o CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/GameClass/Game.cpp"
 
 CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.i: cmake_force
@@ -170,7 +114,7 @@ CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.s: cmake_force
 CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
 CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/HeroClass/Hero.cpp
 CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o -MF CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o.d -o CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/HeroClass/Hero.cpp"
 
 CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.i: cmake_force
@@ -181,44 +125,100 @@ CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/HeroClass/Hero.cpp" -o CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.s
 
-CMakeFiles/dungeonGame.dir/main.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
-CMakeFiles/dungeonGame.dir/main.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp
-CMakeFiles/dungeonGame.dir/main.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/dungeonGame.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/main.cpp.o -MF CMakeFiles/dungeonGame.dir/main.cpp.o.d -o CMakeFiles/dungeonGame.dir/main.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp"
+CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
+CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp
+CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp"
 
-CMakeFiles/dungeonGame.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp" > CMakeFiles/dungeonGame.dir/main.cpp.i
+CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.i
 
-CMakeFiles/dungeonGame.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp" -o CMakeFiles/dungeonGame.dir/main.cpp.s
+CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.s
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
+CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp
+CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp"
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.i
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.s
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
+CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp
+CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp"
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.i
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
+CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp
+CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp"
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.i
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.s
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o: CMakeFiles/dungeonGame.dir/flags.make
+CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp
+CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o: CMakeFiles/dungeonGame.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o -MF CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o.d -o CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o -c "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp"
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp" > CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.i
+
+CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.cpp" -o CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.s
 
 # Object files for target dungeonGame
 dungeonGame_OBJECTS = \
-"CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o" \
-"CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o" \
-"CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o" \
-"CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o" \
-"CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o" \
+"CMakeFiles/dungeonGame.dir/main.cpp.o" \
 "CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o" \
 "CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o" \
 "CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o" \
-"CMakeFiles/dungeonGame.dir/main.cpp.o"
+"CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o" \
+"CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o" \
+"CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o" \
+"CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o" \
+"CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o"
 
 # External object files for target dungeonGame
 dungeonGame_EXTERNAL_OBJECTS =
 
-dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o
-dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o
-dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o
-dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o
-dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o
+dungeonGame: CMakeFiles/dungeonGame.dir/main.cpp.o
 dungeonGame: CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o
 dungeonGame: CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o
 dungeonGame: CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o
-dungeonGame: CMakeFiles/dungeonGame.dir/main.cpp.o
+dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/Dungeon.cpp.o
+dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o
+dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o
+dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/CaveDungeon.cpp.o
+dungeonGame: CMakeFiles/dungeonGame.dir/DungeonClasses/DragonDungeon.cpp.o
 dungeonGame: CMakeFiles/dungeonGame.dir/build.make
 dungeonGame: CMakeFiles/dungeonGame.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable dungeonGame"

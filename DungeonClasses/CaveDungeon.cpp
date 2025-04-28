@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <memory>
 
 using namespace std;
 
@@ -15,8 +16,8 @@ CaveDungeon::CaveDungeon() {
     currentLevel = 1;
 }
 
-vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
-    
+vector<unique_ptr<Enemy>> CaveDungeon::generateEnemyList(int level) {
+
     /*
     -- CAVE --
 [x] Weak Goblin 2 hp, 1 attackPower, 50 xp
@@ -32,27 +33,46 @@ vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
 [x] Gollum 30 hp, 5 attackPower, 6000 xp
     */
 
-    vector<Enemy*> possibleEnemies;
+    vector<unique_ptr<Enemy>> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new WeakGoblin(), new Goblin(), new GoblinGuard()};
+        possibleEnemies.emplace_back(make_unique<WeakGoblin>());
+        possibleEnemies.emplace_back(make_unique<Goblin>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
     } else if (level <= 3) {
-        possibleEnemies = {new UmbralCrawler(), new GoblinGuard()};
+        possibleEnemies.emplace_back(make_unique<UmbralCrawler>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
     } else if (level == 4) {
-        possibleEnemies = {new GoblinKing()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<GoblinKing>()); // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new UmbralCrawler(), new StoneGolem(), new PaleWatcher()};
+        possibleEnemies.emplace_back(make_unique<UmbralCrawler>());
+        possibleEnemies.emplace_back(make_unique<StoneGolem>());
+        possibleEnemies.emplace_back(make_unique<PaleWatcher>());
     } else if (level == 6) {
-        possibleEnemies = {new Gollum()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<Gollum>()); // Boss fight
     } else if (level <= 7) {
-        possibleEnemies = {new StoneGolem(), new PaleWatcher(), new CrystalWraith()};
+        possibleEnemies.emplace_back(make_unique<StoneGolem>());
+        possibleEnemies.emplace_back(make_unique<PaleWatcher>());
+        possibleEnemies.emplace_back(make_unique<CrystalWraith>());
     } else if (level <= 9) {
-        possibleEnemies = {new CrystalWraith(), new PaleWatcher(), new UmbralCrawler()};
+        possibleEnemies.emplace_back(make_unique<CrystalWraith>());
+        possibleEnemies.emplace_back(make_unique<PaleWatcher>());
+        possibleEnemies.emplace_back(make_unique<UmbralCrawler>());
     } else if (level <= 10) {
-        possibleEnemies = {new CrystalWraith(), new PaleWatcher(), new GoblinGuard()};
+        possibleEnemies.emplace_back(make_unique<CrystalWraith>());
+        possibleEnemies.emplace_back(make_unique<PaleWatcher>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
     } else {
-        possibleEnemies = {new WeakGoblin(), new Goblin(), new GoblinGuard(), new UmbralCrawler(), new StoneGolem(), new PaleWatcher(), new CrystalWraith()}; // All non-boss enemies
+        possibleEnemies.emplace_back(make_unique<WeakGoblin>());
+        possibleEnemies.emplace_back(make_unique<Goblin>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
+        possibleEnemies.emplace_back(make_unique<UmbralCrawler>());
+        possibleEnemies.emplace_back(make_unique<StoneGolem>());
+        possibleEnemies.emplace_back(make_unique<PaleWatcher>());
+        possibleEnemies.emplace_back(make_unique<CrystalWraith>()); // All non-boss enemies
     }
+
+    vector<unique_ptr<Enemy>> selectedEnemies;
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
 
@@ -64,12 +84,13 @@ vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            selectedEnemies.push_back(move(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        selectedEnemies = move(possibleEnemies); // Boss fight
     }
 
-    return enemyList;
+    enemyList = move(selectedEnemies);
+    return move(enemyList);
 }

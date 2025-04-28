@@ -15,7 +15,7 @@ ForestDungeon::ForestDungeon() {
     currentLevel = 1;
 }
 
-vector<Enemy*> ForestDungeon::generateEnemyList(int level) {
+vector<unique_ptr<Enemy>> ForestDungeon::generateEnemyList(int level) {
 
     /*
     -- FOREST --
@@ -31,27 +31,42 @@ vector<Enemy*> ForestDungeon::generateEnemyList(int level) {
 [x] Ancient Treant 30 hp, 5 attackPower, 6000 xp
     */
     
-    vector<Enemy*> possibleEnemies;
+    vector<unique_ptr<Enemy>> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new Spider(), new GiantSpider(), new Bear()};
+        possibleEnemies.emplace_back(make_unique<Spider>());
+        possibleEnemies.emplace_back(make_unique<GiantSpider>());
+        possibleEnemies.emplace_back(make_unique<Bear>());
     } else if (level <= 3) {
-        possibleEnemies = {new Bear(), new Centaur()};
+        possibleEnemies.emplace_back(make_unique<Bear>());
+        possibleEnemies.emplace_back(make_unique<Centaur>());
     } else if (level == 4) {
-        possibleEnemies = {new CorruptedDryadQueen()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<CorruptedDryadQueen>()); // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new Centaur(), new ElvenRogue(), new ForestWisp()}; 
+        possibleEnemies.emplace_back(make_unique<Centaur>());
+        possibleEnemies.emplace_back(make_unique<ElvenRogue>());
+        possibleEnemies.emplace_back(make_unique<ForestWisp>());
     } else if (level == 6) {
-        possibleEnemies = {new AncientTreant()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<AncientTreant>()); // Boss fight
     } else if (level <= 9) {
-        possibleEnemies = {new ElvenRogue(), new ForestWisp(), new Centaur(), new GiantSpider()}; 
+        possibleEnemies.emplace_back(make_unique<ElvenRogue>());
+        possibleEnemies.emplace_back(make_unique<ForestWisp>());
+        possibleEnemies.emplace_back(make_unique<Centaur>());
+        possibleEnemies.emplace_back(make_unique<GiantSpider>());
     } else if (level <= 10) {
-        possibleEnemies = {new ElvenRogue(), new ForestWisp(), new CorruptedDryadQueen()};
-    } else if (level == 11) {
-        possibleEnemies = {new Dragon()}; //Boss fight
+        possibleEnemies.emplace_back(make_unique<ElvenRogue>());
+        possibleEnemies.emplace_back(make_unique<ForestWisp>());
+        possibleEnemies.emplace_back(make_unique<CorruptedDryadQueen>());
     } else {
-        possibleEnemies = {new Spider(), new GiantSpider(), new Bear(), new Centaur(), new ElvenRogue(), new ForestWisp()}; // All non-boss enemies
+        possibleEnemies.emplace_back(make_unique<Spider>());
+        possibleEnemies.emplace_back(make_unique<GiantSpider>());
+        possibleEnemies.emplace_back(make_unique<Bear>());
+        possibleEnemies.emplace_back(make_unique<Centaur>());
+        possibleEnemies.emplace_back(make_unique<ElvenRogue>());
+        possibleEnemies.emplace_back(make_unique<ForestWisp>()); // All non-boss enemies
     }
+
+    vector<unique_ptr<Enemy>> selectedEnemies;
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
 
@@ -63,12 +78,13 @@ vector<Enemy*> ForestDungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            selectedEnemies.push_back(move(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        selectedEnemies = move(possibleEnemies); // Boss fight
     }
 
-    return enemyList;
+    enemyList = move(selectedEnemies);
+    return move(selectedEnemies);
 }

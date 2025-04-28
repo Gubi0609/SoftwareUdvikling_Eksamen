@@ -83,7 +83,7 @@ void Game::startGame() {
         if (currentLevel != 11) {
             loadLevel(currentLevel);
         } else {
-            currentDungeon = new DragonDungeon();
+            currentDungeon = make_unique<DragonDungeon>();
             dungeonList.push_back(currentDungeon);
             currentDungeonIndex = 0;
             currentDungeonGold = currentDungeon->getGold();
@@ -126,7 +126,7 @@ void Game::loadLevel(int level){
                 continue; // Skips rest of the code in the loop, and loops again.
             }
 
-            currentDungeon = dungeonList[choiceIndex];
+            currentDungeon = move(dungeonList[choiceIndex]);
             currentDungeonIndex = choiceIndex;
 
             if (dungeonOptions()) {
@@ -204,7 +204,7 @@ void Game::loadCurrentDungeon() {
                     continue; // Skips rest of the code in the loop, and loops again.
                 }
     
-                currentEnemy = enemyList[choiceIndex];
+                currentEnemy = move(enemyList[choiceIndex]);
                 
                 if (enemyOptions()) {
                     modifyEnemyList(choiceIndex); // Deletes enemy from list of enemies.
@@ -318,7 +318,7 @@ void Game::getDungeonList(int level) {
 
     dungeonList.clear(); // Clears the list of dungeons.
 
-    vector<Dungeon*> possibleDungeons = {new ForestDungeon(), new PlainsDungeon(), new CaveDungeon()}; // List of possible dungeons.
+    vector<unique_ptr<Dungeon>> possibleDungeons = {make_unique<ForestDungeon>(), make_unique<PlainsDungeon>(), make_unique<CaveDungeon>()}; // List of possible dungeons.
 
     random_device rd; // Seed for random number generator
     mt19937 g(rd());  // Mersenne Twister random number generator
@@ -328,7 +328,7 @@ void Game::getDungeonList(int level) {
 
     for (int i = 0; i < 4; ++i) {
         int randomIndex = dist(g);
-        dungeonList.push_back(possibleDungeons[randomIndex]);
+        dungeonList.push_back(move(possibleDungeons[randomIndex]));
     }
 
 }

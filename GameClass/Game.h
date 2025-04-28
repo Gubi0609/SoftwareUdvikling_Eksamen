@@ -24,14 +24,14 @@ class Game {
 
     private:
         Hero hero;
-        Enemy* currentEnemy;
+        unique_ptr<Enemy> currentEnemy;
         int currentLevel;
         int currentDungeonGold;
         int currentDungeonIndex;
         bool gameOver;
-        vector <Enemy*> enemyList;
-        vector <Dungeon*> dungeonList;
-        Dungeon* currentDungeon;
+        vector <unique_ptr<Enemy>> enemyList;
+        vector <unique_ptr<Dungeon>> dungeonList;
+        unique_ptr<Dungeon> currentDungeon;
 
         void loadHero(string name);
         void loadLevel(int level);

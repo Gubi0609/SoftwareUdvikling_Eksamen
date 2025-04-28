@@ -19,7 +19,7 @@ class Dungeon {
         virtual vector<unique_ptr<Enemy>> generateEnemyList(int level);
         void modifyEnemyList(int position);
         
-        vector<unique_ptr<Enemy>> getEnemyList();
+        vector<unique_ptr<Enemy>> getEnemyList() const;
         string getName();
         int getGold();
         
@@ -35,6 +35,5 @@ class Dungeon {
         vector<unique_ptr<Enemy>> enemyList;
 
 };
-
 
 #endif

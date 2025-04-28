@@ -15,7 +15,7 @@ PlainsDungeon::PlainsDungeon() {
     currentLevel = 1;
 }
 
-vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
+vector<unique_ptr<Enemy>> PlainsDungeon::generateEnemyList(int level) {
 
     /*
     -- PLAINS --
@@ -32,27 +32,43 @@ vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
 
     */
     
-    vector<Enemy*> possibleEnemies;
+    vector<unique_ptr<Enemy>> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new Wolf(), new Boar(), new Bandit()};
+        possibleEnemies.emplace_back(make_unique<Wolf>());
+        possibleEnemies.emplace_back(make_unique<Boar>());
+        possibleEnemies.emplace_back(make_unique<Bandit>());
     } else if (level <= 3) {
-        possibleEnemies = {new Bandit(), new SmallTroll()};
+        possibleEnemies.emplace_back(make_unique<Bandit>());
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
     } else if (level == 4) {
-        possibleEnemies = {new AlphaDirewolf()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<AlphaDirewolf>()); // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new SmallTroll(), new Troll(), new NomadArcher()};
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
+        possibleEnemies.emplace_back(make_unique<NomadArcher>());
     } else if (level == 6) {
-        possibleEnemies = {new WarlordMarauder()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<WarlordMarauder>()); // Boss fight
     } else if (level <= 9) {
-        possibleEnemies = {new NomadArcher(), new WindSprite(), new Troll(), new Boar()};
+        possibleEnemies.emplace_back(make_unique<NomadArcher>());
+        possibleEnemies.emplace_back(make_unique<WindSprite>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
+        possibleEnemies.emplace_back(make_unique<Boar>());
     } else if (level <= 10) {
-        possibleEnemies = {new NomadArcher(), new WindSprite(), new AlphaDirewolf()};
-    } else if (level == 11) {
-        possibleEnemies = {new Dragon()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<NomadArcher>());
+        possibleEnemies.emplace_back(make_unique<WindSprite>());
+        possibleEnemies.emplace_back(make_unique<AlphaDirewolf>());
     } else {
-        possibleEnemies = {new Wolf(), new Boar(), new Bandit(), new SmallTroll(), new Troll(), new NomadArcher(), new WindSprite()}; // All non-boss enemies
-    }
+        possibleEnemies.emplace_back(make_unique<Wolf>());
+        possibleEnemies.emplace_back(make_unique<Boar>());
+        possibleEnemies.emplace_back(make_unique<Bandit>());
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
+        possibleEnemies.emplace_back(make_unique<NomadArcher>());
+        possibleEnemies.emplace_back(make_unique<WindSprite>()); // All non-boss enemies
+    }  possibleEnemies = {make_unique<Wolf>(), make_unique<Boar>(), make_unique<Bandit>(), make_unique<SmallTroll>(), make_unique<Troll>(), make_unique<NomadArcher>(), make_unique<WindSprite>()}; // All non-boss enemies
+
+    vector<unique_ptr<Enemy>> selectedEnemies;
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
 
@@ -64,12 +80,13 @@ vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            selectedEnemies.push_back(move(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        selectedEnemies = move(possibleEnemies); // Boss fight
     }
 
-    return enemyList;
+    enemyList = move(selectedEnemies);
+    return move(selectedEnemies);
 }

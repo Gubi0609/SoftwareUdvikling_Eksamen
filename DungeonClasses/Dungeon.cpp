@@ -1,4 +1,6 @@
 #include "Dungeon.h"
+#include "../EnemyClasses/Enemy.h"
+#include "../EnemyClasses/Enemies.h"
 
 #include <iostream>
 #include <string>
@@ -21,29 +23,50 @@ Dungeon::Dungeon(string name, string description) {
 
 vector<unique_ptr<Enemy>> Dungeon::generateEnemyList(int level) {
     
-    vector<Enemy*> possibleEnemies;
+    vector<unique_ptr<Enemy>> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new Wolf(), new SmallTroll(), new Troll()};
+        possibleEnemies.emplace_back(make_unique<Wolf>());
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
     } else if (level <= 3) {
-        possibleEnemies = {new WeakGoblin(), new Goblin(), new GoblinGuard()};
+        possibleEnemies.emplace_back(make_unique<WeakGoblin>());
+        possibleEnemies.emplace_back(make_unique<Goblin>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
     } else if (level == 4) {
-        possibleEnemies = {new GoblinKing()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<GoblinKing>()); // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new WeakGoblin(), new Goblin(), new GoblinGuard()};
+        possibleEnemies.emplace_back(make_unique<WeakGoblin>());
+        possibleEnemies.emplace_back(make_unique<Goblin>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
     } else if (level == 6) {
-        possibleEnemies = {new Gollum()}; // Boss fight
+        possibleEnemies.emplace_back(make_unique<Gollum>()); // Boss fight
     } else if (level <= 7) {
-        possibleEnemies = {new Wolf(), new SmallTroll(), new Troll(), new WeakGoblin(), new Goblin()};
+        possibleEnemies.emplace_back(make_unique<Wolf>());
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
+        possibleEnemies.emplace_back(make_unique<WeakGoblin>());
+        possibleEnemies.emplace_back(make_unique<Goblin>());
     } else if (level <= 9) {
-        possibleEnemies = {new Spider(), new GiantSpider(), new Wolf()};
+        possibleEnemies.emplace_back(make_unique<Spider>());
+        possibleEnemies.emplace_back(make_unique<GiantSpider>());
+        possibleEnemies.emplace_back(make_unique<Wolf>());
     } else if (level <= 10) {
-        possibleEnemies = {new Wolf(), new SmallTroll(), new Troll()};
-    } else if (level == 11) {
-        possibleEnemies = {new Dragon()}; //Boss fight
+        possibleEnemies.emplace_back(make_unique<Wolf>());
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
     } else {
-        possibleEnemies = {new Wolf(), new SmallTroll(), new Troll(), new WeakGoblin(), new Goblin(), new GoblinGuard(), new Spider(), new GiantSpider()}; // All non-boss enemies
+        possibleEnemies.emplace_back(make_unique<Wolf>());
+        possibleEnemies.emplace_back(make_unique<SmallTroll>());
+        possibleEnemies.emplace_back(make_unique<Troll>());
+        possibleEnemies.emplace_back(make_unique<WeakGoblin>());
+        possibleEnemies.emplace_back(make_unique<Goblin>());
+        possibleEnemies.emplace_back(make_unique<GoblinGuard>());
+        possibleEnemies.emplace_back(make_unique<Spider>());
+        possibleEnemies.emplace_back(make_unique<GiantSpider>()); // All non-boss enemies
     }
+
+    vector<unique_ptr<Enemy>> selectedEnemies;
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
 
@@ -55,13 +78,14 @@ vector<unique_ptr<Enemy>> Dungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            selectedEnemies.push_back(move(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        selectedEnemies = move(possibleEnemies); // Boss fight
     }
 
+    enemyList = move(selectedEnemies);
     return enemyList;
 
 }
@@ -74,7 +98,7 @@ void Dungeon::modifyEnemyList(int position) {
     }
 }
 
-vector<Enemy*> Dungeon::getEnemyList() {
+vector<unique_ptr<Enemy>> Dungeon::getEnemyList() const {
     return enemyList;
 }
 

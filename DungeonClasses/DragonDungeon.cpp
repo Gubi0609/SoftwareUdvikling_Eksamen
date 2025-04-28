@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <memory>
 
 using namespace std;
 
@@ -15,8 +16,12 @@ DragonDungeon::DragonDungeon() {
     currentLevel = 11;
 }
 
-vector<Enemy*> DragonDungeon::generateEnemyList(int level) {
+vector<unique_ptr<Enemy>> DragonDungeon::generateEnemyList(int level) {
 
-    enemyList = {new Dragon()}; // Boss fight
-    return enemyList;
+    if (enemyList.size() > 0) {
+        enemyList.clear();
+    }
+
+    enemyList.emplace_back(make_unique<Dragon>());
+    return move(enemyList);
 }

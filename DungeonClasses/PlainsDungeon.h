@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class PlainsDungeon : public Dungeon {
 
     public:
         PlainsDungeon();
-        vector<Enemy*> generateEnemyList(int level) override;
+        vector<unique_ptr<Enemy>> generateEnemyList(int level) override;
 
     protected:
 
