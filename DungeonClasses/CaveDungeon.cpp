@@ -32,26 +32,26 @@ vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
 [x] Gollum 30 hp, 5 attackPower, 6000 xp
     */
 
-    vector<Enemy*> possibleEnemies;
+    vector<string> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new WeakGoblin(), new Goblin(), new GoblinGuard()};
+        possibleEnemies = {"WeakGoblin", "Goblin", "GoblinGuard"};
     } else if (level <= 3) {
-        possibleEnemies = {new UmbralCrawler(), new GoblinGuard()};
+        possibleEnemies = {"UmbralCrawler", "GoblinGuard"};
     } else if (level == 4) {
-        possibleEnemies = {new GoblinKing()}; // Boss fight
+        possibleEnemies = {"GoblinKing"}; // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new UmbralCrawler(), new StoneGolem(), new PaleWatcher()};
+        possibleEnemies = {"UmbralCrawler", "StoneGolem", "PaleWatcher"};
     } else if (level == 6) {
-        possibleEnemies = {new Gollum()}; // Boss fight
+        possibleEnemies = {"Gollum"}; // Boss fight
     } else if (level <= 7) {
-        possibleEnemies = {new StoneGolem(), new PaleWatcher(), new CrystalWraith()};
+        possibleEnemies = {"StoneGolem", "PaleWatcher", "CrystalWraith"};
     } else if (level <= 9) {
-        possibleEnemies = {new CrystalWraith(), new PaleWatcher(), new UmbralCrawler()};
+        possibleEnemies = {"CrystalWraith", "PaleWatcher", "UmbralCrawler"};
     } else if (level <= 10) {
-        possibleEnemies = {new CrystalWraith(), new PaleWatcher(), new GoblinGuard()};
+        possibleEnemies = {"CrystalWraith", "PaleWatcher", "GoblinGuard"};
     } else {
-        possibleEnemies = {new WeakGoblin(), new Goblin(), new GoblinGuard(), new UmbralCrawler(), new StoneGolem(), new PaleWatcher(), new CrystalWraith()}; // All non-boss enemies
+        possibleEnemies = {"WeakGoblin", "Goblin", "GoblinGuard", "UmbralCrawler", "StoneGolem", "PaleWatcher", "CrystalWraith"}; // All non-boss enemies
     }
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
@@ -64,11 +64,14 @@ vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            enemyList.push_back(createEnemy(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        if (enemyList.size() > 0) {
+            enemyList.clear();
+        }
+        enemyList.push_back(createEnemy(possibleEnemies[0])); // Boss fight
     }
 
     return enemyList;

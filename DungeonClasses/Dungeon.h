@@ -16,10 +16,11 @@ class Dungeon {
     public:
         Dungeon();
         Dungeon(string name, string description = "");
-        virtual vector<unique_ptr<Enemy>> generateEnemyList(int level);
+        virtual vector<Enemy*> generateEnemyList(int level);
+        Enemy* createEnemy(string enemyType);
         void modifyEnemyList(int position);
         
-        vector<unique_ptr<Enemy>> getEnemyList();
+        vector<Enemy*> getEnemyList() const;
         string getName();
         int getGold();
         
@@ -32,7 +33,7 @@ class Dungeon {
         int gold;
         string description;
         int currentLevel;
-        vector<unique_ptr<Enemy>> enemyList;
+        vector<Enemy*> enemyList;
 
 };
 
