@@ -31,26 +31,26 @@ vector<Enemy*> ForestDungeon::generateEnemyList(int level) {
 [x] Ancient Treant 30 hp, 5 attackPower, 6000 xp
     */
     
-    vector<Enemy*> possibleEnemies;
+    vector<string> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new Spider(), new GiantSpider(), new Bear()};
+        possibleEnemies = {"Spider", "GiantSpider", "Bear"};
     } else if (level <= 3) {
-        possibleEnemies = {new Bear(), new Centaur()};
+        possibleEnemies = {"Bear", "Centaur"};
     } else if (level == 4) {
-        possibleEnemies = {new CorruptedDryadQueen()}; // Boss fight
+        possibleEnemies = {"CorruptedDryadQueen"}; // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new Centaur(), new ElvenRogue(), new ForestWisp()}; 
+        possibleEnemies = {"Centaur", "ElvenRogue", "ForestWisp"};
     } else if (level == 6) {
-        possibleEnemies = {new AncientTreant()}; // Boss fight
+        possibleEnemies = {"AncientTreant"}; // Boss fight
     } else if (level <= 9) {
-        possibleEnemies = {new ElvenRogue(), new ForestWisp(), new Centaur(), new GiantSpider()}; 
+        possibleEnemies = {"ElvenRogue", "ForestWisp", "Centaur", "GiantSpider"};
     } else if (level <= 10) {
-        possibleEnemies = {new ElvenRogue(), new ForestWisp(), new CorruptedDryadQueen()};
+        possibleEnemies = {"ElvenRogue", "ForestWisp", "CorruptedDryadQueen"};
     } else if (level == 11) {
-        possibleEnemies = {new Dragon()}; //Boss fight
+        possibleEnemies = {"Dragon"}; // Boss fight
     } else {
-        possibleEnemies = {new Spider(), new GiantSpider(), new Bear(), new Centaur(), new ElvenRogue(), new ForestWisp()}; // All non-boss enemies
+        possibleEnemies = {"Spider", "GiantSpider", "Bear", "Centaur", "ElvenRogue", "ForestWisp"}; // All non-boss enemies
     }
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
@@ -63,11 +63,14 @@ vector<Enemy*> ForestDungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            enemyList.push_back(createEnemy(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        if (enemyList.size() > 0) {
+            enemyList.clear();
+        }
+        enemyList.push_back(createEnemy(possibleEnemies[0])); // Boss fight
     }
 
     return enemyList;

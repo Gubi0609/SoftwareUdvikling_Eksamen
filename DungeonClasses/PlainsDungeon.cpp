@@ -32,26 +32,24 @@ vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
 
     */
     
-    vector<Enemy*> possibleEnemies;
+    vector<string> possibleEnemies;
 
     if (level <= 1) {
-        possibleEnemies = {new Wolf(), new Boar(), new Bandit()};
+        possibleEnemies = {"Wolf", "Boar", "Bandit"};
     } else if (level <= 3) {
-        possibleEnemies = {new Bandit(), new SmallTroll()};
+        possibleEnemies = {"Bandit", "SmallTroll"};
     } else if (level == 4) {
-        possibleEnemies = {new AlphaDirewolf()}; // Boss fight
+        possibleEnemies = {"AlphaDirewolf"}; // Boss fight
     } else if (level <= 5) {
-        possibleEnemies = {new SmallTroll(), new Troll(), new NomadArcher()};
+        possibleEnemies = {"SmallTroll", "Troll", "NomadArcher"};
     } else if (level == 6) {
-        possibleEnemies = {new WarlordMarauder()}; // Boss fight
+        possibleEnemies = {"WarlordMarauder"}; // Boss fight
     } else if (level <= 9) {
-        possibleEnemies = {new NomadArcher(), new WindSprite(), new Troll(), new Boar()};
+        possibleEnemies = {"NomadArcher", "WindSprite", "Troll", "Boar"};
     } else if (level <= 10) {
-        possibleEnemies = {new NomadArcher(), new WindSprite(), new AlphaDirewolf()};
-    } else if (level == 11) {
-        possibleEnemies = {new Dragon()}; // Boss fight
+        possibleEnemies = {"NomadArcher", "WindSprite", "AlphaDirewolf"};
     } else {
-        possibleEnemies = {new Wolf(), new Boar(), new Bandit(), new SmallTroll(), new Troll(), new NomadArcher(), new WindSprite()}; // All non-boss enemies
+        possibleEnemies = {"Wolf", "Boar", "Bandit", "SmallTroll", "Troll", "NomadArcher", "WindSprite"}; // All non-boss enemies
     }
 
     if (possibleEnemies.size() > 1) { // If more than one enemy in list of possible enemies (not a boss fight), randomize choice.
@@ -64,11 +62,14 @@ vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
 
         for (int i = 0; i < 4; ++i) {
             int randomIndex = dist(g);
-            enemyList.push_back(possibleEnemies[randomIndex]);
+            enemyList.push_back(createEnemy(possibleEnemies[randomIndex]));
         }
 
     } else {
-        enemyList = possibleEnemies; // Boss fight
+        if (enemyList.size() > 0) {
+            enemyList.clear();
+        }
+        enemyList.push_back(createEnemy(possibleEnemies[0])); // Boss fight
     }
 
     return enemyList;

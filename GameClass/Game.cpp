@@ -121,7 +121,7 @@ void Game::loadLevel(int level){
             
             int choiceIndex = stoi(dungeonChoice);
             
-            if (choiceIndex < 0 || choiceIndex >= dungeonChoice.size()) { // If digit is out of range, choice is invalid.
+            if (choiceIndex < 0 || choiceIndex >= dungeonList.size()) { // If digit is out of range, choice is invalid.
                 cout << "Invalid choice. Please try again." << endl;
                 continue; // Skips rest of the code in the loop, and loops again.
             }
@@ -344,6 +344,7 @@ void Game::displayDungeonList() {
 
 void Game::modifyDungeonList(int position) {
     // Modifies the list of dungeons.
+    dungeonList[position]->~Dungeon(); // Deletes the dungeon from memory.
     dungeonList.erase(dungeonList.begin() + position);
 }
 

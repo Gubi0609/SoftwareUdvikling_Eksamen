@@ -1940,11 +1940,6 @@ CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o: /home/august-tranberg/workspace
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 
 CMakeFiles/dungeonGame.dir/main.cpp.o: /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp \
-  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/CaveDungeon.h \
-  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/DragonDungeon.h \
-  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/Dungeon.h \
-  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/ForestDungeon.h \
-  /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/DungeonClasses/PlainsDungeon.h \
   /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/EnemyClasses/Enemies.h \
   /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/EnemyClasses/Enemy.h \
   /home/august-tranberg/workspace/Uni/2.\ Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/EnemyClasses/Enemies.h \
