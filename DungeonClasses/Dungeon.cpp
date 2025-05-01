@@ -20,6 +20,12 @@ Dungeon::Dungeon(string name, string description) {
 }
 
 vector<Enemy*> Dungeon::generateEnemyList(int level) {
+    /*
+    Generates a list of enemies based on the current level.
+    If not a boss level, the enemies are randomized, and 4 enemies are selected.
+    :param level: The current level
+    :return: A vector with enemy pointers.
+    */
     
     vector<string> possibleEnemies;
 
@@ -70,6 +76,11 @@ vector<Enemy*> Dungeon::generateEnemyList(int level) {
 }
 
 Enemy* Dungeon::createEnemy(string enemyType) {
+    /*
+    Creates an enemy based on given enemyType.
+    :param enemyType: The type of enemy to create.
+    :return: Returns a pointer to the created enemy.
+    */
   
     // -- PLAINS -- //
     if (enemyType == "Wolf") {
@@ -141,6 +152,10 @@ Enemy* Dungeon::createEnemy(string enemyType) {
 }
 
 void Dungeon::modifyEnemyList(int position) {
+    /*
+    Deletes the enemy at a given position of the enemyList vector.
+    :param position: The 0-index position of the enemy.
+    */
     if (position >= 0 && position < enemyList.size()) {
         enemyList.erase(enemyList.begin() + position);
     } else {
@@ -153,6 +168,10 @@ vector<Enemy*> Dungeon::getEnemyList() const {
 }
 
 int Dungeon::getGold() {
+    /*
+    Calculates amount of gold in dungeon based on the XP of enemies in dungeon.
+    :return: Returns the amount of gold in dungeon.
+    */
 
     gold = 0;
 
@@ -173,6 +192,9 @@ string Dungeon::getName() {
 }
 
 void Dungeon::showDescription() {
+    /*
+    Prints the dungeon name and description to terminal.
+    */
     cout << "Dungeon: " << name << endl;
     cout << description << endl;
     cout << "--------------------------------" << endl;

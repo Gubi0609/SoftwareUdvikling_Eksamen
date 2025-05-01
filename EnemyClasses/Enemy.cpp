@@ -50,6 +50,9 @@ void Enemy::takeDamage(int damage) {
 }
 
 void Enemy::displayDetails() {
+    /*
+    Prints name, health and attackPower to termianl along with the enemy's description.
+    */
     cout << "Enemy: " << name << ", Healt: " << health << ", Attack: " << attackPower << endl;
     cout << description << endl;
     cout << "--------------------------------" << endl;
