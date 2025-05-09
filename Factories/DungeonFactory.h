@@ -17,7 +17,7 @@ class DungeonFactory {
     public:
         DungeonFactory();
         vector<Dungeon*> generateDungeonList(int level);
-        vector<Dungeon*> getDungeonList();
+        vector<Dungeon*> getDungeonList() const;
         void modifyDungeonList(int position);
         Dungeon* createDungeon(string dungeonType);
 
