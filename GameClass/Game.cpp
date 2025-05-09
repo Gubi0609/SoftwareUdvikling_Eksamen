@@ -151,8 +151,10 @@ void Game::loadLevel(int level){
             hero.setHealth(100);
             hero.setAttackPower(10);
             return;
-        } 
-        else {
+        } else if (dungeonChoice == "lvlup") { // Cheat code to level up
+            hero.gainXP(hero.getLevel()*1000);
+            return;
+        } else {
             cout << "Invalid choice. Please try again." << endl;
             continue;
         }
