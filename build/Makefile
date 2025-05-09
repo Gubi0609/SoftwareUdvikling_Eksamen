@@ -273,6 +273,54 @@ EnemyClasses/Enemy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.s
 .PHONY : EnemyClasses/Enemy.cpp.s
 
+Factories/DungeonFactory.o: Factories/DungeonFactory.cpp.o
+.PHONY : Factories/DungeonFactory.o
+
+# target to build an object file
+Factories/DungeonFactory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/DungeonFactory.cpp.o
+.PHONY : Factories/DungeonFactory.cpp.o
+
+Factories/DungeonFactory.i: Factories/DungeonFactory.cpp.i
+.PHONY : Factories/DungeonFactory.i
+
+# target to preprocess a source file
+Factories/DungeonFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/DungeonFactory.cpp.i
+.PHONY : Factories/DungeonFactory.cpp.i
+
+Factories/DungeonFactory.s: Factories/DungeonFactory.cpp.s
+.PHONY : Factories/DungeonFactory.s
+
+# target to generate assembly for a file
+Factories/DungeonFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/DungeonFactory.cpp.s
+.PHONY : Factories/DungeonFactory.cpp.s
+
+Factories/EnemyFactory.o: Factories/EnemyFactory.cpp.o
+.PHONY : Factories/EnemyFactory.o
+
+# target to build an object file
+Factories/EnemyFactory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.o
+.PHONY : Factories/EnemyFactory.cpp.o
+
+Factories/EnemyFactory.i: Factories/EnemyFactory.cpp.i
+.PHONY : Factories/EnemyFactory.i
+
+# target to preprocess a source file
+Factories/EnemyFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.i
+.PHONY : Factories/EnemyFactory.cpp.i
+
+Factories/EnemyFactory.s: Factories/EnemyFactory.cpp.s
+.PHONY : Factories/EnemyFactory.s
+
+# target to generate assembly for a file
+Factories/EnemyFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.s
+.PHONY : Factories/EnemyFactory.cpp.s
+
 GameClass/Game.o: GameClass/Game.cpp.o
 .PHONY : GameClass/Game.o
 
@@ -372,6 +420,12 @@ help:
 	@echo "... EnemyClasses/Enemy.o"
 	@echo "... EnemyClasses/Enemy.i"
 	@echo "... EnemyClasses/Enemy.s"
+	@echo "... Factories/DungeonFactory.o"
+	@echo "... Factories/DungeonFactory.i"
+	@echo "... Factories/DungeonFactory.s"
+	@echo "... Factories/EnemyFactory.o"
+	@echo "... Factories/EnemyFactory.i"
+	@echo "... Factories/EnemyFactory.s"
 	@echo "... GameClass/Game.o"
 	@echo "... GameClass/Game.i"
 	@echo "... GameClass/Game.s"

@@ -20,6 +20,6 @@ vector<Enemy*> DragonDungeon::generateEnemyList(int level) {
     A special case of the parent class Dungeon. DragonDungeon only has one enemy.
     */
 
-    enemyList = {new Dragon()}; // Boss fight
+    enemyList = enemyFactory.generateEnemyList(level, "Dragon");
     return enemyList;
 }

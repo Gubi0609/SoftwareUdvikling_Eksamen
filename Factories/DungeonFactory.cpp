@@ -38,7 +38,7 @@ vector<Dungeon*> DungeonFactory::generateDungeonList(int level) {
     return dungeonList;
 }
 
-vector<Dungeon*> DungeonFactory::getDungeonList() {
+vector<Dungeon*> DungeonFactory::getDungeonList() const {
     return dungeonList;
 }
 

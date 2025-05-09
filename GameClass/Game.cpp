@@ -79,24 +79,18 @@ void Game::startGame() {
 
     while (!gameOver) {
         currentLevel = hero.getLevel();
-        cout << "Current Level: " << currentLevel << endl;
-        if (currentLevel != 11) {
+        if (currentLevel < 12) {
+            cout << "Current Level: " << currentLevel << endl;
             loadLevel(currentLevel);
         } else {
-            currentDungeon = new DragonDungeon();
-            dungeonList.push_back(currentDungeon);
-            currentDungeonIndex = 0;
-            currentDungeonGold = currentDungeon->getGold();
-            currentDungeon->showDescription();
-            loadCurrentDungeon();
-            if (dungeonList.size() != 0) {
-                dungeonList.clear();
-            }
+            gameOver = true;
+            cout << "You have defeated the final enemy, and can now retire in peace." << endl;
         }
     }
 
-}
+    cout << "--- GAME OVER ---" << endl;
 
+}
 
 /// --- FUNCTIONS FOR HANDLING DUNGEONS AND ENEMIES --- 
 void Game::loadLevel(int level){
@@ -104,9 +98,7 @@ void Game::loadLevel(int level){
 
     bool validDungeon = false;
 
-    if (dungeonList.size() <= 0) { // If all dungeons are defeated, generate a new list.
-        getDungeonList(level);
-    }
+    generateDungeonList(level);
 
     while (!validDungeon) {
 
@@ -176,7 +168,7 @@ void Game::loadLevel(int level){
 void Game::loadCurrentDungeon() {
     // Loads the current dungeon.
 
-    getEnemyList(currentLevel);
+    generateEnemyList(currentLevel);
     currentDungeonGold = currentDungeon->getGold();
 
     cout << "Gold to be earned: " << currentDungeonGold<< endl;
@@ -313,23 +305,10 @@ bool Game::dungeonOptions() {
     }
 }
 
-void Game::getDungeonList(int level) {
+void Game::generateDungeonList(int level) {
     // Generates a list of dungeons based on the current level.
 
-    dungeonList.clear(); // Clears the list of dungeons.
-
-    vector<string> possibleDungeons = {"Forest", "Cave", "Plains"}; // List of possible dungeons.
-
-    random_device rd; // Seed for random number generator
-    mt19937 g(rd());  // Mersenne Twister random number generator
-    uniform_int_distribution<> dist(0, possibleDungeons.size() - 1);
-
-    enemyList.clear();
-
-    for (int i = 0; i < 4; ++i) {
-        int randomIndex = dist(g);
-        dungeonList.push_back(createDungeon(possibleDungeons[randomIndex]));
-    }
+    dungeonList = dungeonFactory.generateDungeonList(level);
 
 }
 
@@ -344,24 +323,10 @@ void Game::displayDungeonList() {
 
 void Game::modifyDungeonList(int position) {
     // Modifies the list of dungeons.
-    dungeonList[position]->~Dungeon(); // Deletes the dungeon from memory.
-    dungeonList.erase(dungeonList.begin() + position);
-}
-
-Dungeon* Game::createDungeon(string dungeonType) {
-    // Creates a dungeon based on the given type.
-
-    if (dungeonType == "Cave") {
-        return new CaveDungeon();
-    } else if (dungeonType == "Forest") {
-        return new ForestDungeon();
-    } else if (dungeonType == "Plains") {
-        return new PlainsDungeon();
-    } else if (dungeonType == "Dragon") {
-        return new DragonDungeon();
+    if (position >= 0 && position < dungeonList.size()) {
+        dungeonList.erase(dungeonList.begin() + position);
     } else {
-        cout << "Invalid dungeon type!" << endl;
-        return nullptr;
+        cout << "Invalid position!" << endl;
     }
 }
 
@@ -386,7 +351,7 @@ bool Game::enemyOptions() {
     }
 }
 
-void Game::getEnemyList(int level) {
+void Game::generateEnemyList(int level) {
     enemyList = currentDungeon->generateEnemyList(level); // Generates a list of enemies based on the current level.
 }
 

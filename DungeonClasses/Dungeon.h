@@ -3,6 +3,7 @@
 
 #include "../EnemyClasses/Enemy.h"
 #include "../EnemyClasses/Enemies.h"
+#include "../Factories/EnemyFactory.h"
 
 #include <iostream>
 #include <string>
@@ -17,9 +18,7 @@ class Dungeon {
         Dungeon();
         Dungeon(string name, string description = "");
         virtual vector<Enemy*> generateEnemyList(int level);
-        Enemy* createEnemy(string enemyType);
         void modifyEnemyList(int position);
-        
         vector<Enemy*> getEnemyList() const;
         string getName();
         int getGold();
@@ -34,6 +33,7 @@ class Dungeon {
         string description;
         int currentLevel;
         vector<Enemy*> enemyList;
+        EnemyFactory enemyFactory;
 
 };
 

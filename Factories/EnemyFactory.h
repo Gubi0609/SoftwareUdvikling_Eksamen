@@ -14,7 +14,7 @@ class EnemyFactory {
     public:
         EnemyFactory();
         vector<Enemy*> generateEnemyList(int level, string dungeonType);
-        vector<Enemy*> getEnemyList();
+        vector<Enemy*> getEnemyList() const;
         void modifyEnemyList(int position);
         Enemy* createEnemy(string enemyType);
         

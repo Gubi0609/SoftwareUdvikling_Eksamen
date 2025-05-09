@@ -107,6 +107,10 @@ vector<Enemy*> EnemyFactory::generateEnemyList(int level, string dungeonType) {
 
 }
 
+vector<Enemy*> EnemyFactory::getEnemyList() const {
+    return enemyList;
+}
+
 void EnemyFactory::modifyEnemyList(int position) {
     /*
     Deletes the enemy at a given position of the enemyList vector.
