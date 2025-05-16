@@ -10,14 +10,19 @@
 
 using namespace std;
 
-class TravellingMerchant : public Dungeon {
+class TravellingMerchant {
     public:
         TravellingMerchant();
         Weapon* createWeapon(string weapontype);
         vector<string> getStockList();
+        string getName();
+        string getDescription();
+        ~TravellingMerchant();
 
     protected:
+        string name;
         vector<string> stockList;
+        string description;
 };
 
 #endif

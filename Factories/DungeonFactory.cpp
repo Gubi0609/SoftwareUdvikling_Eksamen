@@ -35,8 +35,6 @@ vector<Dungeon*> DungeonFactory::generateDungeonList(int level) {
     
     }
 
-    dungeonList.push_back(createDungeon("TravellingMerchant"));
-
     return dungeonList;
 }
 
@@ -60,8 +58,6 @@ Dungeon* DungeonFactory::createDungeon(string dungeonType) {
         return new PlainsDungeon();
     } else if (dungeonType == "Dragon") {
         return new DragonDungeon();
-    } else if (dungeonType == "TravellingMerchant") {
-        return new TravellingMerchant();
     } else {
         cout << "Invalid dungeon type!" << endl;
         return nullptr;

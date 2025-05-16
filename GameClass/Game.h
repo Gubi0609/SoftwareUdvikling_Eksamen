@@ -9,6 +9,9 @@
 #include "../DungeonClasses/ForestDungeon.h"
 #include "../DungeonClasses/PlainsDungeon.h"
 #include "../DungeonClasses/DragonDungeon.h"
+#include "../DungeonClasses/TravellingMerchant.h"
+#include "../WeaponClasses/Weapon.h"
+#include "../WeaponClasses/Weapons.h"
 #include "../Factories/DungeonFactory.h"
 #include "../Factories/EnemyFactory.h"
 
@@ -35,10 +38,12 @@ class Game {
         vector <Dungeon*> dungeonList;
         Dungeon* currentDungeon;
         DungeonFactory dungeonFactory;
+        TravellingMerchant merchant;
 
         void loadHero(string name);
         void loadLevel(int level);
         void loadCurrentDungeon();
+        void loadMerchant();
 
         bool dungeonOptions();
         bool enemyOptions();
