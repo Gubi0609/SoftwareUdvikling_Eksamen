@@ -183,7 +183,7 @@ void Game::loadCurrentDungeon() {
     generateEnemyList(currentLevel);
     currentDungeonGold = currentDungeon->getGold();
 
-    cout << "Gold to be earned: " << currentDungeonGold<< endl;
+    cout << "Gold to be earned: " << currentDungeonGold << " g" << endl;
     cout << "--------------------------------" << endl;
 
     while (enemyList.size() > 0) {
@@ -253,7 +253,7 @@ void Game::loadCurrentDungeon() {
     modifyDungeonList(currentDungeonIndex);
     cout << "--------------------------------" << endl;
     cout << "You have defeated all enemies in this dungeon." << endl;
-    cout << "You earned " << currentDungeonGold << " gold!" << endl;
+    cout << "You earned " << currentDungeonGold << " g!" << endl;
     hero.earnGold(currentDungeonGold);
 
 }

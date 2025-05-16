@@ -87,8 +87,9 @@ int Hero::attackEnemy() {
     weaponDurabilityLeft -= 1;
 
     if (weaponDurabilityLeft <= 0) {
-        cout << "Your " << currentWeapon->getName() << " broke." << endl;
-        currentWeapon = new Hands(); 
+        cout << "Your " << currentWeapon->getName() << " broke!" << endl;
+        currentWeapon = new Hands();
+        weaponDurabilityLeft = currentWeapon->getDurability(); 
     }
 
     return attackPower;
@@ -130,7 +131,7 @@ void Hero::spendGold(int gold) {
 void Hero::displayDetails() {
     cout << "Hero: " << name << ", Level: " << level << ", XP: " << xp << endl;
     cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
-    cout << "Gold: " << gold << endl;
+    cout << "Gold: " << gold << " g" <<  endl;
     cout << "Wielding: " << currentWeapon->getName() << endl;
     cout << "--------------------------------" << endl;
 }
