@@ -9,6 +9,7 @@
 #include "../DungeonClasses/CaveDungeon.h"
 #include "../DungeonClasses/PlainsDungeon.h"
 #include "../DungeonClasses/DragonDungeon.h"
+#include "../DungeonClasses/TravellingMerchant.h"
 
 using namespace std;
 

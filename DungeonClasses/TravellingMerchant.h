@@ -1,6 +1,7 @@
 #ifndef TRAVELLINGMERCHANT_H
 #define TRAVELLINGMERCHANT_H
 
+#include "Dungeon.h"
 #include "../WeaponClasses/Weapon.h"
 #include "../WeaponClasses/Weapons.h"
 
@@ -9,16 +10,13 @@
 
 using namespace std;
 
-class TravellingMerchant {
+class TravellingMerchant : public Dungeon {
     public:
         TravellingMerchant();
         Weapon* createWeapon(string weapontype);
-        string getName();
         vector<string> getStockList();
-        ~TravellingMerchant();
 
     protected:
-        string name;
         vector<string> stockList;
 };
 

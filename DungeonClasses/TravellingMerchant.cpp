@@ -5,13 +5,8 @@
 
 using namespace std;
 
-TravellingMerchant::TravellingMerchant() {
-    name = "Bargle the Traveller";
+TravellingMerchant::TravellingMerchant() : Dungeon("Bargle the Traveller", "No one knows where he came from. He just… shows up.") {
     stockList = {"Stick", "Dagger", "Travellers Spear", "Soldiers Sword", "Royal Claymore", "Katana", "Master Sword"};
-}
-
-string TravellingMerchant::getName() {
-    return name;
 }
 
 vector<string> TravellingMerchant::getStockList() {
@@ -38,5 +33,3 @@ Weapon* TravellingMerchant::createWeapon(string weaponType) {
         return nullptr; // Invalid weapon type
     }
 }
-
-TravellingMerchant::~TravellingMerchant() {}

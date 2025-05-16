@@ -1,3 +1,6 @@
+#ifndef WEAPONS_H
+#define WEAPONS_H
+
 #include "Weapon.h"
 
 #include <string>
@@ -43,3 +46,5 @@ class MasterSword : public Weapon {
     public:
     MasterSword() : Weapon("Master Sword", 15, 5, 30, 5000, "An ancient blade of legend, said to choose its wielder. Bound by oath and power, it shines with an otherworldly glow, forged to vanquish evil.") {}
 };
+
+#endif
