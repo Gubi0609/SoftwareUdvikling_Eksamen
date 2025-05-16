@@ -113,18 +113,24 @@ void Game::loadLevel(int level){
             
             int choiceIndex = stoi(dungeonChoice);
             
-            if (choiceIndex < 0 || choiceIndex >= dungeonList.size()) { // If digit is out of range, choice is invalid.
+            if (choiceIndex < 0 || choiceIndex > dungeonList.size()) { // If digit is out of range, choice is invalid.
                 cout << "Invalid choice. Please try again." << endl;
                 continue; // Skips rest of the code in the loop, and loops again.
             }
 
-            currentDungeon = dungeonList[choiceIndex];
-            currentDungeonIndex = choiceIndex;
+            if (choiceIndex < dungeonList.size()) {
+                currentDungeon = dungeonList[choiceIndex];
+                currentDungeonIndex = choiceIndex;
 
-            if (dungeonOptions()) {
-                cout << "\n";
-                cout << "You have chosen to enter a " << currentDungeon->getName() << endl;
+                if (dungeonOptions()) {
+                    cout << "\n";
+                    cout << "You have chosen to enter a " << currentDungeon->getName() << endl;
+                } else {
+                    continue;
+                }
             } else {
+                cout << "You have chosen to interact with " << merchant.getName() << endl;
+                loadMerchant();
                 continue;
             }
 
@@ -154,7 +160,11 @@ void Game::loadLevel(int level){
         } else if (dungeonChoice == "lvlup") { // Cheat code to level up
             hero.gainXP(hero.getLevel()*1000);
             return;
-        } else {
+        } else if (dungeonChoice == "lotsofgold") {
+            hero.earnGold(1000000);
+            return;
+        }
+        else {
             cout << "Invalid choice. Please try again." << endl;
             continue;
         }
@@ -162,7 +172,7 @@ void Game::loadLevel(int level){
         validDungeon = true;
 
     }
-
+    
     loadCurrentDungeon(); // Loads the current dungeon.
 
 }
@@ -173,7 +183,7 @@ void Game::loadCurrentDungeon() {
     generateEnemyList(currentLevel);
     currentDungeonGold = currentDungeon->getGold();
 
-    cout << "Gold to be earned: " << currentDungeonGold<< endl;
+    cout << "Gold to be earned: " << currentDungeonGold << " g" << endl;
     cout << "--------------------------------" << endl;
 
     while (enemyList.size() > 0) {
@@ -243,9 +253,69 @@ void Game::loadCurrentDungeon() {
     modifyDungeonList(currentDungeonIndex);
     cout << "--------------------------------" << endl;
     cout << "You have defeated all enemies in this dungeon." << endl;
-    cout << "You earned " << currentDungeonGold << " gold!" << endl;
+    cout << "You earned " << currentDungeonGold << " g!" << endl;
     hero.earnGold(currentDungeonGold);
 
+}
+
+void Game::loadMerchant() {
+    
+    Weapon* chosenWeapon;
+    
+    while (true) {
+        cout << "Your current gold: " << hero.getGold() << " g." << endl;
+        cout << "-------------------------" << endl;
+
+        cout << merchant.getName() << "'s stock: " << endl;
+        
+        for (int i = 0; i < merchant.getStockList().size(); i++) {
+            cout << "(" << i << ") " << merchant.getStockList()[i] << endl;
+        }
+
+        string choice;
+        cout << "Please choose a stock item or 'r' to go back: ";
+        cin >> choice;
+
+        if (all_of(choice.begin(), choice.end(), ::isdigit)) {
+            int choiceIndex = stoi(choice);
+
+            if (choiceIndex < 0 || choiceIndex >= merchant.getStockList().size()) {
+               cout<< "Invalid choice. Please try again." << endl;
+               continue;
+            }
+
+            chosenWeapon = merchant.createWeapon(merchant.getStockList()[choiceIndex]);
+
+            cout << "Price of " << chosenWeapon->getName() << ": " << chosenWeapon->getPrice() << " g" << endl;
+            cout << "Description: " << chosenWeapon->getDescription() << endl;
+            cout << "Damage: " << chosenWeapon->getAttackPower()+(currentLevel*chosenWeapon->getStrengthModifier()) << ". Damage changes as you grow in level." << endl;
+            cout << "Durability: " << chosenWeapon->getDurability() << endl;
+            cout << "-------------------------" << endl;
+
+            string purchaseChoice;
+            cout << "This will replace your current weapon (" << hero.getWeapon()->getName() << ") Do you wish to purchase it? (y/n): ";
+            cin >> purchaseChoice;
+
+            if (purchaseChoice == "y" || purchaseChoice == "Y") {
+                if (hero.getGold() >= chosenWeapon->getPrice()) {
+                    cout << "You purchased the " << chosenWeapon->getName() << endl;
+                    hero.spendGold(chosenWeapon->getPrice());
+                    hero.setWeapon(chosenWeapon);
+                    return;
+                } else {
+                    cout << "You have insufficient funds for this purchase." << endl;
+                }
+            } else {
+                continue;
+            }
+
+        } else if (choice == "r" || choice == "R") {
+            cout << "Walking away from " << merchant.getName() << endl;
+            return;
+        } else {
+            cout<< "Invalid choice. Please try again." << endl;
+        }
+    }
 }
 
 void Game::battle(Hero& hero, Enemy& enemy) {
@@ -320,6 +390,8 @@ void Game::displayDungeonList() {
     for (int i = 0; i < dungeonList.size(); i++) {
         cout << "(" << i << ") " << dungeonList[i]->getName() << endl;
     }
+
+    cout << "(" << dungeonList.size() << ") " << merchant.getName() << endl;
 
 }
 

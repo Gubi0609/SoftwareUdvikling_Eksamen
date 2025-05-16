@@ -77,7 +77,7 @@ void Hero::setWeapon(Weapon* newWeapon) {
 
     attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
 
-    cout << name << "obtains: " << currentWeapon->getName() << endl;
+    cout << name << " obtains: " << currentWeapon->getName() << endl;
 }
 
 int Hero::attackEnemy() {
@@ -85,6 +85,12 @@ int Hero::attackEnemy() {
     cout << "Dealing " << attackPower << " damage!" << endl;
 
     weaponDurabilityLeft -= 1;
+
+    if (weaponDurabilityLeft <= 0) {
+        cout << "Your " << currentWeapon->getName() << " broke!" << endl;
+        currentWeapon = new Hands();
+        weaponDurabilityLeft = currentWeapon->getDurability(); 
+    }
 
     return attackPower;
 }
@@ -125,7 +131,7 @@ void Hero::spendGold(int gold) {
 void Hero::displayDetails() {
     cout << "Hero: " << name << ", Level: " << level << ", XP: " << xp << endl;
     cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
-    cout << "Gold: " << gold << endl;
+    cout << "Gold: " << gold << " g" <<  endl;
     cout << "Wielding: " << currentWeapon->getName() << endl;
     cout << "--------------------------------" << endl;
 }

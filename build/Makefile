@@ -249,6 +249,30 @@ DungeonClasses/PlainsDungeon.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.s
 .PHONY : DungeonClasses/PlainsDungeon.cpp.s
 
+DungeonClasses/TravellingMerchant.o: DungeonClasses/TravellingMerchant.cpp.o
+.PHONY : DungeonClasses/TravellingMerchant.o
+
+# target to build an object file
+DungeonClasses/TravellingMerchant.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DungeonClasses/TravellingMerchant.cpp.o
+.PHONY : DungeonClasses/TravellingMerchant.cpp.o
+
+DungeonClasses/TravellingMerchant.i: DungeonClasses/TravellingMerchant.cpp.i
+.PHONY : DungeonClasses/TravellingMerchant.i
+
+# target to preprocess a source file
+DungeonClasses/TravellingMerchant.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DungeonClasses/TravellingMerchant.cpp.i
+.PHONY : DungeonClasses/TravellingMerchant.cpp.i
+
+DungeonClasses/TravellingMerchant.s: DungeonClasses/TravellingMerchant.cpp.s
+.PHONY : DungeonClasses/TravellingMerchant.s
+
+# target to generate assembly for a file
+DungeonClasses/TravellingMerchant.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/DungeonClasses/TravellingMerchant.cpp.s
+.PHONY : DungeonClasses/TravellingMerchant.cpp.s
+
 EnemyClasses/Enemy.o: EnemyClasses/Enemy.cpp.o
 .PHONY : EnemyClasses/Enemy.o
 
@@ -441,6 +465,9 @@ help:
 	@echo "... DungeonClasses/PlainsDungeon.o"
 	@echo "... DungeonClasses/PlainsDungeon.i"
 	@echo "... DungeonClasses/PlainsDungeon.s"
+	@echo "... DungeonClasses/TravellingMerchant.o"
+	@echo "... DungeonClasses/TravellingMerchant.i"
+	@echo "... DungeonClasses/TravellingMerchant.s"
 	@echo "... EnemyClasses/Enemy.o"
 	@echo "... EnemyClasses/Enemy.i"
 	@echo "... EnemyClasses/Enemy.s"
