@@ -14,6 +14,8 @@ class Weapon {
         int getAttackPower();
         int getStrengthModifier();
         int getDurability();
+        int getPrice();
+        string getDescription();
         ~Weapon();
 
     protected:

@@ -3,6 +3,9 @@
 
 #include <string>
 
+#include "../WeaponClasses/Weapon.h"
+#include "../WeaponClasses/Weapons.h"
+
 using namespace std;
 
 class Hero {
@@ -15,17 +18,20 @@ class Hero {
         int getXP();
         int getLevel();
         int getGold();
+        Weapon* getWeapon();
         
         void setHealth(int health);
         void setAttackPower(int attackPower);
         void setXP(int xp);
         void setLevel(int level);
+        void setWeapon(Weapon* newWeapon);
         
         int attackEnemy();
         void gainXP(int xp);
         void levelUp();
         void takeDamage(int damage);
         void earnGold(int gold);
+        void spendGold(int gold);
 
         void displayDetails();
 
@@ -39,6 +45,8 @@ class Hero {
         int attackPower;
         int xp;
         int gold;
+        Weapon* currentWeapon;
+        int weaponDurabilityLeft;
 
 };
 

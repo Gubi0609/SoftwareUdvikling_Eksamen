@@ -37,3 +37,11 @@ int Weapon::getStrengthModifier() {
 int Weapon::getDurability() {
     return durability;
 }
+
+int Weapon::getPrice() {
+    return price;
+}
+
+string Weapon::getDescription() {
+    return description;
+}
