@@ -86,6 +86,11 @@ int Hero::attackEnemy() {
 
     weaponDurabilityLeft -= 1;
 
+    if (weaponDurabilityLeft <= 0) {
+        cout << "Your " << currentWeapon->getName() << " broke." << endl;
+        currentWeapon = new Hands(); 
+    }
+
     return attackPower;
 }
 
