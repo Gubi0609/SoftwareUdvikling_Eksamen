@@ -77,7 +77,7 @@ void Hero::setWeapon(Weapon* newWeapon) {
 
     attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
 
-    cout << name << "obtains: " << currentWeapon->getName() << endl;
+    cout << name << " obtains: " << currentWeapon->getName() << endl;
 }
 
 int Hero::attackEnemy() {

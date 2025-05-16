@@ -160,7 +160,11 @@ void Game::loadLevel(int level){
         } else if (dungeonChoice == "lvlup") { // Cheat code to level up
             hero.gainXP(hero.getLevel()*1000);
             return;
-        } else {
+        } else if (dungeonChoice == "lotsofgold") {
+            hero.earnGold(1000000);
+            return;
+        }
+        else {
             cout << "Invalid choice. Please try again." << endl;
             continue;
         }
