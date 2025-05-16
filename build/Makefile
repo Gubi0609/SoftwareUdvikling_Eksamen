@@ -369,6 +369,30 @@ HeroClass/Hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.s
 .PHONY : HeroClass/Hero.cpp.s
 
+WeaponClasses/Weapon.o: WeaponClasses/Weapon.cpp.o
+.PHONY : WeaponClasses/Weapon.o
+
+# target to build an object file
+WeaponClasses/Weapon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.o
+.PHONY : WeaponClasses/Weapon.cpp.o
+
+WeaponClasses/Weapon.i: WeaponClasses/Weapon.cpp.i
+.PHONY : WeaponClasses/Weapon.i
+
+# target to preprocess a source file
+WeaponClasses/Weapon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.i
+.PHONY : WeaponClasses/Weapon.cpp.i
+
+WeaponClasses/Weapon.s: WeaponClasses/Weapon.cpp.s
+.PHONY : WeaponClasses/Weapon.s
+
+# target to generate assembly for a file
+WeaponClasses/Weapon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.s
+.PHONY : WeaponClasses/Weapon.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -432,6 +456,9 @@ help:
 	@echo "... HeroClass/Hero.o"
 	@echo "... HeroClass/Hero.i"
 	@echo "... HeroClass/Hero.s"
+	@echo "... WeaponClasses/Weapon.o"
+	@echo "... WeaponClasses/Weapon.i"
+	@echo "... WeaponClasses/Weapon.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

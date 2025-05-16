@@ -18,6 +18,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/Factories/EnemyFactory.cpp" "CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.o" "gcc" "CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.o.d"
   "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/GameClass/Game.cpp" "CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o" "gcc" "CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o.d"
   "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/HeroClass/Hero.cpp" "CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o" "gcc" "CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o.d"
+  "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/WeaponClasses/Weapon.cpp" "CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.o" "gcc" "CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.o.d"
   "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/main.cpp" "CMakeFiles/dungeonGame.dir/main.cpp.o" "gcc" "CMakeFiles/dungeonGame.dir/main.cpp.o.d"
   )
 

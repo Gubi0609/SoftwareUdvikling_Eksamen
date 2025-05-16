@@ -1,0 +1,29 @@
+#ifndef WEAPON_H
+#define WEAPON_H
+
+#include <string>
+
+using namespace std;
+
+class Weapon {
+
+    public:
+        Weapon();
+        Weapon(string name, int attackPower, int strengthModifier, int durability, int price, string description = "");
+        string getName();
+        int getAttackPower();
+        int getStrengthModifier();
+        int getDurability();
+        ~Weapon();
+
+    protected:
+        string name;
+        int attackPower;
+        int strengthModifier;
+        int durability;
+        string description;
+        int price;
+
+};
+
+#endif
