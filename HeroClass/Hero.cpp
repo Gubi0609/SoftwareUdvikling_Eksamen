@@ -11,6 +11,8 @@ Hero::Hero() {
     attackPower = 2;
     xp = 0;
     gold = 0;
+    currentWeapon = new Hands();
+    weaponDurabilityLeft = currentWeapon->getDurability();
 }
 
 Hero::Hero(string name) {
@@ -21,6 +23,8 @@ Hero::Hero(string name) {
     attackPower = 2;
     xp = 0;
     gold = 0;
+    currentWeapon = new Hands();
+    weaponDurabilityLeft = currentWeapon->getDurability();
 }
 
 string Hero::getName() {
@@ -47,6 +51,10 @@ int Hero::getGold() {
     return gold;
 }
 
+Weapon* Hero::getWeapon() {
+    return currentWeapon;
+}
+
 void Hero::setHealth(int health) {
     this->health = health;
 }
@@ -63,9 +71,20 @@ void Hero::setLevel(int level) {
     this->level = level;
 }
 
+void Hero::setWeapon(Weapon* newWeapon) {
+    currentWeapon = newWeapon;
+    weaponDurabilityLeft = currentWeapon->getDurability();
+
+    attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
+
+    cout << name << "obtains: " << currentWeapon->getName() << endl;
+}
+
 int Hero::attackEnemy() {
     cout << name << " attacks the enemy!" << endl;
     cout << "Dealing " << attackPower << " damage!" << endl;
+
+    weaponDurabilityLeft -= 1;
 
     return attackPower;
 }
@@ -83,7 +102,7 @@ void Hero::levelUp() {
     level++;
     maxHealth += 9;
     health = maxHealth;
-    attackPower += 1;
+    attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
     xp = 0; // Remember to reset xp after leveling up
 
     cout << name << " levels up to level " << level << "!" << endl;
@@ -99,10 +118,15 @@ void Hero::earnGold(int gold) {
     this->gold += gold;
 }
 
+void Hero::spendGold(int gold) {
+    this->gold -= gold;
+}
+
 void Hero::displayDetails() {
     cout << "Hero: " << name << ", Level: " << level << ", XP: " << xp << endl;
     cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
     cout << "Gold: " << gold << endl;
+    cout << "Wielding: " << currentWeapon->getName() << endl;
     cout << "--------------------------------" << endl;
 }
 
