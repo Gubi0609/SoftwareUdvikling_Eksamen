@@ -9,6 +9,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/dungeonGame.dir/DungeonClasses/ForestDungeon.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o"
   "CMakeFiles/dungeonGame.dir/DungeonClasses/PlainsDungeon.cpp.o.d"
+  "CMakeFiles/dungeonGame.dir/DungeonClasses/TravellingMerchant.cpp.o"
+  "CMakeFiles/dungeonGame.dir/DungeonClasses/TravellingMerchant.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o"
   "CMakeFiles/dungeonGame.dir/EnemyClasses/Enemy.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/Factories/DungeonFactory.cpp.o"

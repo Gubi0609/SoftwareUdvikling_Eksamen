@@ -5,7 +5,7 @@
 
 using namespace std;
 
-TravellingMerchant::TravellingMerchant() : Dungeon("Bargle the Traveller", "No one knows where he came from. He just… shows up.") {
+TravellingMerchant::TravellingMerchant() : Dungeon("Bargle the Traveller", "A travelling merchant. No one knows where he came from. He just… shows up.") {
     stockList = {"Stick", "Dagger", "Travellers Spear", "Soldiers Sword", "Royal Claymore", "Katana", "Master Sword"};
 }
 
