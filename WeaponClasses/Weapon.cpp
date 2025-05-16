@@ -45,3 +45,5 @@ int Weapon::getPrice() {
 string Weapon::getDescription() {
     return description;
 }
+
+Weapon::~Weapon() {}
