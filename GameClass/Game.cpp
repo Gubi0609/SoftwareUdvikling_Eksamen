@@ -19,68 +19,172 @@ Game::Game() {
 void Game::topMenu() {
     // Loads the top menu and lets the player choose new or preexisting hero.
     
-    int choice;
+    // int choice;
 
-    cout << "Welcome to the Game!" << endl;
-    cout << "(1) Create New Hero" << endl;
-    cout << "(2) Load Existing Hero" << endl;
-    cout << "(3) Exit" << endl;
-    cout << "Choose an option: ";
-    string input;
-    cin >> input;
+    // cout << "Welcome to the Game!" << endl;
+    // cout << "(1) Create New Hero" << endl;
+    // cout << "(2) Load Existing Hero" << endl;
+    // cout << "(3) Exit" << endl;
+    // cout << "Choose an option: ";
+    // string input;
+    // cin >> input;
 
-    if (all_of(input.begin(), input.end(), ::isdigit)) {
-        choice = stoi(input);
-    } else {
-        cout << "Invalid choice. Please try again." << endl;
-        topMenu();
-        return;
+    // if (all_of(input.begin(), input.end(), ::isdigit)) {
+    //     choice = stoi(input);
+    // } else {
+    //     cout << "Invalid choice. Please try again." << endl;
+    //     topMenu();
+    //     return;
+    // }
+
+    // string heroName;
+    // string path = "../heros/";
+
+    // switch (choice) {
+    //     case 1:
+    //         cout << "Enter hero name: ";
+    //         cin >> heroName;
+    //         hero = Hero(heroName);
+    //         startGame();
+    //         break;
+    //     case 2:
+    //         cout << "Preexisting heros: " << endl;
+
+    //         // List existing heroes here
+    //         for (const auto & entry : filesystem::directory_iterator(path))
+    //             cout << entry.path().stem() << endl;
+
+    //         cout << "Enter hero name to load: ";
+    //         cin >> heroName;
+    //         loadHero(heroName);
+    //         startGame();
+    //         break;
+    //     case 3:
+    //         cout << "Exiting game..." << endl;
+    //         exit(0);
+    //         break;
+
+    //     default:
+    //         cout << "Invalid choice. Please try again." << endl;
+    //         topMenu();
+    //         break;
+    // }
+
+    vector<string> options = {"New Game", "Continue", "Check Stats", "Quit"};
+    string spacer = "   ";
+    string chosen;
+    string heroName;
+    int selected = 0;
+    
+    while (true) {
+
+        string toPrint = "";
+
+        formatter.clearScreen();
+
+        for (size_t i = 0; i < options.size(); ++i) {
+            if (i == selected)
+                toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+            else
+                toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+        }
+
+        vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+
+        formatter.printCenteredVer(centeredLines);
+
+        cout << "\n";
+
+        char c;
+        cin.read(&c, 1);
+        if (c == '\033') { // Arrow keys start with ESC sequence
+            char seq[2];
+            cin.read(seq, 2);
+            if (seq[0] == '[') {
+                if (seq[1] == 'D') // Up
+                    selected = (selected - 1 + options.size()) % options.size();
+                else if (seq[1] == 'C') // Down
+                    selected = (selected + 1) % options.size();
+            }
+        } else if (c == 's' || c == 'S') {
+            selected = 0;
+
+            string toPrint = "";
+            formatter.clearScreen();
+
+            for (size_t i = 0; i < options.size(); ++i) {
+                if (i == selected)
+                    toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+                else
+                    toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+            }
+
+            vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+
+            formatter.printCenteredVer(centeredLines);
+
+            cout << "\n";
+
+            chosen = options[selected];
+            break;
+        } else if (c == 'z' || c == 'Z') {
+            chosen = options[selected];
+            break; // Enter pressed
+        } else if (c == 'x' || c == 'X') {
+            selected = 3;
+
+            string toPrint = "";
+            formatter.clearScreen();
+
+            for (size_t i = 0; i < options.size(); ++i) {
+                if (i == selected)
+                    toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+                else
+                    toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+            }
+
+            vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+
+            formatter.printCenteredVer(centeredLines);
+
+            cout << "\n";
+
+            chosen = options[selected];
+            break;
+        }
     }
 
-    string heroName;
-    string path = "../heros/";
+    formatter.clearScreen();
 
-    switch (choice) {
-        case 1:
-            cout << "Enter hero name: ";
-            cin >> heroName;
-            hero = Hero(heroName);
-            startGame();
-            break;
-        case 2:
-            cout << "Preexisting heros: " << endl;
+    if (chosen == "New Game") {
+        formatter.printCenteredVerOneLine(formatter.CenterTextHor("Enter hero name: "));
+        formatter.setRawMode(false);
+        getline(cin, heroName);
+        hero = Hero(heroName);
+        formatter.setRawMode(true);
+        startGame();
+    } else if (chosen == "Continue") {
 
-            // List existing heroes here
-            for (const auto & entry : filesystem::directory_iterator(path))
-                cout << entry.path().stem() << endl;
+    } else if (chosen == "Check Stats") {
 
-            cout << "Enter hero name to load: ";
-            cin >> heroName;
-            loadHero(heroName);
-            startGame();
-            break;
-        case 3:
-            cout << "Exiting game..." << endl;
-            exit(0);
-            break;
-
-        default:
-            cout << "Invalid choice. Please try again." << endl;
-            topMenu();
-            break;
+    } else if (chosen == "Quit") {
+        exit(0);
     }
 }
 
 void Game::startGame() {
     // Handles the main loop, that keeps the game running while gameOver is false.
 
-    cout << "Starting game with hero: " << hero.getName() << endl;
-    cout << "--------------------------------" << endl;
+    formatter.clearScreen();
+    string toPrint = "Starting game with hero: "+hero.getName();
+    formatter.printCenteredVer({formatter.CenterTextHor(toPrint)});
 
     while (!gameOver) {
         currentLevel = hero.getLevel();
         if (currentLevel < 12) {
-            cout << "Current Level: " << currentLevel << endl;
+            formatter.clearScreen();
+            toPrint = "Current Level: "+to_string(currentLevel);
+            formatter.printCenteredVer({formatter.CenterTextHor(toPrint)});
             loadLevel(currentLevel);
         } else {
             gameOver = true;
@@ -102,10 +206,68 @@ void Game::loadLevel(int level){
 
     while (!validDungeon) {
 
-        cout << "Available dungeons:" << endl;
-        displayDungeonList();
+        cout << "Choose how to proceed." << endl;
+        vector<string> options = {"Choose Dungeon", "Merchant", "Display Stats", "Exit"};
+        string spacer = "   ";
+        string chosen;
+        int selected = 0;
 
-        cout << "Choose a dungeon, 'd' to display Hero's stats or 'q' to quit: ";
+        while (true) {
+
+            string toPrint = "";
+
+            formatter.clearScreen();
+
+            for (size_t i = 0; i < options.size(); ++i) {
+                if (i == selected)
+                    toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+                else
+                    toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+            }
+
+            vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+
+            formatter.printCenteredVer(centeredLines);
+
+            cout << "\n";
+
+            char c;
+            cin.read(&c, 1);
+            if (c == '\033') { // Arrow keys start with ESC sequence
+                char seq[2];
+                cin.read(seq, 2);
+                if (seq[0] == '[') {
+                    if (seq[1] == 'D') // Up
+                        selected = (selected - 1 + options.size()) % options.size();
+                    else if (seq[1] == 'C') // Down
+                        selected = (selected + 1) % options.size();
+                }
+            } else if (c == 'z' || c == 'Z' || c == '\n') {
+                chosen = options[selected];
+                break; // Enter pressed
+            }
+        }
+
+        if (chosen == "Choose Dungeon") {
+            formatter.clearScreen();
+            displayDungeonList();
+            cout << "Choose a dungeon: ";
+            formatter.setRawMode(false);
+            string dungeonChoice;
+            cin >> dungeonChoice;
+        } else if (chosen == "Merchant") {
+            formatter.clearScreen();
+            cout << "You have chosen to interact with " << merchant.getName() << endl;
+            loadMerchant();
+            continue;
+        } else if (chosen == "Display Stats") {
+            formatter.clearScreen();
+            hero.displayDetails();
+        } else if (chosen == "Exit") {
+            formatter.clearScreen();
+            topMenu();
+        }
+
         string dungeonChoice;
         cin >> dungeonChoice;
 
@@ -390,8 +552,6 @@ void Game::displayDungeonList() {
     for (int i = 0; i < dungeonList.size(); i++) {
         cout << "(" << i << ") " << dungeonList[i]->getName() << endl;
     }
-
-    cout << "(" << dungeonList.size() << ") " << merchant.getName() << endl;
 
 }
 

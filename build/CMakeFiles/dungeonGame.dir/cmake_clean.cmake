@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/dungeonGame.dir/Factories/DungeonFactory.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.o"
   "CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.o.d"
+  "CMakeFiles/dungeonGame.dir/GameClass/Formatter.cpp.o"
+  "CMakeFiles/dungeonGame.dir/GameClass/Formatter.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o"
   "CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o"

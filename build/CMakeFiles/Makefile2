@@ -81,12 +81,12 @@ clean: CMakeFiles/dungeonGame.dir/clean
 CMakeFiles/dungeonGame.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14 "Built target dungeonGame"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target dungeonGame"
 .PHONY : CMakeFiles/dungeonGame.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/dungeonGame.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" 14
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" 15
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/dungeonGame.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/august-tranberg/workspace/Uni/2. Semester/Softwareudvikling/SoftwareUdvikling_Eksamen/build/CMakeFiles" 0
 .PHONY : CMakeFiles/dungeonGame.dir/rule

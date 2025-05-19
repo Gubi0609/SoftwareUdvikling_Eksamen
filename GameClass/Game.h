@@ -14,6 +14,7 @@
 #include "../WeaponClasses/Weapons.h"
 #include "../Factories/DungeonFactory.h"
 #include "../Factories/EnemyFactory.h"
+#include "Formatter.h"
 
 #include <iostream>
 #include <string>
@@ -39,6 +40,7 @@ class Game {
         Dungeon* currentDungeon;
         DungeonFactory dungeonFactory;
         TravellingMerchant merchant;
+        Formatter formatter;
 
         void loadHero(string name);
         void loadLevel(int level);

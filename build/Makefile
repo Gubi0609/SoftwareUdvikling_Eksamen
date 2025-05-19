@@ -345,6 +345,30 @@ Factories/EnemyFactory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/Factories/EnemyFactory.cpp.s
 .PHONY : Factories/EnemyFactory.cpp.s
 
+GameClass/Formatter.o: GameClass/Formatter.cpp.o
+.PHONY : GameClass/Formatter.o
+
+# target to build an object file
+GameClass/Formatter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/GameClass/Formatter.cpp.o
+.PHONY : GameClass/Formatter.cpp.o
+
+GameClass/Formatter.i: GameClass/Formatter.cpp.i
+.PHONY : GameClass/Formatter.i
+
+# target to preprocess a source file
+GameClass/Formatter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/GameClass/Formatter.cpp.i
+.PHONY : GameClass/Formatter.cpp.i
+
+GameClass/Formatter.s: GameClass/Formatter.cpp.s
+.PHONY : GameClass/Formatter.s
+
+# target to generate assembly for a file
+GameClass/Formatter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/GameClass/Formatter.cpp.s
+.PHONY : GameClass/Formatter.cpp.s
+
 GameClass/Game.o: GameClass/Game.cpp.o
 .PHONY : GameClass/Game.o
 
@@ -477,6 +501,9 @@ help:
 	@echo "... Factories/EnemyFactory.o"
 	@echo "... Factories/EnemyFactory.i"
 	@echo "... Factories/EnemyFactory.s"
+	@echo "... GameClass/Formatter.o"
+	@echo "... GameClass/Formatter.i"
+	@echo "... GameClass/Formatter.s"
 	@echo "... GameClass/Game.o"
 	@echo "... GameClass/Game.i"
 	@echo "... GameClass/Game.s"
