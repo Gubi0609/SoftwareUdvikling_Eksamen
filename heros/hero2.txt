@@ -1,5 +1,0 @@
-Name:Bilbo
-Health:100
-attackPower:50
-XP:5000
-Level:20

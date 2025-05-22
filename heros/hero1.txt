@@ -1,5 +1,0 @@
-Name:August
-Health:30
-attackPower:15
-XP:100
-Level:10
