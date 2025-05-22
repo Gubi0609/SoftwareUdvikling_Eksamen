@@ -11,6 +11,7 @@ class Database {
         Database();
         bool openDatabase();
         int getNewSaveNumForHero(int heroId);
+        int getLatestHeroId();
         void saveHero(int heroId, int level, int xp, int hp, int attackPower, int gold, int durrabilityLeft, int weaponId);
         Hero createHero(string name);
         Hero loadHero(int heroId);

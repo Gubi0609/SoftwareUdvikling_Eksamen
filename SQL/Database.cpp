@@ -4,6 +4,7 @@
 
 #include "Database.h"
 #include "../HeroClass/Hero.h"
+#include "../DungeonClasses/TravellingMerchant.h"
 
 using namespace std;
 
@@ -13,9 +14,9 @@ Database::Database() {
 }
 
 bool Database::openDatabase() {
-    int rc = sqlite3_open(databasePath.c_str(), &database);
-        if (rc) {
-            cerr << "Can't open database: " << sqlite3_errmsg(database) << "\n";
+    int returnCode = sqlite3_open(databasePath.c_str(), &database);
+        if (returnCode) {
+            cerr << "Can't open database: " << sqlite3_errmsg(database) << endl;
             return isOpen = false;
         }
         return isOpen = true;
@@ -41,8 +42,8 @@ int Database::getNewSaveNumForHero(int heroId) {
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Query failed: " << sqlite3_errmsg(database) << "\n";
-        return;
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
+        return 0;
     }
 
     int newSaveNum = 0;
@@ -57,21 +58,45 @@ int Database::getNewSaveNumForHero(int heroId) {
 
 }
 
-void Database::saveHero(int heroId, int level, int xp, int hp, int attackPower, int gold, int durrabilityLeft, int weaponId) {
-
-    int newSaveNum = getNewSaveNumForHero(heroId);
-
+int Database::getLatestHeroId() {
     const char* sqlCommand = R"(
-        INSERT INTO Save (
-            heroId, saveNumber, level, xp, hp, attackPower, gold, durrabilityLeft, weaponId
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+        SELECT MAX(heroId) FROM Hero;
     )";
 
     sqlite3_stmt* statement;
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
+        return 0;
+    }
+
+    int heroId = 0;
+
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        heroId = sqlite3_column_int(statement, 0);
+    }
+
+    sqlite3_finalize(statement);
+
+    return heroId;
+}
+
+void Database::saveHero(int heroId, int level, int xp, int hp, int attackPower, int gold, int durrabilityLeft, int weaponId) {
+
+    int newSaveNum = getNewSaveNumForHero(heroId);
+
+    const char* sqlCommand = R"(
+        INSERT INTO Save (
+            heroId, saveNumber, level, xp, hp, maxHp, attackPower, gold, durrabilityLeft, weaponId
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    )";
+
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
         return;
     }
 
@@ -81,26 +106,114 @@ void Database::saveHero(int heroId, int level, int xp, int hp, int attackPower, 
     sqlite3_bind_int(statement, 3, level);
     sqlite3_bind_int(statement, 4, xp);
     sqlite3_bind_int(statement, 5, hp);
-    sqlite3_bind_int(statement, 6, attackPower);
-    sqlite3_bind_int(statement, 7, gold);
-    sqlite3_bind_int(statement, 8, durrabilityLeft);
-    sqlite3_bind_int(statement, 9, weaponId);
+    sqlite3_bind_int(statement, 6, hp);
+    sqlite3_bind_int(statement, 7, attackPower);
+    sqlite3_bind_int(statement, 8, gold);
+    sqlite3_bind_int(statement, 9, durrabilityLeft);
+    sqlite3_bind_int(statement, 10, weaponId);
 
     // Execute
     returnCode = sqlite3_step(statement);
     if (returnCode != SQLITE_DONE) {
-        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
     } else {
-        std::cout << "Hero saved successfully with saveNumber = " << newSaveNum << "\n";
+        std::cout << "Hero saved successfully with saveNumber = " << newSaveNum << endl;
     }
 
     // Clean up
     sqlite3_finalize(statement);
 }
 
-Hero Database::createHero(string name) {}
+Hero Database::createHero(string name) {
 
-Hero Database::loadHero(int heroId) {}
+    const char* sqlCommand = R"(
+    INSERT INTO Hero(name) VALUES ('?');
+    )";
+
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
+        return Hero();
+    }
+
+    // Bind values to ?
+    sqlite3_bind_text(statement, 1, name.c_str(), -1, SQLITE_TRANSIENT);
+
+    returnCode = sqlite3_step(statement);
+    if (returnCode != SQLITE_DONE) {
+        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
+    } else {
+        std::cout << "Hero created succesfully" << endl;
+        return Hero(name, getLatestHeroId());
+    }
+
+    sqlite3_finalize(statement);
+
+    return Hero();
+}
+
+Hero Database::loadHero(int heroId) {
+
+    const char* sqlCommand = R"(
+        SELECT Hero.heroId, Hero.name, Save.level, Save.xp, Save.hp, Save.maxHp, Save.attackPower, Save.gold, Save.durabilityLeft, Weapon.name
+        FROM Save, Hero, Weapon
+        WHERE Save.heroId = Hero.heroId
+        AND Save.weaponId = Weapon.weaponId
+        AND Save.heroId = ?
+        AND Save.saveId = (SELECT MAX(saveId) FROM Save WHERE Save.heroId = ?);
+    )";
+
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
+        return Hero();
+    }
+
+    // Bind values to ?
+    sqlite3_bind_int(statement, 1, heroId);
+    sqlite3_bind_int(statement, 2, heroId);
+
+    // Execute
+    returnCode = sqlite3_step(statement);
+    if (returnCode != SQLITE_DONE) {
+        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
+    } else {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            int heroId = sqlite3_column_int(statement,0);
+            string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
+            int level = sqlite3_column_int(statement, 2);
+            int xp = sqlite3_column_int(statement, 3);
+            int hp = sqlite3_column_int(statement, 4);
+            int maxHp = sqlite3_column_int(statement, 5);
+            int attackPower = sqlite3_column_int(statement, 6);
+            int gold = sqlite3_column_int(statement, 7);
+            int durabilityLeft = sqlite3_column_int(statement, 8);
+            string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 9));
+            
+            Hero hero = Hero(heroName, heroId);
+            TravellingMerchant merchant;
+            hero.setLevel(level);
+            hero.setXP(xp);
+            hero.setHealth(hp);
+            hero.setMaxHealth(maxHp);
+            hero.setAttackPower(attackPower);
+            hero.setGold(gold);
+            hero.setDurabilityLeft(durabilityLeft);
+            hero.setWeapon(merchant.createWeapon(weaponName));
+
+            return hero;
+        }
+    }
+
+    // Clean up
+    sqlite3_finalize(statement);
+
+    return Hero();
+}
 
 void Database::showHeroSaves() {
 
@@ -132,7 +245,7 @@ void Database::showHeroSaves() {
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Query failed: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
         return;
     }
 
@@ -168,7 +281,7 @@ void Database::showHeroesAlphabetically() {
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Query failed: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
         return;
     }
 
@@ -196,7 +309,7 @@ void Database::showHeroKils() {
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Query failed: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
         return;
     }
 
@@ -228,7 +341,7 @@ void Database::showHeroWeaponsKills(int heroId) {
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
         return;
     }
 
@@ -236,7 +349,7 @@ void Database::showHeroWeaponsKills(int heroId) {
 
     returnCode = sqlite3_step(statement);
     if (returnCode != SQLITE_DONE) {
-        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
     } else {
 
         cout << "Weapon|  Number Of Kills" << endl;
@@ -280,7 +393,7 @@ void Database::showWeaponHighscore() {
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
 
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Query failed: " << sqlite3_errmsg(database) << "\n";
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
         return;
     }
 
