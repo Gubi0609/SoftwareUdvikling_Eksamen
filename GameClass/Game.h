@@ -35,6 +35,7 @@ class Game {
         int currentDungeonGold;
         int currentDungeonIndex;
         bool gameOver;
+        bool startUp = true;
         vector <Enemy*> enemyList;
         vector <Dungeon*> dungeonList;
         Dungeon* currentDungeon;

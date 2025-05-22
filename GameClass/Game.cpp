@@ -70,6 +70,18 @@ void Game::topMenu() {
     //         break;
     // }
 
+    while (startUp) {
+        formatter.clearScreen();
+        formatter.printCenteredVer({formatter.centerTextHor("Controls:"), formatter.centerTextHor("S for START"), formatter.centerTextHor("Z or ENTER for SELECT"), formatter.centerTextHor("X for BACK"), formatter.centerTextHor("PRESS S TO CONTINUE.")});
+    
+        char c;
+        cin.read(&c, 1);
+        if (c == 's' || c == 'S') {
+            startUp = false;
+            break;
+        }
+    }
+
     vector<string> options = {"New Game", "Continue", "Check Stats", "Quit"};
     string spacer = "   ";
     string chosen;
@@ -84,12 +96,12 @@ void Game::topMenu() {
 
         for (size_t i = 0; i < options.size(); ++i) {
             if (i == selected)
-                toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+                toPrint +=formatter.boldInverted(options[i])+spacer; // Inverted and bold
             else
-                toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+                toPrint +=formatter.bold(options[i])+spacer; // Just bold
         }
 
-        vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+        vector<string> centeredLines = {formatter.centerTextHor(toPrint)};
 
         formatter.printCenteredVer(centeredLines);
 
@@ -119,7 +131,7 @@ void Game::topMenu() {
                     toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
             }
 
-            vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+            vector<string> centeredLines = {formatter.centerTextHor(toPrint)};
 
             formatter.printCenteredVer(centeredLines);
 
@@ -127,7 +139,7 @@ void Game::topMenu() {
 
             chosen = options[selected];
             break;
-        } else if (c == 'z' || c == 'Z') {
+        } else if (c == 'z' || c == 'Z' || c == '\n') {
             chosen = options[selected];
             break; // Enter pressed
         } else if (c == 'x' || c == 'X') {
@@ -143,7 +155,7 @@ void Game::topMenu() {
                     toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
             }
 
-            vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+            vector<string> centeredLines = {formatter.centerTextHor(toPrint)};
 
             formatter.printCenteredVer(centeredLines);
 
@@ -157,7 +169,7 @@ void Game::topMenu() {
     formatter.clearScreen();
 
     if (chosen == "New Game") {
-        formatter.printCenteredVerOneLine(formatter.CenterTextHor("Enter hero name: "));
+        formatter.printCenteredVerOneLine(formatter.centerTextHor("Enter hero name: "));
         formatter.setRawMode(false);
         getline(cin, heroName);
         hero = Hero(heroName);
@@ -177,14 +189,14 @@ void Game::startGame() {
 
     formatter.clearScreen();
     string toPrint = "Starting game with hero: "+hero.getName();
-    formatter.printCenteredVer({formatter.CenterTextHor(toPrint)});
+    formatter.printCenteredVer({formatter.centerTextHor(toPrint)});
 
     while (!gameOver) {
         currentLevel = hero.getLevel();
         if (currentLevel < 12) {
             formatter.clearScreen();
             toPrint = "Current Level: "+to_string(currentLevel);
-            formatter.printCenteredVer({formatter.CenterTextHor(toPrint)});
+            formatter.printCenteredVer({formatter.centerTextHor(toPrint)});
             loadLevel(currentLevel);
         } else {
             gameOver = true;
@@ -220,12 +232,12 @@ void Game::loadLevel(int level){
 
             for (size_t i = 0; i < options.size(); ++i) {
                 if (i == selected)
-                    toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+                    toPrint +=formatter.boldInverted(options[i])+spacer; // Inverted and bold
                 else
-                    toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+                    toPrint +=formatter.bold(options[i])+spacer; // Just bold
             }
 
-            vector<string> centeredLines = {formatter.CenterTextHor(toPrint)};
+            vector<string> centeredLines = {formatter.centerTextHor(toPrint)};
 
             formatter.printCenteredVer(centeredLines);
 
@@ -245,16 +257,34 @@ void Game::loadLevel(int level){
             } else if (c == 'z' || c == 'Z' || c == '\n') {
                 chosen = options[selected];
                 break; // Enter pressed
+            } else if (c == 'x' || c == 'X') {
+                selected = 3;
+
+                string toPrint = "";
+                formatter.clearScreen();
+
+                for (size_t i = 0; i < options.size(); ++i) {
+                    if (i == selected)
+                        toPrint +="\033[7;1m"+options[i]+"\033[0m"+spacer; // Inverted and bold
+                    else
+                        toPrint +="\033[1m"+options[i]+"\033[0m"+spacer; // Just bold
+                }
+
+                vector<string> centeredLines = {formatter.centerTextHor(toPrint)};
+
+                formatter.printCenteredVer(centeredLines);
+
+                cout << "\n";
+
+                chosen = options[selected];
+                break;
             }
         }
 
         if (chosen == "Choose Dungeon") {
             formatter.clearScreen();
             displayDungeonList();
-            cout << "Choose a dungeon: ";
-            formatter.setRawMode(false);
-            string dungeonChoice;
-            cin >> dungeonChoice;
+            continue;
         } else if (chosen == "Merchant") {
             formatter.clearScreen();
             cout << "You have chosen to interact with " << merchant.getName() << endl;
@@ -549,11 +579,53 @@ void Game::generateDungeonList(int level) {
 void Game::displayDungeonList() {
     // Displays the list of dungeons.
 
+    vector<string> options = {};
+    string spacer = "   ";
+    string chosen;
+    int selected = 0;
+
     for (int i = 0; i < dungeonList.size(); i++) {
-        cout << "(" << i << ") " << dungeonList[i]->getName() << endl;
+        options.push_back(dungeonList[i]->getName());
     }
 
+    while (true) {
+        string toPrint = "";
+
+        formatter.clearScreen();
+
+        for (size_t i = 0; i < options.size(); ++i) {
+            if (i == selected)
+                toPrint +=formatter.boldInverted(options[i])+spacer; // Inverted and bold
+            else
+                toPrint +=formatter.bold(options[i])+spacer; // Just bold
+        }
+
+        vector<string> centeredLines = {formatter.centerTextHor(toPrint)};
+
+        formatter.printCenteredVer(centeredLines);
+
+        cout << "\n";
+
+        char c;
+        cin.read(&c, 1);
+        if (c == '\033') { // Arrow keys start with ESC sequence
+            char seq[2];
+            cin.read(seq, 2);
+            if (seq[0] == '[') {
+                if (seq[1] == 'D') // Up
+                    selected = (selected - 1 + options.size()) % options.size();
+                else if (seq[1] == 'C') // Down
+                    selected = (selected + 1) % options.size();
+            }
+        } else if (c == 'z' || c == 'Z' || c == '\n') {
+            currentDungeon = dungeonList[selected];
+            break; // Enter pressed
+        } else if (c == 'x' || c == 'X') {
+            return;
+        }
+    }
 }
+
 
 void Game::modifyDungeonList(int position) {
     // Modifies the list of dungeons.

@@ -19,7 +19,7 @@ class Formatter {
         int getTerminalWidth();
         int getTerminalHeight();
         
-        string CenterTextHor(const string& str);
+        string centerTextHor(const string& str);
         void printCenteredVer(const vector<string>& lines);
         void printCenteredVerOneLine(const string& str);
         

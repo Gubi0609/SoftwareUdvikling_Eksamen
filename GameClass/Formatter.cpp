@@ -27,7 +27,7 @@ int Formatter::getTerminalHeight() {
     return w.ws_row;
 }
 
-string Formatter::CenterTextHor(const string& str) {
+string Formatter::centerTextHor(const string& str) {
     int width = getTerminalWidth();
     int padding = (width - str.length()) / 2;
     
