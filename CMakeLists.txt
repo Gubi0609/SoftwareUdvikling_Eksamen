@@ -28,16 +28,3 @@ target_link_libraries(dungeonGame PRIVATE SQLite::SQLite3)
 
 # Manual fallback if find_package fails
 target_link_libraries(dungeonGame PRIVATE sqlite3)
-
-# add_executable(dungeonGame
-#     main.cpp
-#     EnemyClasses/Enemy.cpp EnemyClasses/Enemy.h
-#     EnemyClasses/Enemies.h
-#     GameClass/Game.cpp GameClass/Game.h
-#     HeroClass/Hero.cpp HeroClass/Hero.h
-#     DungeonClasses/Dungeon.cpp DungeonClasses/Dungeon.h
-#     DungeonClasses/ForestDungeon.cpp DungeonClasses/ForestDungeon.h
-#     DungeonClasses/PlainsDungeon.cpp DungeonClasses/PlainsDungeon.h
-#     DungeonClasses/CaveDungeon.cpp DungeonClasses/CaveDungeon.h
-#     DungeonClasses/DragonDungeon.cpp DungeonClasses/DragonDungeon.h
-# )
