@@ -24,7 +24,8 @@ void Game::topMenu() {
     cout << "Welcome to the Game!" << endl;
     cout << "(1) Create New Hero" << endl;
     cout << "(2) Load Existing Hero" << endl;
-    cout << "(3) Quit" << endl;
+    cout << "(3) Show Overall Stats" << endl;
+    cout << "(4) Quit" << endl;
     cout << "Choose an option: ";
     string input;
     cin >> input;
@@ -34,7 +35,6 @@ void Game::topMenu() {
     } else {
         cout << "Invalid choice. Please try again." << endl;
         topMenu();
-        return;
     }
 
     string heroName;
@@ -48,20 +48,31 @@ void Game::topMenu() {
             startGame();
             break;
         case 2:
-            cout << "Preexisting heros: " << endl;
+            while (true) {
+                cout << "Preexisting heros: " << endl;
 
-            // List existing heroes here
-            database.showHeroSaves();
+                database.showHeroSaves();
 
-            int heroId;
+                cout << "Please enter the Save file of the hero you want to load: ";
 
-            cin >> heroId;
+                int heroId;
 
-            hero = database.loadHero(heroId);
+                cin >> heroId;
+
+                if (heroId <= 0 || heroId > database.getLatestHeroId()) {
+                    cout << "Invalid ID. Please try again." << endl;
+                } else {
+                    hero = database.loadHero(heroId);
+                    break;
+                }
+            }
 
             startGame();
             break;
         case 3:
+            showOverallStats();
+            break;
+        case 4:
             cout << "Quiting game..." << endl;
             exit(0);
             break;
@@ -85,13 +96,84 @@ void Game::startGame() {
             cout << "Current Level: " << currentLevel << endl;
             loadLevel(currentLevel);
         } else {
-            gameOver = true;
             cout << "You have defeated the final enemy, and can now retire in peace." << endl;
+            gameOver = true;
         }
     }
 
     cout << "--- GAME OVER ---" << endl;
 
+}
+
+void Game::showOverallStats() {
+
+    int choice;
+
+    while (true) {
+
+        cout << "Choose what stats to display." << endl;
+        cout << "(1) Show all heroes in alphabetical order." << endl;
+        cout << "(2) Show how many monsters each hero has killed." << endl;
+        cout << "(3) Show how many monsters each weapon has killed for a given hero." << endl;
+        cout << "(4) Show the name and ID of the hero that has defeated most monsters with a weapon for all used weapons." << endl;
+        cout << "(5) Go back to menu." << endl;
+        cout << "Please choose an option: ";
+        string input;
+        cin >> input;
+
+        if (all_of(input.begin(), input.end(), ::isdigit)) {
+            choice = stoi(input);
+        } else {
+            cout << "Invalid choice. Please try again." << endl;
+            showOverallStats();
+            return;
+        }
+
+        int heroIdChoice;
+        string heroIdInput;
+
+        switch (choice) {
+        case 1:
+            database.showHeroesAlphabetically();
+            break;
+        case 2:
+            database.showHeroKils();
+            break;
+        case 3:
+
+            while (true) {
+                database.showHeroesNumerically();
+                cout << "Please choose a hero by their ID: ";
+                cin >> heroIdInput;
+
+                if (all_of(heroIdInput.begin(), heroIdInput.end(), ::isdigit)) {
+                    heroIdChoice = stoi(heroIdInput);
+
+                    if (heroIdChoice <= 0 || heroIdChoice > database.getLatestHeroId()) {
+                        cout << "Invalid ID. Please try again." << endl;
+                        continue;
+                    } else {
+                        break;
+                    }
+                } else {
+                    cout << "Invalid choice. Please try again." << endl;
+                    continue;
+                }
+            }
+            
+            database.showHeroWeaponsKills(heroIdChoice);
+            break;
+        case 4:
+            database.showWeaponHighscore();
+            break;
+        case 5:
+            topMenu();
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+            showOverallStats();
+            break;
+        }
+    }
 }
 
 /// --- FUNCTIONS FOR HANDLING DUNGEONS AND ENEMIES --- 
@@ -350,6 +432,7 @@ void Game::battle(Hero& hero, Enemy& enemy) {
 
         if (enemy.getHealth() <= 0) {
             cout << enemy.getName() << " has been defeated!" << endl;
+            database.registrerKill(hero.getHeroId(), hero.getWeapon()->getWeaponId());
             hero.gainXP(enemy.getXP());
             break;
         }

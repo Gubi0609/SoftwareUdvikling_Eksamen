@@ -86,6 +86,30 @@ int Database::getLatestHeroId() {
     return heroId;
 }
 
+int Database::getSmallestHeroId() {
+    const char* sqlCommand = R"(
+        SELECT MIN(heroId) FROM Hero;
+    )";
+
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
+        return 0;
+    }
+
+    int heroId = 0;
+
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        heroId = sqlite3_column_int(statement, 0);
+    }
+
+    sqlite3_finalize(statement);
+
+    return heroId;
+}
+
 void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int attackPower, int gold, int durrabilityLeft, int weaponId) {
 
     int newSaveNum = getNewSaveNumForHero(heroId);
@@ -214,6 +238,36 @@ Hero Database::loadHero(int heroId) {
     return hero;
 }
 
+void Database::registrerKill(int heroId, int weaponId) {
+    const char* sqlCommand = R"(
+    INSERT INTO MonsterKill(heroId, weaponId) VALUES (?, ?);
+    )";
+
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
+        return;
+    }
+
+    // Bind values to ?
+    sqlite3_bind_int(statement, 1, heroId);
+    sqlite3_bind_int(statement, 2, weaponId);
+
+    // Execute
+    returnCode = sqlite3_step(statement);
+    if (returnCode != SQLITE_DONE) {
+        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
+    } else {
+        std::cout << "Kill registrered succesfully." << endl;
+    }
+
+    // Clean up
+    sqlite3_finalize(statement);
+
+}
+
 void Database::showHeroSaves() {
 
     const char* sqlCommand = R"(
@@ -268,8 +322,36 @@ void Database::showHeroSaves() {
 
 }
 
-void Database::showHeroesAlphabetically() {
+void Database::showHeroesNumerically() {
 
+    const char* sqlCommand = R"(
+        SELECT heroId, name
+        FROM Hero
+        ORDER BY heroId ASC;
+    )";
+
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
+        return;
+    }
+
+    cout << "Hero ID|   Name" << endl;
+
+    while (sqlite3_step(statement) == SQLITE_ROW) {
+        int heroId = sqlite3_column_int(statement, 0);
+        string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
+
+        cout << heroId << "     " <<heroName << endl;
+    }
+
+    sqlite3_finalize(statement);
+
+}
+
+void Database::showHeroesAlphabetically() {
     const char* sqlCommand = R"(
         SELECT name
         FROM Hero
@@ -346,19 +428,17 @@ void Database::showHeroWeaponsKills(int heroId) {
 
     sqlite3_bind_int(statement, 1, heroId);
 
-    returnCode = sqlite3_step(statement);
+    cout << "Weapon | Number Of Kills" << endl;
+
+    while ((returnCode = sqlite3_step(statement)) == SQLITE_ROW) {
+        std::string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
+        int kills = sqlite3_column_int(statement, 1);
+
+        cout << weaponName << " | " << kills << endl;
+    }
+
     if (returnCode != SQLITE_DONE) {
-        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
-    } else {
-
-        cout << "Weapon|  Number Of Kills" << endl;
-
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
-            int kills = sqlite3_column_int(statement, 1);
-
-            cout << weaponName << "|    "  << kills << endl;
-        }
+        std::cerr << "Error while iterating rows: " << sqlite3_errmsg(database) << endl;
     }
 
     sqlite3_finalize(statement);
@@ -371,6 +451,7 @@ void Database::showWeaponHighscore() {
         SELECT 
             Weapon.name AS weaponName,
             Hero.name AS heroName,
+            Hero.heroId AS heroId,
             COUNT(*) AS killCount
         FROM 
             MonsterKill, Hero, Weapon
@@ -396,14 +477,15 @@ void Database::showWeaponHighscore() {
         return;
     }
 
-    cout << "Weapon|  Hero Name|    Number Of Kills" << endl;
+    cout << "Weapon|  Hero Name|    HeroId| Number Of Kills" << endl;
 
     while (sqlite3_step(statement) == SQLITE_ROW) {
         string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
         string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
-        int kills = sqlite3_column_int(statement, 2);
+        int heroId = sqlite3_column_int(statement, 2);
+        int kills = sqlite3_column_int(statement, 3);
 
-        cout << weaponName << "|    " <<heroName << "|  " << kills << endl;
+        cout << weaponName << "|    " <<heroName << "|  " << heroId << "|   " << kills << endl;
     }
 
     sqlite3_finalize(statement);

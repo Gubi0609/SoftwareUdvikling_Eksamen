@@ -48,6 +48,7 @@ class Game {
 
         bool dungeonOptions();
         bool enemyOptions();
+        void showOverallStats();
         
         void battle(Hero& hero, Enemy& enemy);
         
@@ -58,8 +59,6 @@ class Game {
         void generateEnemyList(int level);
         void displayEnemyList();
         void modifyEnemyList(int position);
-        
-        //void endGame(Hero& hero);
 
 };
 
