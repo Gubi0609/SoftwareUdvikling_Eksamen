@@ -10,7 +10,7 @@
 using namespace std;
 
 Database::Database() {
-    databasePath = "./database.db";
+    databasePath = "../SQL/database.db";
     openDatabase();
 }
 
