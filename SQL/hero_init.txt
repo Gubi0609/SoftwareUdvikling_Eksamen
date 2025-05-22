@@ -30,7 +30,7 @@ CREATE TABLE Save (
   hp INTEGER NOT NULL,
   attackPower INTEGER NOT NULL,
   gold INTEGER NOT NULL,
-  durrabilityLeft INTEGER NOT NULL,
+  durabilityLeft INTEGER NOT NULL,
   weaponId INTEGER NOT NULL,
   FOREIGN KEY (heroId) REFERENCES Hero(heroId),
   FOREIGN KEY (weaponId) REFERENCES Weapon(weaponId),

@@ -24,7 +24,7 @@ void Game::topMenu() {
     cout << "Welcome to the Game!" << endl;
     cout << "(1) Create New Hero" << endl;
     cout << "(2) Load Existing Hero" << endl;
-    cout << "(3) Exit" << endl;
+    cout << "(3) Quit" << endl;
     cout << "Choose an option: ";
     string input;
     cin >> input;
@@ -62,7 +62,7 @@ void Game::topMenu() {
             startGame();
             break;
         case 3:
-            cout << "Exiting game..." << endl;
+            cout << "Quiting game..." << endl;
             exit(0);
             break;
 
@@ -107,7 +107,7 @@ void Game::loadLevel(int level){
         cout << "Available dungeons:" << endl;
         displayDungeonList();
 
-        cout << "Choose a dungeon, 'd' to DISPLAY Hero's STATS, 's' to SAVE or 'q' to QUIT: ";
+        cout << "Choose a dungeon, 'd' to DISPLAY Hero's STATS, 's' to SAVE or 'q' to EXIT: ";
         string dungeonChoice;
         cin >> dungeonChoice;
 
@@ -148,7 +148,7 @@ void Game::loadLevel(int level){
 
             if (confirmQuit == "y" || confirmQuit == "Y") {
                 cout << "Exiting game..." << endl;
-                exit(0);
+                topMenu();
             } else {
                 cout << "Continuing game..." << endl;
                 continue;

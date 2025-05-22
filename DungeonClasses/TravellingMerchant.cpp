@@ -40,7 +40,7 @@ Weapon* TravellingMerchant::createWeapon(string weaponType) {
     } else if (weaponType == "Master Sword") {
         return new MasterSword();
     } else {
-        return nullptr; // Invalid weapon type
+        return new Hands(); // Invalid weapon type
     }
 }
 

@@ -38,37 +38,26 @@ int Database::getNewSaveNumForHero(int heroId) {
     WHERE heroId = ?;
     )";
 
-    int newSaveNum = 0;
+     int newSaveNum = 0;
 
     sqlite3_stmt* statement;
     int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
-    
+
     if (returnCode != SQLITE_OK) {
-        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
+        std::cerr << "Failed to prepare query: " << sqlite3_errmsg(database) << std::endl;
         return 0;
     }
-    
+
     sqlite3_bind_int(statement, 1, heroId);
-    
+
     returnCode = sqlite3_step(statement);
-    if (returnCode != SQLITE_DONE) {
-        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
-        return 0;
+    if (returnCode == SQLITE_ROW) {
+        newSaveNum = sqlite3_column_int(statement, 0);
     } else {
-    
-
-        if (returnCode != SQLITE_OK) {
-            std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
-            return 0;
-        }
-
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            newSaveNum = sqlite3_column_int(statement, 0);
-        }
+        std::cerr << "Query failed: " << sqlite3_errmsg(database) << std::endl;
     }
 
     sqlite3_finalize(statement);
-
     return newSaveNum;
 
 }
@@ -103,7 +92,7 @@ void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int att
 
     const char* sqlCommand = R"(
         INSERT INTO Save (
-            heroId, saveNumber, level, xp, hp, maxHp, attackPower, gold, durrabilityLeft, weaponId
+            heroId, saveNumber, level, xp, hp, maxHp, attackPower, gold, durabilityLeft, weaponId
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     )";
 
@@ -142,7 +131,7 @@ void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int att
 Hero Database::createHero(string name) {
 
     const char* sqlCommand = R"(
-    INSERT INTO Hero(name) VALUES ('?');
+    INSERT INTO Hero(name) VALUES (?);
     )";
 
     sqlite3_stmt* statement;
@@ -192,42 +181,37 @@ Hero Database::loadHero(int heroId) {
     sqlite3_bind_int(statement, 1, heroId);
     sqlite3_bind_int(statement, 2, heroId);
 
-    // Execute
-    returnCode = sqlite3_step(statement);
-    if (returnCode != SQLITE_DONE) {
-        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
-    } else {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            int heroId = sqlite3_column_int(statement,0);
-            string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
-            int level = sqlite3_column_int(statement, 2);
-            int xp = sqlite3_column_int(statement, 3);
-            int hp = sqlite3_column_int(statement, 4);
-            int maxHp = sqlite3_column_int(statement, 5);
-            int attackPower = sqlite3_column_int(statement, 6);
-            int gold = sqlite3_column_int(statement, 7);
-            int durabilityLeft = sqlite3_column_int(statement, 8);
-            string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 9));
-            
-            Hero hero = Hero(heroName, heroId);
-            TravellingMerchant merchant;
-            hero.setLevel(level);
-            hero.setXP(xp);
-            hero.setHealth(hp);
-            hero.setMaxHealth(maxHp);
-            hero.setAttackPower(attackPower);
-            hero.setGold(gold);
-            hero.setDurabilityLeft(durabilityLeft);
-            hero.setWeapon(merchant.createWeapon(weaponName));
+    Hero hero;
 
-            return hero;
-        }
+    returnCode = sqlite3_step(statement);
+    if (returnCode == SQLITE_ROW) {
+        int id = sqlite3_column_int(statement, 0);
+        std::string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
+        int level = sqlite3_column_int(statement, 2);
+        int xp = sqlite3_column_int(statement, 3);
+        int hp = sqlite3_column_int(statement, 4);
+        int maxHp = sqlite3_column_int(statement, 5);
+        int attackPower = sqlite3_column_int(statement, 6);
+        int gold = sqlite3_column_int(statement, 7);
+        int durabilityLeft = sqlite3_column_int(statement, 8);
+        std::string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 9));
+
+        hero = Hero(heroName, id);
+        TravellingMerchant merchant;
+        hero.setLevel(level);
+        hero.setXP(xp);
+        hero.setHealth(hp);
+        hero.setMaxHealth(maxHp);
+        hero.setAttackPower(attackPower);
+        hero.setGold(gold);
+        hero.setDurabilityLeft(durabilityLeft);
+        hero.setWeapon(merchant.createWeapon(weaponName));
+    } else {
+        std::cerr << "No hero save found: " << sqlite3_errmsg(database) << std::endl;
     }
 
-    // Clean up
     sqlite3_finalize(statement);
-
-    return Hero();
+    return hero;
 }
 
 void Database::showHeroSaves() {
