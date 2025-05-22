@@ -1,0 +1,46 @@
+CREATE TABLE Weapon (
+    weaponId INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE Hero (
+    heroId INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE MonsterKill (
+  killId INTEGER PRIMARY KEY AUTOINCREMENT,
+  heroId INTEGER,
+  weaponId INTEGER,
+  FOREIGN KEY (heroId) REFERENCES Hero(heroId),
+  FOREIGN KEY (weaponId) REFERENCES Weapon(weaponId)
+);
+
+CREATE TABLE Save (
+  saveId INTEGER PRIMARY KEY AUTOINCREMENT,
+  heroId INTEGER NOT NULL,
+  saveNumber INTEGER NOT NULL,
+  savedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  level INTEGER NOT NULL,
+  xp INTEGER NOT NULL,
+  maxHp INTEGER NOT NULL,
+  hp INTEGER NOT NULL,
+  attackPower INTEGER NOT NULL,
+  gold INTEGER NOT NULL,
+  durrabilityLeft INTEGER NOT NULL,
+  weaponId INTEGER NOT NULL,
+  FOREIGN KEY (heroId) REFERENCES Hero(heroId),
+  FOREIGN KEY (weaponId) REFERENCES Weapon(weaponId),
+  UNIQUE(heroId, saveNumber)
+);
+
+INSERT INTO Weapon (name) VALUES
+  ('Hands'),
+  ('Stick'),
+  ('Dagger'),
+  ('Travellers Spear'),
+  ('Soldiers Sword'),
+  ('Royal Claymore'),
+  ('Katana'),
+  ('Master Sword');

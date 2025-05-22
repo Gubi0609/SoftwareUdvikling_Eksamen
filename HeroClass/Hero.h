@@ -11,20 +11,27 @@ using namespace std;
 class Hero {
     public:
         Hero();
-        Hero(string name);
+        Hero(string name, int heroId);
+        int getHeroId();
         string getName();
         int getHealth();
         int getAttackPower();
         int getXP();
         int getLevel();
         int getGold();
+        int getDurrabilityLeft();
         Weapon* getWeapon();
         
+        void setHeroId(int heroId);
+        void setName(string name);
+        void setLevel(int level);
+        void setMaxHealth(int maxHealth);
         void setHealth(int health);
         void setAttackPower(int attackPower);
         void setXP(int xp);
-        void setLevel(int level);
+        void setGold(int gold);
         void setWeapon(Weapon* newWeapon);
+        void setDurabilityLeft(int durabilityLeft);
         
         int attackEnemy();
         void gainXP(int xp);
@@ -38,6 +45,7 @@ class Hero {
         ~Hero();
 
     private:
+        int heroId;
         string name;
         int level;
         int maxHealth;

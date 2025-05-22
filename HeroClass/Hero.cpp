@@ -6,6 +6,7 @@ using namespace std;
 
 Hero::Hero() {
     name = "Default Hero";
+    this->heroId = 0;
     level = 1;
     health = 10;
     attackPower = 2;
@@ -15,8 +16,9 @@ Hero::Hero() {
     weaponDurabilityLeft = currentWeapon->getDurability();
 }
 
-Hero::Hero(string name) {
+Hero::Hero(string name, int heroId) {
     this->name = name;
+    this->heroId = heroId;
     level = 1;
     maxHealth = 10;
     health = maxHealth;
@@ -25,6 +27,10 @@ Hero::Hero(string name) {
     gold = 0;
     currentWeapon = new Hands();
     weaponDurabilityLeft = currentWeapon->getDurability();
+}
+
+int Hero::getHeroId() {
+    return heroId;
 }
 
 string Hero::getName() {
@@ -51,8 +57,28 @@ int Hero::getGold() {
     return gold;
 }
 
+int Hero::getDurrabilityLeft() {
+    return weaponDurabilityLeft;
+}
+
 Weapon* Hero::getWeapon() {
     return currentWeapon;
+}
+
+void Hero::setHeroId(int heroId) {
+    this->heroId = heroId;
+}
+
+void Hero::setName(string name) {
+    this->name = name;
+}
+
+void Hero::setLevel(int level) {
+    this->level = level;
+}
+
+void Hero::setMaxHealth(int maxHealth) {
+    this->maxHealth = maxHealth;
 }
 
 void Hero::setHealth(int health) {
@@ -67,8 +93,8 @@ void Hero::setXP(int xp) {
     this->xp = xp;
 }
 
-void Hero::setLevel(int level) {
-    this->level = level;
+void Hero::setGold(int gold) {
+    this->gold = gold;
 }
 
 void Hero::setWeapon(Weapon* newWeapon) {
@@ -76,8 +102,10 @@ void Hero::setWeapon(Weapon* newWeapon) {
     weaponDurabilityLeft = currentWeapon->getDurability();
 
     attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
+}
 
-    cout << name << " obtains: " << currentWeapon->getName() << endl;
+void Hero::setDurabilityLeft(int durabilityLeft) {
+    weaponDurabilityLeft = durabilityLeft;
 }
 
 int Hero::attackEnemy() {
