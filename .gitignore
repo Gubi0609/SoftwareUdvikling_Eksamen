@@ -1,1 +1,4 @@
 build/
+
+# Except the database file
+!build/database.db
