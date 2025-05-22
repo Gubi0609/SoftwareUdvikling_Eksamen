@@ -1,6 +1,7 @@
 #include <sqlite3.h>
 #include <string>
 #include <iostream>
+#include <iomanip> 
 
 #include "Database.h"
 #include "../HeroClass/Hero.h"
@@ -302,7 +303,17 @@ void Database::showHeroSaves() {
         return;
     }
 
-    cout << "Save File| Hero Name|  level|  xp |    hp| attackPower|    gold|   Weapon| Saved At" << endl;
+    // Print header with fixed widths:
+    cout << right << setw(10) << "SaveFile"
+         << right << setw(15) << "Hero Name"
+         << right << setw(7) << "Level"
+         << right << setw(7) << "XP"
+         << right << setw(7) << "HP"
+         << right << setw(13) << "AttackPower"
+         << right << setw(8) << "Gold"
+         << right << setw(12) << "Weapon"
+         << right << setw(25) << "Saved At"
+         << endl;
 
     while (sqlite3_step(statement) == SQLITE_ROW) {
         int heroId = sqlite3_column_int(statement, 0);
@@ -315,7 +326,16 @@ void Database::showHeroSaves() {
         string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 7));
         string savedAt = reinterpret_cast<const char*>(sqlite3_column_text(statement, 8));
 
-        cout << heroId << "|    " << heroName << "| " << level << "|    " << xp << "|    " << hp << "|    " << attackPower << "|    " << gold << "|    " << weaponName << "|    " << savedAt << endl;
+        cout << right << setw(10) << heroId
+             << right << setw(15) << heroName
+             << right << setw(7) << level
+             << right << setw(7) << xp
+             << right << setw(7) << hp
+             << right << setw(13) << attackPower
+             << right << setw(8) << gold
+             << right << setw(12) << weaponName
+             << right << setw(25) << savedAt
+             << endl;
     }
 
     sqlite3_finalize(statement);
@@ -338,13 +358,17 @@ void Database::showHeroesNumerically() {
         return;
     }
 
-    cout << "Hero ID|   Name" << endl;
+    cout << right << setw(10) << "Hero ID"
+         << right << setw(15) << "Hero Name" 
+         << endl;
 
     while (sqlite3_step(statement) == SQLITE_ROW) {
         int heroId = sqlite3_column_int(statement, 0);
         string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 1));
 
-        cout << heroId << "     " <<heroName << endl;
+        cout << right << setw(10) << heroId
+             << right << setw(15) << heroName 
+             << endl;
     }
 
     sqlite3_finalize(statement);
@@ -394,13 +418,17 @@ void Database::showHeroKils() {
         return;
     }
 
-    cout << "Name|  Number Of Kills" << endl;
+    cout << right << setw(15) << "Hero Name"
+         << right << setw(20) << "Number of Kills"
+         << endl;
 
     while (sqlite3_step(statement) == SQLITE_ROW) {
         string heroName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
         int kills = sqlite3_column_int(statement, 1);
 
-        cout << heroName << "|  " << kills << endl;
+        cout << right << setw(15) << heroName
+             << right << setw(20) << kills
+             << endl;
     }
 
     sqlite3_finalize(statement);
@@ -428,13 +456,17 @@ void Database::showHeroWeaponsKills(int heroId) {
 
     sqlite3_bind_int(statement, 1, heroId);
 
-    cout << "Weapon | Number Of Kills" << endl;
+    cout << right << setw(15) << "Weapon"
+         << right << setw(20) << "Number of Kills"
+         << endl;
 
     while ((returnCode = sqlite3_step(statement)) == SQLITE_ROW) {
         std::string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
         int kills = sqlite3_column_int(statement, 1);
 
-        cout << weaponName << " | " << kills << endl;
+        cout << right << setw(15) << weaponName
+         << right << setw(20) << kills
+         << endl;
     }
 
     if (returnCode != SQLITE_DONE) {
@@ -477,7 +509,11 @@ void Database::showWeaponHighscore() {
         return;
     }
 
-    cout << "Weapon|  Hero Name|    HeroId| Number Of Kills" << endl;
+    cout << right << setw(15) << "Weapon"
+         << right << setw(15) << "Hero Name"
+         << right << setw(15) << "Hero ID"
+         << right << setw(20) << "Number of Kills"
+         << endl;
 
     while (sqlite3_step(statement) == SQLITE_ROW) {
         string weaponName = reinterpret_cast<const char*>(sqlite3_column_text(statement, 0));
@@ -485,7 +521,11 @@ void Database::showWeaponHighscore() {
         int heroId = sqlite3_column_int(statement, 2);
         int kills = sqlite3_column_int(statement, 3);
 
-        cout << weaponName << "|    " <<heroName << "|  " << heroId << "|   " << kills << endl;
+        cout << right << setw(15) << weaponName
+         << right << setw(15) << heroName
+         << right << setw(15) << heroId
+         << right << setw(20) << kills
+         << endl;
     }
 
     sqlite3_finalize(statement);
