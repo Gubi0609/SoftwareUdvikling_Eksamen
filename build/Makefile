@@ -393,6 +393,30 @@ HeroClass/Hero.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.s
 .PHONY : HeroClass/Hero.cpp.s
 
+SQL/Database.o: SQL/Database.cpp.o
+.PHONY : SQL/Database.o
+
+# target to build an object file
+SQL/Database.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/SQL/Database.cpp.o
+.PHONY : SQL/Database.cpp.o
+
+SQL/Database.i: SQL/Database.cpp.i
+.PHONY : SQL/Database.i
+
+# target to preprocess a source file
+SQL/Database.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/SQL/Database.cpp.i
+.PHONY : SQL/Database.cpp.i
+
+SQL/Database.s: SQL/Database.cpp.s
+.PHONY : SQL/Database.s
+
+# target to generate assembly for a file
+SQL/Database.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dungeonGame.dir/build.make CMakeFiles/dungeonGame.dir/SQL/Database.cpp.s
+.PHONY : SQL/Database.cpp.s
+
 WeaponClasses/Weapon.o: WeaponClasses/Weapon.cpp.o
 .PHONY : WeaponClasses/Weapon.o
 
@@ -483,6 +507,9 @@ help:
 	@echo "... HeroClass/Hero.o"
 	@echo "... HeroClass/Hero.i"
 	@echo "... HeroClass/Hero.s"
+	@echo "... SQL/Database.o"
+	@echo "... SQL/Database.i"
+	@echo "... SQL/Database.s"
 	@echo "... WeaponClasses/Weapon.o"
 	@echo "... WeaponClasses/Weapon.i"
 	@echo "... WeaponClasses/Weapon.s"

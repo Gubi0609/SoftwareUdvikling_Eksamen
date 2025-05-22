@@ -22,6 +22,13 @@ endforeach()
 # Add executable
 add_executable(dungeonGame ${SOURCES})
 
+# Find and link SQLite3
+find_package(SQLite3 REQUIRED)
+target_link_libraries(dungeonGame PRIVATE SQLite::SQLite3)
+
+# Manual fallback if find_package fails
+target_link_libraries(dungeonGame PRIVATE sqlite3)
+
 # add_executable(dungeonGame
 #     main.cpp
 #     EnemyClasses/Enemy.cpp EnemyClasses/Enemy.h

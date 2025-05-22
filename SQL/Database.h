@@ -1,3 +1,6 @@
+#ifndef DATABASE_H
+#define DATABASE_H
+
 #include <sqlite3.h>
 #include <string>
 
@@ -12,7 +15,7 @@ class Database {
         bool openDatabase();
         int getNewSaveNumForHero(int heroId);
         int getLatestHeroId();
-        void saveHero(int heroId, int level, int xp, int hp, int attackPower, int gold, int durrabilityLeft, int weaponId);
+        void saveHero(int heroId, int level, int xp, int hp, int maxHp, int attackPower, int gold, int durrabilityLeft, int weaponId);
         Hero createHero(string name);
         Hero loadHero(int heroId);
         void showHeroSaves();
@@ -29,3 +32,5 @@ class Database {
         bool isOpen;
 
 };
+
+#endif

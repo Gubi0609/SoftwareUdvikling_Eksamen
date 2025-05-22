@@ -15,6 +15,7 @@ class Hero {
         int getHeroId();
         string getName();
         int getHealth();
+        int getMaxHealth();
         int getAttackPower();
         int getXP();
         int getLevel();
@@ -30,6 +31,7 @@ class Hero {
         void setAttackPower(int attackPower);
         void setXP(int xp);
         void setGold(int gold);
+        void obtainWeapon(Weapon* newWeapon);
         void setWeapon(Weapon* newWeapon);
         void setDurabilityLeft(int durabilityLeft);
         

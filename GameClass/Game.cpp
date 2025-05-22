@@ -44,19 +44,21 @@ void Game::topMenu() {
         case 1:
             cout << "Enter hero name: ";
             cin >> heroName;
-            hero = Hero(heroName);
+            hero = database.createHero(heroName);
             startGame();
             break;
         case 2:
             cout << "Preexisting heros: " << endl;
 
             // List existing heroes here
-            for (const auto & entry : filesystem::directory_iterator(path))
-                cout << entry.path().stem() << endl;
+            database.showHeroSaves();
 
-            cout << "Enter hero name to load: ";
-            cin >> heroName;
-            loadHero(heroName);
+            int heroId;
+
+            cin >> heroId;
+
+            hero = database.loadHero(heroId);
+
             startGame();
             break;
         case 3:
@@ -105,7 +107,7 @@ void Game::loadLevel(int level){
         cout << "Available dungeons:" << endl;
         displayDungeonList();
 
-        cout << "Choose a dungeon, 'd' to display Hero's stats or 'q' to quit: ";
+        cout << "Choose a dungeon, 'd' to DISPLAY Hero's STATS, 's' to SAVE or 'q' to QUIT: ";
         string dungeonChoice;
         cin >> dungeonChoice;
 
@@ -151,8 +153,22 @@ void Game::loadLevel(int level){
                 cout << "Continuing game..." << endl;
                 continue;
             }
+ 
+        } else if (dungeonChoice == "s" || dungeonChoice == "S") {
+            cout << "Are you sure you would like to save your current process? (y/n): ";
+            string confirmSave;
+            cin >> confirmSave;
 
-        } else if (dungeonChoice == "drgn") { // Cheat code for Dragon Dungeon
+            if (confirmSave == "y" || confirmSave == "Y") {
+                cout << "Saving process. Please don't close the program while saving..." << endl;
+                database.saveHero(hero.getHeroId(), hero.getLevel(), hero.getXP(), hero.getHealth(), hero.getMaxHealth(), hero.getAttackPower(), hero.getGold(), hero.getDurrabilityLeft(), hero.getWeapon()->getWeaponId());
+                continue;
+            } else {
+                cout << "Continuing game..." << endl;
+                continue;
+            }
+        }
+        else if (dungeonChoice == "drgn") { // Cheat code for Dragon Dungeon
             hero.setLevel(11);
             hero.setHealth(100);
             hero.setAttackPower(10);
@@ -195,7 +211,7 @@ void Game::loadCurrentDungeon() {
             cout << "Enemies in this dungeon:" << endl;
             displayEnemyList();
     
-            cout << "Choose an enemy to battle, 'r' to run, or 'q' to quit: ";
+            cout << "Choose an enemy to battle, 'r' to RUN, or 'q' to QUIT: ";
             string enemyChoice;
             cin >> enemyChoice;
     
@@ -300,7 +316,7 @@ void Game::loadMerchant() {
                 if (hero.getGold() >= chosenWeapon->getPrice()) {
                     cout << "You purchased the " << chosenWeapon->getName() << endl;
                     hero.spendGold(chosenWeapon->getPrice());
-                    hero.setWeapon(chosenWeapon);
+                    hero.obtainWeapon(chosenWeapon);
                     return;
                 } else {
                     cout << "You have insufficient funds for this purchase." << endl;
@@ -440,72 +456,4 @@ void Game::displayEnemyList() {
 void Game::modifyEnemyList(int position) {
     currentDungeon->modifyEnemyList(position);
     enemyList = currentDungeon->getEnemyList();
-}
-
-/// --- FUNCTIONS FOR HANDLING HERO ---
-void Game::loadHero(string filename) {
-    // Load hero from file or database
-
-    ifstream file("../heros/"+filename+".txt"); // Opens hero-file based on filename
-
-    if (file.is_open()) {
-
-        string name;
-        int level, health, attackPower, xp;
-
-        string line;
-
-        while(getline(file, line)) { /// Read line by line from file
-
-            if (line.find("Name:") != string::npos) { // If line contains name, read name from line
-                name = line.substr(line.find(":") + 1);
-
-            } else if (line.find("Health:") != string::npos) { // If line contains health, read health from line
-                health = stoi(line.substr(line.find(":") + 1));
-
-            }else if (line.find("attackPower:") != string::npos) { // If line contains attackPower, read attackPower from line
-                attackPower = stoi(line.substr(line.find(":") + 1));
-
-            } else if (line.find("XP:") != string::npos) { // If line contains XP, read XP from line
-                xp = stoi(line.substr(line.find(":") + 1));
-
-            } else if (line.find("Level:") != string::npos) { // If line contains level, read level from line
-                level = stoi(line.substr(line.find(":") + 1));
-
-            }
-        }
-
-        cout << "Current Hero stats: " << endl;
-        cout << "Name: " << name << endl;
-        cout << "Health: " << health << endl;
-        cout << "Attack Power: " << attackPower << endl;
-        cout << "XP: " << xp << endl;
-        cout << "Level: " << level << endl;
-
-        cout << "--------------------------------" << endl;
-        cout << "Do you want to continue with the current hero? (y/n): ";
-        string confirmLoad;
-        cin >> confirmLoad;
-
-        if (confirmLoad == "y" || confirmLoad == "Y") {
-            cout << "Continuing with the current hero..." << endl;
-
-            // Create hero from given arguments
-            hero = Hero(name);
-            hero.setLevel(level);
-            hero.setHealth(health);
-            hero.setAttackPower(attackPower);
-            hero.setXP(xp);
-
-        } else {
-            cout << "Returning to main menu..." << endl;
-            topMenu();
-        }
-
-        file.close();
-    } else { // If file didn't open
-        cout << "Error loading hero from file." << endl;
-        topMenu();
-    }
-
 }

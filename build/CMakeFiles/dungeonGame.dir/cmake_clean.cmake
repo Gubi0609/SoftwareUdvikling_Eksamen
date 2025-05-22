@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/dungeonGame.dir/GameClass/Game.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o"
   "CMakeFiles/dungeonGame.dir/HeroClass/Hero.cpp.o.d"
+  "CMakeFiles/dungeonGame.dir/SQL/Database.cpp.o"
+  "CMakeFiles/dungeonGame.dir/SQL/Database.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.o"
   "CMakeFiles/dungeonGame.dir/WeaponClasses/Weapon.cpp.o.d"
   "CMakeFiles/dungeonGame.dir/main.cpp.o"

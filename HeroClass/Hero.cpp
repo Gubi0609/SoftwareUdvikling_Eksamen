@@ -41,6 +41,10 @@ int Hero::getHealth() {
     return health;
 }
 
+int Hero::getMaxHealth() {
+    return maxHealth;
+}
+
 int Hero::getAttackPower() {
     return attackPower;
 }
@@ -98,6 +102,12 @@ void Hero::setGold(int gold) {
 }
 
 void Hero::setWeapon(Weapon* newWeapon) {
+    currentWeapon = newWeapon;
+    
+    attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
+}
+
+void Hero::obtainWeapon(Weapon* newWeapon) {
     currentWeapon = newWeapon;
     weaponDurabilityLeft = currentWeapon->getDurability();
 

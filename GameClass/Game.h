@@ -14,6 +14,7 @@
 #include "../WeaponClasses/Weapons.h"
 #include "../Factories/DungeonFactory.h"
 #include "../Factories/EnemyFactory.h"
+#include "../SQL/Database.h"
 
 #include <iostream>
 #include <string>
@@ -39,8 +40,8 @@ class Game {
         Dungeon* currentDungeon;
         DungeonFactory dungeonFactory;
         TravellingMerchant merchant;
+        Database database;
 
-        void loadHero(string name);
         void loadLevel(int level);
         void loadCurrentDungeon();
         void loadMerchant();

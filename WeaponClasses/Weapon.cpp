@@ -6,6 +6,7 @@ using namespace std;
 
 Weapon::Weapon() {
     name = "Default Weapon";
+    weaponId = 0;
     attackPower = 0;
     strengthModifier = 0;
     durability = 1;
@@ -13,8 +14,9 @@ Weapon::Weapon() {
     description = "";
 }
 
-Weapon::Weapon(string name, int attackPower, int strengthModifier, int durability, int price, string description) {
+Weapon::Weapon(string name, int weaponId,int attackPower, int strengthModifier, int durability, int price, string description) {
     this->name = name;
+    this->weaponId = weaponId;
     this->attackPower = attackPower;
     this->strengthModifier = strengthModifier;
     this->durability = durability;
@@ -24,6 +26,10 @@ Weapon::Weapon(string name, int attackPower, int strengthModifier, int durabilit
 
 string Weapon::getName() {
     return name;
+}
+
+int Weapon::getWeaponId() {
+    return weaponId;
 }
 
 int Weapon::getAttackPower() {

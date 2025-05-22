@@ -9,8 +9,9 @@ class Weapon {
 
     public:
         Weapon();
-        Weapon(string name, int attackPower, int strengthModifier, int durability, int price, string description = "");
+        Weapon(string name, int weaponId,int attackPower, int strengthModifier, int durability, int price, string description = "");
         string getName();
+        int getWeaponId();
         int getAttackPower();
         int getStrengthModifier();
         int getDurability();
@@ -20,6 +21,7 @@ class Weapon {
 
     protected:
         string name;
+        int weaponId;
         int attackPower;
         int strengthModifier;
         int durability;

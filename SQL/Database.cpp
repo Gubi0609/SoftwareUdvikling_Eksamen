@@ -33,23 +33,38 @@ void Database::closeDataBase() {
 int Database::getNewSaveNumForHero(int heroId) {
 
     const char* sqlCommand = R"(
-        SELECT COALESCE(MAX(saveNumber), 0) + 1 AS nextSaveNumber
-        FROM Save
-        WHERE heroId = 1;
+    SELECT COALESCE(MAX(saveNumber), 0) + 1 AS nextSaveNumber
+    FROM Save
+    WHERE heroId = ?;
     )";
-
-    sqlite3_stmt* statement;
-    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
-
-    if (returnCode != SQLITE_OK) {
-        std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
-        return 0;
-    }
 
     int newSaveNum = 0;
 
-    while (sqlite3_step(statement) == SQLITE_ROW) {
-        newSaveNum = sqlite3_column_int(statement, 0);
+    sqlite3_stmt* statement;
+    int returnCode = sqlite3_prepare_v2(database, sqlCommand, -1, &statement, nullptr);
+    
+    if (returnCode != SQLITE_OK) {
+        std::cerr << "Failed to prepare insert: " << sqlite3_errmsg(database) << endl;
+        return 0;
+    }
+    
+    sqlite3_bind_int(statement, 1, heroId);
+    
+    returnCode = sqlite3_step(statement);
+    if (returnCode != SQLITE_DONE) {
+        std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
+        return 0;
+    } else {
+    
+
+        if (returnCode != SQLITE_OK) {
+            std::cerr << "Query failed: " << sqlite3_errmsg(database) << endl;
+            return 0;
+        }
+
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            newSaveNum = sqlite3_column_int(statement, 0);
+        }
     }
 
     sqlite3_finalize(statement);
@@ -82,7 +97,7 @@ int Database::getLatestHeroId() {
     return heroId;
 }
 
-void Database::saveHero(int heroId, int level, int xp, int hp, int attackPower, int gold, int durrabilityLeft, int weaponId) {
+void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int attackPower, int gold, int durrabilityLeft, int weaponId) {
 
     int newSaveNum = getNewSaveNumForHero(heroId);
 
@@ -106,7 +121,7 @@ void Database::saveHero(int heroId, int level, int xp, int hp, int attackPower, 
     sqlite3_bind_int(statement, 3, level);
     sqlite3_bind_int(statement, 4, xp);
     sqlite3_bind_int(statement, 5, hp);
-    sqlite3_bind_int(statement, 6, hp);
+    sqlite3_bind_int(statement, 6, maxHp);
     sqlite3_bind_int(statement, 7, attackPower);
     sqlite3_bind_int(statement, 8, gold);
     sqlite3_bind_int(statement, 9, durrabilityLeft);
