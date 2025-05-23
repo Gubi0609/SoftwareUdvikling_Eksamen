@@ -39,21 +39,21 @@ int Enemy::getXP() {
 int Enemy::attackHero() {
 
     cout << name << " attacks the hero!" << endl;
-    cout << "Dealing " << attackPower << " damage!" << endl;
+    cout << "Dealing \033[1;31m" << attackPower << "\033[0m damage!" << endl;
 
     return attackPower;
 }
 
 void Enemy::takeDamage(int damage) {
     health -= damage;
-    cout << name << " takes " << damage << " damage!" << endl;
+    cout << name << " takes \033[1;31m" << damage << "\033[0m damage!" << endl;
 }
 
 void Enemy::displayDetails() {
     /*
     Prints name, health and attackPower to termianl along with the enemy's description.
     */
-    cout << "Enemy: " << name << ", Healt: " << health << ", Attack: " << attackPower << endl;
+    cout << "Enemy: " << name << ", Healt: \033[1;32m" << health << "\033[0m, Attack: \033[1;31m" << attackPower << "\033[0m" << endl;
     cout << description << endl;
     cout << "--------------------------------" << endl;
 }

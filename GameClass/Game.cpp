@@ -43,7 +43,8 @@ void Game::topMenu() {
     switch (choice) {
         case 1:
             cout << "Enter hero name: ";
-            cin >> heroName;
+            cin.ignore();
+            getline(cin, heroName);
             hero = database.createHero(heroName);
             startGame();
             break;
@@ -53,17 +54,23 @@ void Game::topMenu() {
 
                 database.showHeroSaves();
 
-                cout << "Please enter the Save file of the hero you want to load: ";
+                cout << "Please enter the Save file of the hero you want to load or 'b' to go back: ";
 
+                string input;
                 int heroId;
 
-                cin >> heroId;
+                cin >> input;
 
-                if (heroId <= 0 || heroId > database.getLatestHeroId()) {
-                    cout << "Invalid ID. Please try again." << endl;
-                } else {
-                    hero = database.loadHero(heroId);
-                    break;
+                if (all_of(input.begin(), input.end(), ::isdigit)) {
+                    if (heroId <= 0 || heroId > database.getLatestHeroId()) {
+                        cout << "Invalid ID. Please try again." << endl;
+                    } else {
+                        hero = database.loadHero(heroId);
+                        break;
+                    }
+                } else if (input == "b" || input == "B") {
+                    cout << "Going back to main menu..." << endl;
+                    topMenu();
                 }
             }
 
@@ -93,7 +100,7 @@ void Game::startGame() {
     while (!gameOver) {
         currentLevel = hero.getLevel();
         if (currentLevel < 12) {
-            cout << "Current Level: " << currentLevel << endl;
+            cout << "Current Level: \033[1;34m" << currentLevel << "\033[0m" << endl;
             loadLevel(currentLevel);
         } else {
             cout << "You have defeated the final enemy, and can now retire in peace." << endl;
@@ -101,7 +108,7 @@ void Game::startGame() {
         }
     }
 
-    cout << "--- GAME OVER ---" << endl;
+    cout << "\033[1;31m--- GAME OVER ---\033[0m" << endl;
 
 }
 
@@ -281,7 +288,7 @@ void Game::loadCurrentDungeon() {
     generateEnemyList(currentLevel);
     currentDungeonGold = currentDungeon->getGold();
 
-    cout << "Gold to be earned: " << currentDungeonGold << " g" << endl;
+    cout << "Gold to be earned: \033[1;33m" << currentDungeonGold << " g\033[0m" << endl;
     cout << "--------------------------------" << endl;
 
     while (enemyList.size() > 0) {
@@ -293,7 +300,7 @@ void Game::loadCurrentDungeon() {
             cout << "Enemies in this dungeon:" << endl;
             displayEnemyList();
     
-            cout << "Choose an enemy to battle, 'r' to RUN, or 'q' to QUIT: ";
+            cout << "Choose an enemy to battle, 'r' to RUN, or 'q' to EXIT: ";
             string enemyChoice;
             cin >> enemyChoice;
     
@@ -351,7 +358,7 @@ void Game::loadCurrentDungeon() {
     modifyDungeonList(currentDungeonIndex);
     cout << "--------------------------------" << endl;
     cout << "You have defeated all enemies in this dungeon." << endl;
-    cout << "You earned " << currentDungeonGold << " g!" << endl;
+    cout << "You earned \033[1;33m" << currentDungeonGold << " g\033[0m!" << endl;
     hero.earnGold(currentDungeonGold);
 
 }
@@ -361,7 +368,7 @@ void Game::loadMerchant() {
     Weapon* chosenWeapon;
     
     while (true) {
-        cout << "Your current gold: " << hero.getGold() << " g." << endl;
+        cout << "Your current gold: \033[1;33m" << hero.getGold() << " g\033[0m." << endl;
         cout << "-------------------------" << endl;
 
         cout << merchant.getName() << "'s stock: " << endl;
@@ -384,9 +391,9 @@ void Game::loadMerchant() {
 
             chosenWeapon = merchant.createWeapon(merchant.getStockList()[choiceIndex]);
 
-            cout << "Price of " << chosenWeapon->getName() << ": " << chosenWeapon->getPrice() << " g" << endl;
+            cout << "Price of " << chosenWeapon->getName() << ": \033[1;33m" << chosenWeapon->getPrice() << " g\033[0m" << endl;
             cout << "Description: " << chosenWeapon->getDescription() << endl;
-            cout << "Damage: " << chosenWeapon->getAttackPower()+(currentLevel*chosenWeapon->getStrengthModifier()) << ". Damage changes as you grow in level." << endl;
+            cout << "Damage: \033[1;31m" << chosenWeapon->getAttackPower()+(currentLevel*chosenWeapon->getStrengthModifier()) << "\033[0m. Damage changes as you grow in level." << endl;
             cout << "Durability: " << chosenWeapon->getDurability() << endl;
             cout << "-------------------------" << endl;
 
@@ -423,8 +430,8 @@ void Game::battle(Hero& hero, Enemy& enemy) {
 
     while (!gameOver){
 
-        cout << "Hero: " << hero.getName() << " (Health: " << hero.getHealth() << ")" << endl;
-        cout << "Enemy: " << enemy.getName() << " (Health: " << enemy.getHealth() << ")" << endl;
+        cout << "Hero: " << hero.getName() << " (Health: \033[1;32m" << hero.getHealth() << "\033[0m)" << endl;
+        cout << "Enemy: " << enemy.getName() << " (Health: \033[1;32m" << enemy.getHealth() << "\033[0m)" << endl;
         cout << "Press Enter to attack..." << endl;
         cin.ignore();
 
@@ -447,8 +454,8 @@ void Game::battle(Hero& hero, Enemy& enemy) {
         }
     }
 
-    cout << "Hero Health: " << hero.getHealth() << endl;
-    cout << "Hero XP: " << hero.getXP() << endl;
+    cout << "Hero Health: \033[1;32m" << hero.getHealth() << "\033[0m" << endl;
+    cout << "Hero XP: \033[1;36m" << hero.getXP() << "\033[0m" << endl;
     cout << "--------------------------------" << endl;
     currentEnemy = nullptr; // Reset current enemy after battle
 

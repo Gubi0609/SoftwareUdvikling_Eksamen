@@ -120,12 +120,12 @@ void Hero::setDurabilityLeft(int durabilityLeft) {
 
 int Hero::attackEnemy() {
     cout << name << " attacks the enemy!" << endl;
-    cout << "Dealing " << attackPower << " damage!" << endl;
+    cout << "Dealing \033[1;31m" << attackPower << "\033[0m damage!" << endl;
 
     weaponDurabilityLeft -= 1;
 
     if (weaponDurabilityLeft <= 0) {
-        cout << "Your " << currentWeapon->getName() << " broke!" << endl;
+        cout << "\033[7;31mYour " << currentWeapon->getName() << " broke!\033[0m" << endl;
         currentWeapon = new Hands();
         weaponDurabilityLeft = currentWeapon->getDurability(); 
     }
@@ -135,7 +135,7 @@ int Hero::attackEnemy() {
 
 void Hero::gainXP(int xp) {
     this->xp += xp;
-    cout << name << " gains " << xp << " XP!" << endl;
+    cout << name << " gains \033[1;36m" << xp << " XP\033[0m!" << endl;
 
     if (this->xp >= this->level * 1000) {
         levelUp();
@@ -149,13 +149,13 @@ void Hero::levelUp() {
     attackPower = currentWeapon->getAttackPower() + (level*currentWeapon->getStrengthModifier());
     xp = 0; // Remember to reset xp after leveling up
 
-    cout << name << " levels up to level " << level << "!" << endl;
-    cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
+    cout << name << " levels up to level \033[1;34m" << level << "\033[0m!" << endl;
+    cout << "Health: \033[1;32m" << health << "\033[0m, \033[1;31mAttack Power: " << attackPower << "\033[0m" << endl;
 }
 
 void Hero::takeDamage(int damage) {
     health -= damage;
-    cout << name << " takes " << damage << " damage!" << endl;
+    cout << name << " takes "<< "\033[1;31m" << damage << "\033[0m damage!" << endl;
 }
 
 void Hero::earnGold(int gold) {
@@ -167,9 +167,9 @@ void Hero::spendGold(int gold) {
 }
 
 void Hero::displayDetails() {
-    cout << "Hero: " << name << ", Level: " << level << ", XP: " << xp << endl;
-    cout << "Health: " << health << ", Attack Power: " << attackPower << endl;
-    cout << "Gold: " << gold << " g" <<  endl;
+    cout << "Hero: " << name << ", Level: \033[1;34m" << level << "\033[0m, XP: \033[1;36m" << xp << "\033[0m" << endl;
+    cout << "Health: \033[1;32m" << health << "\033[0m, Attack Power: \033[1;31m" << attackPower << "\033[0m" << endl;
+    cout << "Gold: \033[1;33m" << gold << " g\033[0m" <<  endl;
     cout << "Wielding: " << currentWeapon->getName() << endl;
     cout << "--------------------------------" << endl;
 }
