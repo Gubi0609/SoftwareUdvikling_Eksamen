@@ -16,7 +16,12 @@ CaveDungeon::CaveDungeon() {
 }
 
 vector<Enemy*> CaveDungeon::generateEnemyList(int level) {
-    
+    /*
+    Uses EnemyFactory to generate a enemyList fitting to the cave theme and level
+    :param level: The current level
+    :return: A vector with enemy pointers.
+    */
+
     /*
     -- CAVE --
 [x] Weak Goblin 2 hp, 1 attackPower, 50 xp

@@ -113,6 +113,9 @@ void Game::startGame() {
 }
 
 void Game::showOverallStats() {
+    /*
+    A function to display the overall stats for all heroes to have played the game
+    */
 
     int choice;
 
@@ -364,6 +367,9 @@ void Game::loadCurrentDungeon() {
 }
 
 void Game::loadMerchant() {
+    /*
+    Loads the merchant and lets the player trade with him
+    */
     
     Weapon* chosenWeapon;
     
@@ -497,6 +503,7 @@ void Game::displayDungeonList() {
         cout << "(" << i << ") " << dungeonList[i]->getName() << endl;
     }
 
+    // Since the merchant is not part of the dungeonList, he is displayed aftwerwards
     cout << "(" << dungeonList.size() << ") " << merchant.getName() << endl;
 
 }

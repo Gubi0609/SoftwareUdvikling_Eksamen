@@ -15,6 +15,9 @@ Database::Database() {
 }
 
 bool Database::openDatabase() {
+    /*
+    Opens the database given by the databasePath
+    */
     int returnCode = sqlite3_open(databasePath.c_str(), &database);
         if (returnCode) {
             cerr << "Can't open database: " << sqlite3_errmsg(database) << endl;
@@ -24,6 +27,9 @@ bool Database::openDatabase() {
 }
 
 void Database::closeDataBase() {
+    /*
+    Closes the database given by databasePath
+    */
         if (database) {
             sqlite3_close(database);
             database = nullptr;
@@ -32,6 +38,11 @@ void Database::closeDataBase() {
     }
 
 int Database::getNewSaveNumForHero(int heroId) {
+    /*
+    Checks the currently highest save number for heroId and returns one higher
+    :param heroId: The heroId of the hero to check for
+    :return: newSaveNum (One higher than currently largest saveNum)
+    */
 
     const char* sqlCommand = R"(
     SELECT COALESCE(MAX(saveNumber), 0) + 1 AS nextSaveNumber
@@ -64,6 +75,10 @@ int Database::getNewSaveNumForHero(int heroId) {
 }
 
 int Database::getLatestHeroId() {
+    /*
+    Gets the id of the most recently created hero
+    :return: heroId for newest hero
+    */
     const char* sqlCommand = R"(
         SELECT MAX(heroId) FROM Hero;
     )";
@@ -88,6 +103,10 @@ int Database::getLatestHeroId() {
 }
 
 int Database::getSmallestHeroId() {
+    /*
+    Gets the id of the first created hero
+    :return: heroId for oldest hero.
+    */
     const char* sqlCommand = R"(
         SELECT MIN(heroId) FROM Hero;
     )";
@@ -112,6 +131,17 @@ int Database::getSmallestHeroId() {
 }
 
 void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int attackPower, int gold, int durrabilityLeft, int weaponId) {
+    /*
+    Saves a heroId and the attributes for the hero in the database
+    :param heroId: The id of the chosen hero
+    :param level: Level of the chosen hero
+    :param xp: Xp of the chosen her
+    :param hp: The current health of the chosen hero
+    :param maxHp: The maximum health for the chosen hero
+    :param attackPower: The current attackPower of the chosen hero
+    :param durrabilityLeft: The durrability left of the heroes current weapon
+    :param weaponId: The weaponId of the weapon in the chosen heroes inventory
+    */
 
     int newSaveNum = getNewSaveNumForHero(heroId);
 
@@ -146,7 +176,7 @@ void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int att
     if (returnCode != SQLITE_DONE) {
         std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
     } else {
-        std::cout << "Hero saved successfully with saveNumber = " << newSaveNum << endl;
+        std::cout << "Hero saved successfully!" << endl;
     }
 
     // Clean up
@@ -154,6 +184,11 @@ void Database::saveHero(int heroId, int level, int xp, int hp, int maxHp,int att
 }
 
 Hero Database::createHero(string name) {
+    /*
+    Creates a new hero and saves it in database
+    :param name: The name of the new hero
+    :return: Returns the hero as an object of the Hero class.
+    */
 
     const char* sqlCommand = R"(
     INSERT INTO Hero(name) VALUES (?);
@@ -184,6 +219,11 @@ Hero Database::createHero(string name) {
 }
 
 Hero Database::loadHero(int heroId) {
+    /*
+    Loads a hero from database using heroId
+    :param heroId: The heroId of the hero to load
+    :return: Returns the hero as an object of the Hero class.
+    */
 
     const char* sqlCommand = R"(
         SELECT Hero.heroId, Hero.name, Save.level, Save.xp, Save.hp, Save.maxHp, Save.attackPower, Save.gold, Save.durabilityLeft, Weapon.name
@@ -240,6 +280,11 @@ Hero Database::loadHero(int heroId) {
 }
 
 void Database::registrerKill(int heroId, int weaponId) {
+    /*
+    Registrers a kill in the MonsterKill table
+    :param heroId: The id of the hero, who killed the monster
+    :param weaponId: The id of the weapon used to kill the monster
+    */
     const char* sqlCommand = R"(
     INSERT INTO MonsterKill(heroId, weaponId) VALUES (?, ?);
     )";
@@ -260,8 +305,6 @@ void Database::registrerKill(int heroId, int weaponId) {
     returnCode = sqlite3_step(statement);
     if (returnCode != SQLITE_DONE) {
         std::cerr << "Insert failed: " << sqlite3_errmsg(database) << endl;
-    } else {
-        std::cout << "Kill registrered succesfully." << endl;
     }
 
     // Clean up
@@ -270,6 +313,9 @@ void Database::registrerKill(int heroId, int weaponId) {
 }
 
 void Database::showHeroSaves() {
+    /*
+    Prints the most recent save data for each heroId in Save table
+    */
 
     const char* sqlCommand = R"(
         SELECT 
@@ -343,6 +389,9 @@ void Database::showHeroSaves() {
 }
 
 void Database::showHeroesNumerically() {
+    /*
+    Shows all hero names and their Ids and sorts them by id
+    */
 
     const char* sqlCommand = R"(
         SELECT heroId, name
@@ -376,6 +425,9 @@ void Database::showHeroesNumerically() {
 }
 
 void Database::showHeroesAlphabetically() {
+    /*
+    Shows all hero names and sorts by name
+    */
     const char* sqlCommand = R"(
         SELECT name
         FROM Hero
@@ -403,6 +455,10 @@ void Database::showHeroesAlphabetically() {
 }
 
 void Database::showHeroKils() {
+    /*
+    Shows the kill count for all heroIds
+    */
+    
     const char* sqlCommand = R"(
         SELECT Hero.name, COUNT(MonsterKill.heroId)
         FROM Hero, MonsterKill
@@ -436,6 +492,10 @@ void Database::showHeroKils() {
 }
 
 void Database::showHeroWeaponsKills(int heroId) {
+    /*
+    Shows the kill count for each used weapon for a specific heroId
+    :param heroId: The heroId of the hero to show the data for
+    */
     
     const char* sqlCommand = R"(
         SELECT Weapon.name, COUNT(MonsterKill.weaponId)
@@ -478,6 +538,9 @@ void Database::showHeroWeaponsKills(int heroId) {
 }
 
 void Database::showWeaponHighscore() {
+    /*
+    Shows which hero has killed most monsters using a weapon for all used weapons
+    */
 
     const char* sqlCommand = R"(
         SELECT 
@@ -533,5 +596,8 @@ void Database::showWeaponHighscore() {
 }
 
 Database::~Database() {
+    /*
+    Makes sure the database closes properly when no longer used
+    */
     closeDataBase();
 }

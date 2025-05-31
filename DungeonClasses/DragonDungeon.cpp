@@ -17,7 +17,9 @@ DragonDungeon::DragonDungeon() {
 
 vector<Enemy*> DragonDungeon::generateEnemyList(int level) {
     /*
-    A special case of the parent class Dungeon. DragonDungeon only has one enemy.
+    Uses EnemyFactory to generate a enemyList fitting to the cave theme and level
+    :param level: The current level
+    :return: A vector with enemy pointers.
     */
 
     enemyList = enemyFactory.generateEnemyList(level, "Dragon");

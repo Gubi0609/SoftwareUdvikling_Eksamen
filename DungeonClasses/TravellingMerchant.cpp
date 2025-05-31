@@ -24,6 +24,11 @@ string TravellingMerchant::getDescription() {
 }
 
 Weapon* TravellingMerchant::createWeapon(string weaponType) {
+    /*
+    Creates a weapon pointer by the given weaponType
+    :param weaponType: The type of weapon to create
+    :return: A pointer to the created weapon
+    */
     
     if (weaponType == "Stick") {
         return new Stick();

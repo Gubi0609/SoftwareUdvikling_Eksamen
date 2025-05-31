@@ -16,6 +16,11 @@ PlainsDungeon::PlainsDungeon() {
 }
 
 vector<Enemy*> PlainsDungeon::generateEnemyList(int level) {
+    /*
+    Uses EnemyFactory to generate a enemyList fitting to the cave theme and level
+    :param level: The current level
+    :return: A vector with enemy pointers.
+    */
 
     /*
     -- PLAINS --

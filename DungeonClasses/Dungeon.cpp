@@ -21,8 +21,7 @@ Dungeon::Dungeon(string name, string description) {
 
 vector<Enemy*> Dungeon::generateEnemyList(int level) {
     /*
-    Generates a list of enemies based on the current level.
-    If not a boss level, the enemies are randomized, and 4 enemies are selected.
+    Uses EnemyFactory to generate a enemyList fitting to the cave theme and level
     :param level: The current level
     :return: A vector with enemy pointers.
     */
